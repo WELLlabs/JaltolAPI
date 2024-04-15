@@ -1,0 +1,31 @@
+runtime: python312  # Adjust based on your Python version
+env: standard
+instance_class: F1
+
+automatic_scaling:
+  min_idle_instances: 0
+  max_idle_instances: automatic
+  min_pending_latency: automatic
+  max_pending_latency: automatic
+
+entrypoint: gunicorn -b :$PORT my_gee_backend.wsgi:application
+
+env_variables:
+  DJANGO_SECRET_KEY: "django-insecure-sv^=0*(95v=&7gbq#5%e!&ynw)w5c@la($mam+5)&1*a!+m8!1"
+  DJANGO_DEBUG: "False"
+  DJANGO_ALLOWED_HOSTS: "yourdomain.com, www.yourdomain.com"  # Fill in with your actual domain
+  DATABASE_NAME: "my_django_db"
+  DATABASE_USER: "django_user"
+  DATABASE_PASSWORD: "lemontin1"
+  DATABASE_HOST: "localhost"  # For Cloud SQL, this will be different
+  DATABASE_PORT: "5432"
+  GOOGLE_EARTH_ENGINE_API_KEY: "AIzaSyDjQgvzJyty9FQi5T6X9wLhAVA7lCXFR9Y"
+  GOOGLE_APPLICATION_CREDENTIALS: "C://Users/papne/.config/earthengine/credentials"  # This path won't be valid in App Engine
+  CORS_ORIGIN_WHITELIST: "http://localhost:5173"
+  
+
+handlers:
+- url: /static
+  static_dir: staticfiles
+- url: /.*
+  script: auto
