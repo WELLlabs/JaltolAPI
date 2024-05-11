@@ -5,6 +5,11 @@ from django.http import JsonResponse
 from .utils import initialize_earth_engine
 import ee
 from django.conf import settings
+import json
+from django.shortcuts import render
+from pathlib import Path
+from django.views.decorators.http import require_http_methods
+
 
 email = "admin-133@ee-papnejaanmol.iam.gserviceaccount.com"
 key_file = "./creds/ee-papnejaanmol-23b4363dc984.json"
@@ -60,54 +65,54 @@ def karauli_villages_geojson(request,district_name):
         return JsonResponse({'error': str(e)}, status=500)
  
     
-def calculate_class_area(image, class_value, geometry):
-    area_image = image.eq(class_value).multiply(ee.Image.pixelArea())
-    area_calculation = area_image.reduceRegion(
-        reducer=ee.Reducer.sum(),
-        geometry=geometry,
-        scale=10,
-        maxPixels=1e10
-    )
-    return area_calculation.get('b1').getInfo()/1e4
+# def calculate_class_area(image, class_value, geometry):
+#     area_image = image.eq(class_value).multiply(ee.Image.pixelArea())
+#     area_calculation = area_image.reduceRegion(
+#         reducer=ee.Reducer.sum(),
+#         geometry=geometry,
+#         scale=10,
+#         maxPixels=1e10
+#     )
+#     return area_calculation.get('b1').getInfo()/1e4
 
-def area_change_karauli(request,district_name ,village_name):
-    # Initialize your Earth Engine credentials if not already initialized
-    ee.Initialize(credentials)
+# def area_change(request,district_name ,village_name):
+#     # Initialize your Earth Engine credentials if not already initialized
+#     ee.Initialize(credentials)
 
-    # Define the FeatureCollection for Karauli villages
-    district_fc = ee.FeatureCollection('users/jaltolwelllabs/hackathonDists/hackathon_dists').filter(ee.Filter.eq('district_n', district_name))
+#     # Define the FeatureCollection for Karauli villages
+#     district_fc = ee.FeatureCollection('users/jaltolwelllabs/hackathonDists/hackathon_dists').filter(ee.Filter.eq('district_n', district_name))
 
-    # Filter the FeatureCollection for the specific village
-    village_fc = district_fc.filter(ee.Filter.eq('village_na', village_name))
+#     # Filter the FeatureCollection for the specific village
+#     village_fc = district_fc.filter(ee.Filter.eq('village_na', village_name))
 
-    # Get the geometry for the specific village
-    village_geometry = village_fc.geometry()
-     # Define the ImageCollection for Karauli LandUseLandCover
-    image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/hackathon').filterBounds(village_geometry)
+#     # Get the geometry for the specific village
+#     village_geometry = village_fc.geometry()
+#      # Define the ImageCollection for Karauli LandUseLandCover
+#     image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/hackathon').filterBounds(village_geometry)
 
-    # Define the labels for the classes (only include the specified two classes)
-    class_labels = {
-        '8': 'Single cropping cropland',
-        '10': 'Double cropping cropland',
-    }
+#     # Define the labels for the classes (only include the specified two classes)
+#     class_labels = {
+#         '8': 'Single cropping cropland',
+#         '10': 'Double cropping cropland',
+#     }
 
-    # Compute the area for each class over the years
-    area_change_data = {}
-    for year in range(2014, 2023):  # Assuming you have data from 2014 to 2022
-        # Filter the ImageCollection for the specific year
-        start_date = ee.Date.fromYMD(year, 6, 1)
-        end_date = start_date.advance(1, 'year')
-        year_image = image_collection.filterDate(start_date, end_date).mosaic()
+#     # Compute the area for each class over the years
+#     area_change_data = {}
+#     for year in range(2014, 2023):  # Assuming you have data from 2014 to 2022
+#         # Filter the ImageCollection for the specific year
+#         start_date = ee.Date.fromYMD(year, 6, 1)
+#         end_date = start_date.advance(1, 'year')
+#         year_image = image_collection.filterDate(start_date, end_date).mosaic()
         
-        # Calculate the area for each of the two land cover classes
-        for class_value, class_name in class_labels.items():
-            area = calculate_class_area(year_image, int(class_value), village_geometry)
-            if year not in area_change_data:
-                area_change_data[year] = {}
-            area_change_data[year][class_name] = area
-            print(area)
+#         # Calculate the area for each of the two land cover classes
+#         for class_value, class_name in class_labels.items():
+#             area = calculate_class_area(year_image, int(class_value), village_geometry)
+#             if year not in area_change_data:
+#                 area_change_data[year] = {}
+#             area_change_data[year][class_name] = area
+#             print(area)
 
-    return JsonResponse(area_change_data)
+#     return JsonResponse(area_change_data)
     
     
 def get_karauli_raster(request, district_name):
@@ -267,4 +272,296 @@ def get_district_slope(request, district_name):
         return JsonResponse({'tiles_url': tiles_url})
     except Exception as e:
         logger.error('Failed to get Carbon', exc_info=True)
+        return JsonResponse({'error': str(e)}, status=500)
+    
+def get_boundary_data(request):
+    # Extract the parameters from the query string
+    state_name = request.GET.get('state_name', '').lower()
+    district_name = request.GET.get('district_name', '').lower()
+    # subdistrict_name = request.GET.get('subdistrict_name', '').lower()
+    # village_name = request.GET.get('village_name', '').lower()
+
+    if not (state_name and district_name ):
+        return JsonResponse({'error': 'All parameters (state_name, district_name) are required.'}, status=400)
+
+    try:
+        # Load the JSON data
+        with open('data/json7_file.json', 'r',encoding='utf-8') as file:
+            data = json.load(file)
+        
+        # Navigate through the JSON structure to find the codes
+        state_data = data.get(state_name)
+        if not state_data:
+            return JsonResponse({'error': 'State not found'}, status=404)
+        
+        # Find district
+        district_code = next((code for code, d in state_data['districts'].items() if d['district_name'].lower() == district_name), None)
+        if not district_code:
+            return JsonResponse({'error': 'District not found'}, status=404)
+
+        # # Find subdistrict
+        # subdistrict_code = next((code for code, sd in state_data['districts'][district_code]['subdistricts'].items() if sd['subdistrict_name'].lower() == subdistrict_name), None)
+        # if not subdistrict_code:
+        #     return JsonResponse({'error': 'Subdistrict not found'}, status=404)
+
+        # # Find village
+        # village_code = next((code for code, v in state_data['districts'][district_code]['subdistricts'][subdistrict_code]['villages'].items() if v['village_name'].lower() == village_name), None)
+        # if not village_code:
+        #     return JsonResponse({'error': 'Village not found'}, status=404)
+
+        # Prepare the response with the found codes
+        response_data = {
+            'state_code': state_data['state_code'],
+            'district_code': district_code,
+            # 'subdistrict_code': subdistrict_code,
+            # 'village_code': village_code
+        }
+        
+        district_fc = ee.FeatureCollection('users/jaltolwelllabs/FeatureCol/SHRUG-raw').filter(ee.Filter.And(ee.Filter.eq('pc11_s_id', state_data['state_code']), ee.Filter.eq('pc11_d_id', district_code)))
+        
+        geojson = district_fc.getInfo()  # This will be a dictionary that includes GeoJSON data
+        
+        return JsonResponse(geojson)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+    #     return JsonResponse(response_data)
+    # except json.JSONDecodeError:
+    #     return JsonResponse({'error': 'Error reading JSON data'}, status=500)
+    # except Exception as e:
+    #     return JsonResponse({'error': str(e)}, status=500)
+    
+    
+    
+def get_lulc_raster(request):
+    ee.Initialize(credentials)
+    state_name = request.GET.get('state_name', '').lower()
+    district_name = request.GET.get('district_name', '').lower()
+    year = request.GET.get('year')
+    
+    if not (state_name and district_name):
+        return JsonResponse({'error': 'All parameters (state_name, district_name are required.'}, status=400)
+    
+    try:
+        # Load the JSON data
+        with open('data/json7_file.json', 'r',encoding='utf-8') as file:
+            data = json.load(file)
+        
+        # Navigate through the JSON structure to find the codes
+        state_data = data.get(state_name)
+        if not state_data:
+            return JsonResponse({'error': 'State not found'}, status=404)
+        
+        # Find district
+        district_code = next((code for code, d in state_data['districts'].items() if d['district_name'].lower() == district_name), None)
+        if not district_code:
+            return JsonResponse({'error': 'District not found'}, status=404)
+        
+        start_date = f'{year}-07-01'
+        end_date = f'{int(year) + 1}-06-30' 
+        
+        # Access the ImageCollection for Karauli
+        district_fc = ee.FeatureCollection('users/jaltolwelllabs/FeatureCol/SHRUG-raw').filter(ee.Filter.And(ee.Filter.eq('pc11_s_id', state_data['state_code']), ee.Filter.eq('pc11_d_id', district_code)))
+        
+        image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/hackathon').filterBounds(district_fc).filterDate(start_date,end_date).mosaic()
+        
+        image = ee.Image(image_collection)
+        
+        valuesToKeep = [6, 8, 9, 10,11,12]
+        targetValues = [6,8,8,10,10,12]
+        remappedImage = image.remap( valuesToKeep, targetValues,0 )
+        mask = remappedImage.gte(6).And(remappedImage.lte(12))
+        remappedImage = remappedImage.updateMask(mask)
+        
+        # Define visualization parameters
+        vis_params = {
+            'bands': ['remapped'],  # Update with the correct band names
+            'min': 0,
+            'max': 12,
+            'palette': [
+                 '#b2df8a', '#6382ff', '#d7191c', '#f5ff8b', '#dcaa68',
+                 '#397d49', '#50c361', '#8b9dc3', '#dac190', '#222f5b',
+                 '#38c5f9', '#946b2d'
+            ]
+        }
+        
+        # Get the map ID and token
+        map_id_dict = remappedImage.getMapId(vis_params)
+        
+        # Construct the tiles URL template
+        tiles_url = map_id_dict['tile_fetcher'].url_format
+        
+        return JsonResponse({'tiles_url': tiles_url})
+    except Exception as e:
+        logger.error('Failed to get LULC raster', exc_info=True)
+        return JsonResponse({'error': str(e)}, status=500)
+    
+    
+# def calculate_class_area(image, class_value, geometry):
+#     area_image = image.eq(class_value).multiply(ee.Image.pixelArea())
+#     area_calculation = area_image.reduceRegion(
+#         reducer=ee.Reducer.sum(),
+#         geometry=geometry,
+#         scale=10,
+#         maxPixels=1e10
+#     )
+#     return area_calculation.get('b1').getInfo()/1e4
+
+
+# def get_area_change(request):
+#     ee.Initialize(credentials)  # Assuming Earth Engine is correctly initialized elsewhere
+    
+#     state_name = request.GET.get('state_name', '').lower()
+#     district_name = request.GET.get('district_name', '').lower()
+#     subdistrict_name = request.GET.get('subdistrict_name', '').lower()
+#     village_name = request.GET.get('village_name', '').lower()
+
+#     if not (state_name and district_name):
+#         return JsonResponse({'error': 'All parameters (state_name, district_name) are required.'}, status=400)
+
+#     try:
+#         with open('data/json7_file.json', 'r', encoding='utf-8') as file:
+#             data = json.load(file)
+        
+#         state_data = data.get(state_name)
+#         if not state_data:
+#             return JsonResponse({'error': 'State not found'}, status=404)
+        
+#         district_code = next((code for code, d in state_data['districts'].items() if d['district_name'].lower() == district_name), None)
+#         if not district_code:
+#             return JsonResponse({'error': 'District not found'}, status=404)
+
+#         subdistrict_code = next((code for code, sd in state_data['districts'][district_code]['subdistricts'].items() if sd['subdistrict_name'].lower() == subdistrict_name), None)
+#         if not subdistrict_code:
+#             return JsonResponse({'error': 'Subdistrict not found'}, status=404)
+
+#         village_code = next((code for code, v in state_data['districts'][district_code]['subdistricts'][subdistrict_code]['villages'].items() if str(v['village_name']).lower() == village_name), None)
+#         if not village_code:
+#             return JsonResponse({'error': 'Village not found'}, status=404)
+
+#         district_fc = ee.FeatureCollection('users/jaltolwelllabs/FeatureCol/SHRUG-raw').filter(ee.Filter.And(ee.Filter.eq('pc11_s_id', state_data['state_code']), ee.Filter.eq('pc11_d_id', district_code)))
+#         village_fc = district_fc.filter(ee.Filter.eq('pc11_tv_id', village_code))
+#         village_geometry = village_fc.geometry()
+#         image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/hackathon').filterBounds(village_geometry)
+
+        
+#         class_labels = {
+#         '8': 'Single cropping cropland',
+#         '10': 'Double cropping cropland',
+#     }
+
+#     # Compute the area for each class over the years
+#         area_change_data = {}
+#         for year in range(2014, 2023):  # Assuming you have data from 2014 to 2022
+#         # Filter the ImageCollection for the specific year
+#             start_date = ee.Date.fromYMD(year, 6, 1)
+#             end_date = start_date.advance(1, 'year')
+#             year_image = image_collection.filterDate(start_date, end_date).mosaic()
+        
+#         # Calculate the area for each of the two land cover classes
+#             for class_value, class_name in class_labels.items():
+#                area = calculate_class_area(year_image, int(class_value), village_geometry)
+#                if year not in area_change_data:
+#                    area_change_data[year] = {}
+#                area_change_data[year][class_name] = area
+#                print(area)
+
+#         return JsonResponse(area_change_data)
+#     except Exception as e:
+#         logger.error('Failed to get area change', exc_info=True)
+#         return JsonResponse({'error': str(e)}, status=500)
+
+
+def calculate_class_area(image, class_value, geometry):
+    area_image = image.eq(class_value).multiply(ee.Image.pixelArea())
+    area_calculation = area_image.reduceRegion(
+        reducer=ee.Reducer.sum(),
+        geometry=geometry,
+        scale=10,
+        maxPixels=1e10
+    )
+    return area_calculation.get('b1').getInfo()/1e4
+
+def get_area_change(request):
+    # Initialize your Earth Engine credentials if not already initialized
+    ee.Initialize(credentials)
+    
+    state_name = request.GET.get('state_name', '').lower()
+    district_name = request.GET.get('district_name', '').lower()
+    subdistrict_name = request.GET.get('subdistrict_name', '').lower()
+    village_name = request.GET.get('village_name', '').lower()
+
+    if not (state_name and district_name ):
+        return JsonResponse({'error': 'All parameters (state_name, district_name) are required.'}, status=400)
+
+    try:
+        # Load the JSON data
+        with open('data/json7_file.json', 'r',encoding='utf-8') as file:
+            data = json.load(file)
+        
+        # Navigate through the JSON structure to find the codes
+        state_data = data.get(state_name)
+        if not state_data:
+            return JsonResponse({'error': 'State not found'}, status=404)
+        
+        # Find district
+        district_code = next((code for code, d in state_data['districts'].items() if d['district_name'].lower() == district_name), None)
+        if not district_code:
+            return JsonResponse({'error': 'District not found'}, status=404)
+
+        # Find subdistrict
+        subdistrict_code = next((code for code, sd in state_data['districts'][district_code]['subdistricts'].items() if sd['subdistrict_name'].lower() == subdistrict_name), None)
+        if not subdistrict_code:
+            return JsonResponse({'error': 'Subdistrict not found'}, status=404)
+
+        # Find village
+        village_code = next((code for code, v in state_data['districts'][district_code]['subdistricts'][subdistrict_code]['villages'].items() if v['village_name'].lower() == village_name), None)
+        if not village_code:
+            return JsonResponse({'error': 'Village not found'}, status=404)
+        
+        
+         # Define the FeatureCollection for Karauli villages
+        district_fc = ee.FeatureCollection('users/jaltolwelllabs/FeatureCol/SHRUG-raw').filter(ee.Filter.And(ee.Filter.eq('pc11_s_id', state_data['state_code']), ee.Filter.eq('pc11_d_id', district_code)))
+
+        # Filter the FeatureCollection for the specific village
+        village_fc = district_fc.filter(ee.Filter.eq('pc11_tv_id', village_code))
+
+        # Get the geometry for the specific village
+        village_geometry = village_fc.geometry()
+         # Define the ImageCollection for Karauli LandUseLandCover
+        image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/hackathon').filterBounds(village_geometry)
+
+    # Define the labels for the classes (only include the specified two classes)
+        class_labels = {
+            '8': 'Single cropping cropland',
+            '9': 'Single cropping cropland',
+            '10': 'Double cropping cropland',
+            '11': 'Double cropping cropland',
+        }
+
+    # Compute the area for each class over the years
+        area_change_data = {}
+        for year in range(2014, 2023):  # Assuming you have data from 2014 to 2022
+            # Filter the ImageCollection for the specific year
+            start_date = ee.Date.fromYMD(year, 6, 1)
+            end_date = start_date.advance(1, 'year')
+            year_image = image_collection.filterDate(start_date, end_date).mosaic()
+
+            # Calculate the area for single cropping cropland
+            single_cropping_area = sum(calculate_class_area(year_image, int(class_value), village_geometry)
+                                       for class_value in ['8', '9'])
+
+            # Calculate the area for double cropping cropland
+            double_cropping_area = sum(calculate_class_area(year_image, int(class_value), village_geometry)
+                                       for class_value in ['10', '11'])
+
+            if year not in area_change_data:
+                area_change_data[year] = {}
+
+            area_change_data[year]['Single cropping cropland'] = single_cropping_area
+            area_change_data[year]['Double cropping cropland'] = double_cropping_area
+
+        return JsonResponse(area_change_data)
+
+    except Exception as e:
+        logger.error('Failed to get area change', exc_info=True)
         return JsonResponse({'error': str(e)}, status=500)
