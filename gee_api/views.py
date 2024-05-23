@@ -23,8 +23,7 @@ def health_check(request):
     # Perform necessary health check logic here
     return HttpResponse("OK")
 
-    
-    
+
 def get_karauli_raster(request, district_name):
     ee.Initialize(credentials)
     

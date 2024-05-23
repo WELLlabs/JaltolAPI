@@ -7,5 +7,6 @@ urlpatterns = [
     path('get_area_change/', views.get_area_change, name='get_area_change'),
     path('get_control_village/', views.get_control_village, name='get_control_village'),
     path('get_rainfall_data/', views.get_rainfall_data, name='get_rainfall_data'),
+    path('health/', views.health_check, name='health_check'),
 ]
     
