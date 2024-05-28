@@ -14,8 +14,8 @@ COPY . /code/
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 80
-# Run the Django development server
-RUN python manage.py runserver 0.0.0.0:80 &
+# Expose port 8000
+EXPOSE 8000
 
-CMD bash
+# Use CMD to run the Django development server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
