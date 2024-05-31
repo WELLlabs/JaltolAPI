@@ -10,7 +10,7 @@ from django.shortcuts import render
 from pathlib import Path
 from django.views.decorators.http import require_http_methods
 
-from .ee_processing import compare_village, district_boundary, IndiaSAT_lulc, IMD_precipitation
+from .ee_processing import compare_village, district_boundary, IndiaSAT_lulc, IMD_precipitation, village_boundary
 
 email = "admin-133@ee-papnejaanmol.iam.gserviceaccount.com"
 key_file = "./creds/ee-papnejaanmol-23b4363dc984.json"
@@ -245,39 +245,39 @@ def get_area_change(request):
         return JsonResponse({'error': 'All parameters (state_name, district_name) are required.'}, status=400)
 
     try:
-        # Load the JSON data
-        with open('data/json7_file.json', 'r',encoding='utf-8') as file:
-            data = json.load(file)
+        # # Load the JSON data
+        # with open('data/json7_file.json', 'r',encoding='utf-8') as file:
+        #     data = json.load(file)
         
-        # Navigate through the JSON structure to find the codes
-        state_data = data.get(state_name)
-        if not state_data:
-            return JsonResponse({'error': 'State not found'}, status=404)
+        # # Navigate through the JSON structure to find the codes
+        # state_data = data.get(state_name)
+        # if not state_data:
+        #     return JsonResponse({'error': 'State not found'}, status=404)
         
-        # Find district
-        district_code = next((code for code, d in state_data['districts'].items() if d['district_name'].lower() == district_name), None)
-        if not district_code:
-            return JsonResponse({'error': 'District not found'}, status=404)
+        # # Find district
+        # district_code = next((code for code, d in state_data['districts'].items() if d['district_name'].lower() == district_name), None)
+        # if not district_code:
+        #     return JsonResponse({'error': 'District not found'}, status=404)
 
-        # Find subdistrict
-        subdistrict_code = next((code for code, sd in state_data['districts'][district_code]['subdistricts'].items() if sd['subdistrict_name'].lower() == subdistrict_name), None)
-        if not subdistrict_code:
-            return JsonResponse({'error': 'Subdistrict not found'}, status=404)
+        # # Find subdistrict
+        # subdistrict_code = next((code for code, sd in state_data['districts'][district_code]['subdistricts'].items() if sd['subdistrict_name'].lower() == subdistrict_name), None)
+        # if not subdistrict_code:
+        #     return JsonResponse({'error': 'Subdistrict not found'}, status=404)
 
-        # Find village
-        village_code = next((code for code, v in state_data['districts'][district_code]['subdistricts'][subdistrict_code]['villages'].items() if v['village_name'].lower() == village_name), None)
-        if not village_code:
-            return JsonResponse({'error': 'Village not found'}, status=404)
+        # # Find village
+        # village_code = next((code for code, v in state_data['districts'][district_code]['subdistricts'][subdistrict_code]['villages'].items() if v['village_name'].lower() == village_name), None)
+        # if not village_code:
+        #     return JsonResponse({'error': 'Village not found'}, status=404)
         
         
-         # Define the FeatureCollection for Karauli villages
-        district_fc = ee.FeatureCollection('users/jaltolwelllabs/FeatureCol/SHRUG-raw').filter(ee.Filter.And(ee.Filter.eq('pc11_s_id', state_data['state_code']), ee.Filter.eq('pc11_d_id', district_code)))
-
-        # Filter the FeatureCollection for the specific village
-        village_fc = district_fc.filter(ee.Filter.eq('pc11_tv_id', village_code))
+        #  # Define the FeatureCollection for Karauli villages
+        # # district_fc = ee.FeatureCollection('users/jaltolwelllabs/FeatureCol/SHRUG-raw').filter(ee.Filter.And(ee.Filter.eq('pc11_s_id', state_data['state_code']), ee.Filter.eq('pc11_d_id', district_code)))
+        # # district_boundary(state_name, district_name)
+        # # # Filter the FeatureCollection for the specific village
+        # # village_fc = district_fc.filter(ee.Filter.eq('pc11_tv_id', village_code))
 
         # Get the geometry for the specific village
-        village_geometry = village_fc.geometry()
+        village_geometry = village_boundary.geometry()
          # Define the ImageCollection for Karauli LandUseLandCover
         image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/IndiaSAT_V2_draft').filterBounds(village_geometry)
 
