@@ -41,4 +41,3 @@ def shrug_dataset():
         # Merge all the FeatureCollections into a single variable
         return ee.FeatureCollection(feature_collections).flatten()
     
-    

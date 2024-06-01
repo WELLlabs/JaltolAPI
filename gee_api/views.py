@@ -126,39 +126,6 @@ def get_district_carbon(request, district_name):
     
 
     
-# def get_boundary_data(request):
-#     # Extract the parameters from the query string
-#     state_name = request.GET.get('state_name', '').lower()
-#     district_name = request.GET.get('district_name', '').lower()
-
-
-#     if not (state_name and district_name ):
-#         return JsonResponse({'error': 'All parameters (state_name, district_name) are required.'}, status=400)
-
-#     try:
-#         # Load the JSON data
-#         with open('data/json7_file.json', 'r',encoding='utf-8') as file:
-#             data = json.load(file)
-        
-#         # Navigate through the JSON structure to find the codes
-#         state_data = data.get(state_name)
-#         if not state_data:
-#             return JsonResponse({'error': 'State not found'}, status=404)
-        
-#         # Find district
-#         district_code = next((code for code, d in state_data['districts'].items() if d['district_name'].lower() == district_name), None)
-#         if not district_code:
-#             return JsonResponse({'error': 'District not found'}, status=404)
-
-        
-#         district_fc = ee.FeatureCollection('users/jaltolwelllabs/FeatureCol/SHRUG-raw').filter(ee.Filter.And(ee.Filter.eq('pc11_s_id', state_data['state_code']), ee.Filter.eq('pc11_d_id', district_code)))
-        
-#         geojson = district_fc.getInfo()  # This will be a dictionary that includes GeoJSON data
-        
-#         return JsonResponse(geojson)
-#     except Exception as e:
-#         return JsonResponse({'error': str(e)}, status=500)
-
 def get_boundary_data(request):
     ee.Initialize(credentials)
     # Extract the parameters from the query string
