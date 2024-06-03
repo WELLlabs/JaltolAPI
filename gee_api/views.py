@@ -89,42 +89,6 @@ def get_rainfall_data(request):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
-
-def get_district_carbon(request, district_name):
-    ee.Initialize(credentials)
-    
-    try:
-        
-        # Access the ImageCollection for Karauli
-        district_fc = ee.FeatureCollection('users/jaltolwelllabs/hackathonDists/hackathon_dists').filter(ee.Filter.eq('district_n', district_name))
-        
-        image_collection = ee.Image('OpenLandMap/SOL/SOL_ORGANIC-CARBON_USDA-6A1C_M/v02').multiply(5).clipToCollection(district_fc)
-        # Here you might want to select a specific image by date or other criteria.
-        # For example, to get the first image:
-        # image = ee.Image(image_collection.filterDate('2022-07-01', '2023-06-30').first())
-        image = ee.Image(image_collection)
-        
-        
-        vis_params = {
-        'bands': ['b0'],
-        'min': 0.0,
-        'max': 60.0,
-        'palette': ['F9EFDB','9DBC98','638889','green']
-         }
-        
-        
-        # Get the map ID and token
-        map_id_dict = image.getMapId(vis_params)
-        
-        # Construct the tiles URL template
-        tiles_url = map_id_dict['tile_fetcher'].url_format
-        
-        return JsonResponse({'tiles_url': tiles_url})
-    except Exception as e:
-        logger.error('Failed to get Carbon', exc_info=True)
-        return JsonResponse({'error': str(e)}, status=500)
-    
-
     
 def get_boundary_data(request):
     ee.Initialize(credentials)
@@ -212,39 +176,8 @@ def get_area_change(request):
         return JsonResponse({'error': 'All parameters (state_name, district_name) are required.'}, status=400)
 
     try:
-        # # Load the JSON data
-        # with open('data/json7_file.json', 'r',encoding='utf-8') as file:
-        #     data = json.load(file)
-        
-        # # Navigate through the JSON structure to find the codes
-        # state_data = data.get(state_name)
-        # if not state_data:
-        #     return JsonResponse({'error': 'State not found'}, status=404)
-        
-        # # Find district
-        # district_code = next((code for code, d in state_data['districts'].items() if d['district_name'].lower() == district_name), None)
-        # if not district_code:
-        #     return JsonResponse({'error': 'District not found'}, status=404)
-
-        # # Find subdistrict
-        # subdistrict_code = next((code for code, sd in state_data['districts'][district_code]['subdistricts'].items() if sd['subdistrict_name'].lower() == subdistrict_name), None)
-        # if not subdistrict_code:
-        #     return JsonResponse({'error': 'Subdistrict not found'}, status=404)
-
-        # # Find village
-        # village_code = next((code for code, v in state_data['districts'][district_code]['subdistricts'][subdistrict_code]['villages'].items() if v['village_name'].lower() == village_name), None)
-        # if not village_code:
-        #     return JsonResponse({'error': 'Village not found'}, status=404)
-        
-        
-        #  # Define the FeatureCollection for Karauli villages
-        # # district_fc = ee.FeatureCollection('users/jaltolwelllabs/FeatureCol/SHRUG-raw').filter(ee.Filter.And(ee.Filter.eq('pc11_s_id', state_data['state_code']), ee.Filter.eq('pc11_d_id', district_code)))
-        # # district_boundary(state_name, district_name)
-        # # # Filter the FeatureCollection for the specific village
-        # # village_fc = district_fc.filter(ee.Filter.eq('pc11_tv_id', village_code))
-
         # Get the geometry for the specific village
-        village_geometry = village_boundary.geometry()
+        village_geometry = village_boundary(state_name, district_name,subdistrict_name,village_name).geometry()
          # Define the ImageCollection for Karauli LandUseLandCover
         image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/IndiaSAT_V2_draft').filterBounds(village_geometry)
 
