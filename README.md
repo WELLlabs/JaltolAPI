@@ -10,8 +10,8 @@ This is a Django application designed to act as backend server for the Jaltol We
   pip --version
 
 ## Installation
-git clone https://github.com/WELLlabs/JaltolAPI.git
-cd your-repo-name
+- git clone https://github.com/WELLlabs/JaltolAPI.git
+- cd JaltolAPI
 
 ## Create and Activate a Virtual Environment
 python -m venv venv
