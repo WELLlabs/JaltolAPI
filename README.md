@@ -33,9 +33,9 @@ The views.py file contains the main view functions for handling requests and ret
 
 Key Functions:
 
-district_boundary
-village_boundary
-srtm_slope
+-- district_boundary
+-- village_boundary
+-- srtm_slope
 compute_slope
 get_buffer
 compare_village
