@@ -44,6 +44,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'my_gee_backend',
+    'gee_api',
 
 ]
 
@@ -101,7 +103,16 @@ WSGI_APPLICATION = 'my_gee_backend.wsgi.application'
 #         'PORT': '5432',  # Set to empty string for default
 #     }
 # }
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'admindatabase',
+        'PASSWORD': 'admindata24',
+        'HOST': 'jaltoldatabase-1.cnyqeok8kne6.ap-south-1.rds.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

@@ -17,6 +17,27 @@ key_file = "./creds/ee-papnejaanmol-23b4363dc984.json"
 credentials = ee.ServiceAccountCredentials(email=email, key_file=key_file)
 
 from django.http import HttpResponse
+
+from rest_framework import viewsets
+from .models import State, District, SubDistrict, Village
+from .serializers import StateSerializer, DistrictSerializer, SubDistrictSerializer, VillageSerializer
+
+class StateViewSet(viewsets.ModelViewSet):
+    queryset = State.objects.all()
+    serializer_class = StateSerializer
+
+class DistrictViewSet(viewsets.ModelViewSet):
+    queryset = District.objects.all()
+    serializer_class = DistrictSerializer
+
+class SubDistrictViewSet(viewsets.ModelViewSet):
+    queryset = SubDistrict.objects.all()
+    serializer_class = SubDistrictSerializer
+
+class VillageViewSet(viewsets.ModelViewSet):
+    queryset = Village.objects.all()
+    serializer_class = VillageSerializer
+
 ee.Initialize(credentials)
 
 def health_check(request):
