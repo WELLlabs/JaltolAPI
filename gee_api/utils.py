@@ -6,6 +6,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def initialize_earth_engine():
     try:
         ee.Initialize()

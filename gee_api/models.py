@@ -1,30 +1,45 @@
-# models.py
+# gee_api/models.py
 
 from django.db import models
 
 class State(models.Model):
-    name = models.CharField(max_length=255)
+    """
+    Model representing a State.
+    """
+    name: str = models.CharField(max_length=100)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
+
 
 class District(models.Model):
-    name = models.CharField(max_length=255)
-    state = models.ForeignKey(State, on_delete=models.CASCADE)
+    """
+    Model representing a District belonging to a specific State.
+    """
+    name: str = models.CharField(max_length=100)
+    state: State = models.ForeignKey(State, related_name='districts', on_delete=models.CASCADE)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
+
 
 class SubDistrict(models.Model):
-    name = models.CharField(max_length=255)
-    district = models.ForeignKey(District, on_delete=models.CASCADE)
+    """
+    Model representing a SubDistrict belonging to a specific District.
+    """
+    name: str = models.CharField(max_length=100)
+    district: District = models.ForeignKey(District, related_name='subdistricts', on_delete=models.CASCADE)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
-class Village(models.Model):
-    name = models.CharField(max_length=255)
-    subdistrict = models.ForeignKey(SubDistrict, on_delete=models.CASCADE)
 
-    def __str__(self):
+class Village(models.Model):
+    """
+    Model representing a Village belonging to a specific SubDistrict.
+    """
+    name: str = models.CharField(max_length=100)
+    subdistrict: SubDistrict = models.ForeignKey(SubDistrict, related_name='villages', on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
         return self.name

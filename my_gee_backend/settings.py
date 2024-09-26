@@ -17,7 +17,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # my_gee_backend/settings.py
-import os
 
 # Set the path to the credentials file
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './creds/credentials'
@@ -66,7 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
 ]
 
 ROOT_URLCONF = 'my_gee_backend.urls'
@@ -106,11 +105,11 @@ WSGI_APPLICATION = 'my_gee_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'admindatabase',
-        'PASSWORD': 'admindata24',
-        'HOST': 'jaltoldatabase-1.cnyqeok8kne6.ap-south-1.rds.amazonaws.com',
-        'PORT': '5432',
+        'NAME': 'DatabasePostgres',  # Your database name
+        'USER': 'admindatabase',     # Your database user
+        'PASSWORD': 'admindata24',  # Your database password
+        'HOST': 'my-postgres-db.cnyqeok8kne6.ap-south-1.rds.amazonaws.com',  # Your actual RDS endpoint
+        'PORT': '5432',  # Default PostgreSQL port
     }
 }
 
@@ -163,5 +162,4 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_METHODS = ("DELETE", "GET", "OPTIONS", "PATCH", "POST", "PUT")
 
 CORS_ALLOW_HEADERS = (
-    "accept","accept-encoding","authorization","content-type","dnt","origin","user-agent","x-csrftoken","x-requested-with")
-
+    "accept", "accept-encoding", "authorization", "content-type", "dnt", "origin", "user-agent", "x-csrftoken", "x-requested-with")

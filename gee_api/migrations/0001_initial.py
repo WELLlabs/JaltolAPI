@@ -15,32 +15,39 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='State',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
             name='District',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255)),
-                ('state', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='gee_api.state')),
+                ('state', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='gee_api.state')),
             ],
         ),
         migrations.CreateModel(
             name='SubDistrict',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255)),
-                ('district', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='gee_api.district')),
+                ('district', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='gee_api.district')),
             ],
         ),
         migrations.CreateModel(
             name='Village',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255)),
-                ('subdistrict', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='gee_api.subdistrict')),
+                ('subdistrict', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='gee_api.subdistrict')),
             ],
         ),
     ]

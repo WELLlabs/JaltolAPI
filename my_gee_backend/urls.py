@@ -19,5 +19,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('gee_api.urls')),  # Including the URLs from gee_api app
+    # Including the URLs from gee_api app
+    path('api/', include('gee_api.urls')),
 ]
