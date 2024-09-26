@@ -17,7 +17,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # my_gee_backend/settings.py
-import os
 
 # Set the path to the credentials file
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './creds/credentials'
@@ -44,6 +43,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'my_gee_backend',
+    'gee_api',
 
 ]
 
@@ -64,7 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
 ]
 
 ROOT_URLCONF = 'my_gee_backend.urls'
@@ -101,7 +102,16 @@ WSGI_APPLICATION = 'my_gee_backend.wsgi.application'
 #         'PORT': '5432',  # Set to empty string for default
 #     }
 # }
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'DatabasePostgres',  # Your database name
+        'USER': 'admindatabase',     # Your database user
+        'PASSWORD': 'admindata24',  # Your database password
+        'HOST': 'my-postgres-db.cnyqeok8kne6.ap-south-1.rds.amazonaws.com',  # Your actual RDS endpoint
+        'PORT': '5432',  # Default PostgreSQL port
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -152,5 +162,4 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_METHODS = ("DELETE", "GET", "OPTIONS", "PATCH", "POST", "PUT")
 
 CORS_ALLOW_HEADERS = (
-    "accept","accept-encoding","authorization","content-type","dnt","origin","user-agent","x-csrftoken","x-requested-with")
-
+    "accept", "accept-encoding", "authorization", "content-type", "dnt", "origin", "user-agent", "x-csrftoken", "x-requested-with")
