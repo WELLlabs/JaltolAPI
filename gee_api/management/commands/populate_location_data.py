@@ -484,6 +484,93 @@ class Command(BaseCommand):
             }
         }
 
+        # New data for Karnataka
+        karnataka_data = {
+            'Raichur': {
+                'Lingsugur': ['upanhal', 'ankanhal', 'tondihal', 'halkawatgi', 'palgal dinni', 'tumbalgaddi', 'rampur', 'nagarhal', 'bhogapur', 'baiyapur', 'khairwadgi', 'bandisunkapur', 'bommanhal', 'sajjalagudda', 'komnur', 'lukkihal big', 
+'lukkihal small', 'uppar nandihal', 'killar hatti', 'ashihal', 'advibhavi mudgal', 'kannapur hatti', 'mudgal rural', 'jantapur', 'yerdihal khurd', 'yerdihal big', 'amdihal', 'bellihal', 'kansavi', 'adapur', 
+'komlapur', 'ramatnal', 'byalihal', 'wandali', 'turadgi', 'arya bhogapur', 'hunoor', 'makapur', 'talekat', 'marli', 'bannigol', 'piklihal', 'ulimeshwar', 'vyakarnhal', 'nagalapur', 'heggapur', 'chattar', 'todki', 
+'kumarkhed', 'nowli', 'kamaldinni', 'chittapur', 'jawoor small', 'jawoor big', 'roudal banda', 'jungi rampur', 'upperi small', 'sunkal', 'halbhavi', 'gorebal', 'yargunti', 'upperi big', 'toral benchi', 'nandihal', 
+'bendona', 'narakaladinni', 'julgudda', 'hanumangudda hosur', 'anahosur', 'eachanhal', 'kesarhatti', 'jalibenchi', 'mincheri', 'kalapur', 'aidanhal', 'yalagaladinni', 'karadakal', 'adavibhavi', 'neeralkera', 
+'margatnal', 'chitranhal', 'gundasagar', 'kachapur', 'mavinbhavi', 'bhupur', 'rampur', 'kallilingsugur', 'hunkunti', 'kuppigudda', 'sarjapur', 'gonwar', 'amarawati', 'basapur', 'hoovinabhavi', 'buddinni', 'sanbal', 
+'jaldurga', 'yalgundi', 'yaragudi', 'kadadargaddi', 'hanchinal', 'shilahalli', 'gonwatla', 'guntagola', 'ramalooti', 'aidbhavi', 'tanmankal', 'raidurga', 'gadgi', 'pai doddi', 'golpalli', 'yarjanti', 'bandebhavi', 
+'hosagudda', 'benchaldoddi', 'gurgunta', 'paramapur', 'devar bhupur', 'yaradona', 'phoolabhavi', 'honnahalli', 'gudadanhal', 'medinapur', 'kotha', 'goudur', 'machanur', 'yalaghatta', 'kaddona', 'tawag', 'roudala banda', 
+'mallapur', 'hosur', 'anwari', 'hire nagnur', 'chikka nagnur', 'veerapur', 'nilogal', 'chukanahatti', 'gejjelagatta', 'hire hesarur', 'chick hesarur', 'kadadarahal', 'teribhavi', 'buddinni', 'gudihal', 'mattur', 
+'kunikellur', 'mittikellur', 'sante kellur', 'muslikarlkunti', 'bendarkarlkunti', 'ankusadoddi', 'mudwal', 'katagal', 'uskihal', 'dabbermadu', 'maraldinni', 'mudaldinni', 'sultanpur', 'jakker madu', 'vyasa nandihal', 
+'kannal', 'timmapur', 'tirthabhavi', 'dignaikanbhavi', 'nirlooti', 'advibhavi maski', 'benkanhal', 'belladamaradi', 'venkatapur', 'maski', 'naraga benchi', 'antargangi big', 'myadarnal', 'medikinhal', 'bailgudda', 
+'hadagali', 'desai bhogapur', 'yerdoddi', 'baggalgudda', 'kamandaldinni', 'talekhan', 'hatti', 'mudgal', 'lingsugur', 'hatti gold mines'],
+                
+                
+                'Devadurga': ['veergot', 'bunkaldoddi', 'chinchodi', 'lingadhalli', 'mudgot', 'bagur', 'herundi', 'navilgudda',
+                              'jambaldinni', 'medinapur', 'jalhalli', 'yergudda', 'bassapur', 'hosur siddapur', 'bommanhalli',
+                              'parapur', 'karadigudda', 'amrapur', 'suladgud', 'mandalgud', 'gajaldinni', 'mukanhal', 'mundargi', 
+                              'ganajali', 'devatgal', 'katmalli', 'huligud', 'kakkaldoddi', 'kamaldinni', 'mykaldoddi', 'bhogiramangund', 
+                              'somanmardi', 'gandhal', 'ooti', 'wandli', 'palkanmardi', 'madarkal', 'devergud', 'mudalagund', 'sunnadkal', 
+                              'galag', 'chadkalgudda', 'anchesugur', 'gopalpur', 'wagadambli', 'huvinhadgi', 'joladhadgi', 'dondambli', 'benkal',
+                              'konchapli', 'mydargol', 'karkihalli', 'paratpur', 'kopper', 'kurkihalli', 'yatgal', 'herur', 'salkyapur', 
+                              'gopendeverhalli', 'nagarhal', 'chickbudur', 'arshangi', 'ramanhal', 'hunur', 'hemnhal', 'nagargund', 
+                              'anjal', 'nilvanji', 'karegud', 'venglapur', 'samudra', 'nimbaidoddi', 'guddad irabgera', 'kelgin irabgera', 
+                              'mansagal', 'kotigud', 'sasvigera', 'kardigudda', 'gundgurthi', 'sugarhal', 'jerbandi', 'kamdhal', 'devergud',
+                              'yermasal', 'chickhonkuni', 'miyapur', 'masarkal', 'guntarhal', 'matpalli', 'itagi', 'gagal', 'gugal', 'chickraikumpi', 
+                              'hireraikumpi', 'madarkal', 'apprahal', 'baswantpur', 'hemanal', 'bommanhal', 'kolur', 'shavantgera', 'masihal', 
+                              'hirebudur', 'budinhal', 'hanchinhal', 'hirekudalgi', 'chickkudalgi', 'honnatagi', 'khanapur', 'amrapur', 
+                              'ingaladhal', 'haddinhal', 'sunkeshwarhal', 'kakkargal', 'aldharti', 'khardigud', 'ramdurg', 'maladkal', 'gabbur',
+                              'maseedpur', 'ganekal', 'neelgal', 'pandyan', 'kachapur', 'kothdoddi', 'chikkaldoddi', 'yeldoddi', 'hemnur', 'teggihal',
+                              'chintalkunta', 'shakapur', 'jinnapur', 'govindpalli', 'hungunbad', 'gajjibhavi', 'mustoor', 'shivangi', 'jaradbandi',
+                              'honkatmalli', 'kardona', 'malkamdinni', 'mallinaikandoddi', 'piligund', 'hal jadaldinni', 'arkera', 'benderganekal',
+                              'mallapur', 'bhumangund', 'adkalgud', 'anwar', 'akalkumpi', 'shavantgal', 'alkod', 'kyadigera', 'malledevergud', 
+                              'bandegud', 'jutmardi', 'nagoli', 'buddinni', 'jagatkal', 'agrahar', 'rekalmardi', 'markamdinni', 'jagir jadaldinni',
+                              'yermarus', 'heggaddinni', 'nagaddinni', 'tippaldinni', 'devadurga'],
+                'Raichur' : [ 'arshanagi', 'gurjapur', 'timmapur g', 'hanmapur', 'hemberhal', 'meerapur', 'timmapur h', 'srinivaspur', 
+                              'bevin benchi', 'kadlur', 'karekal', 'rangapur', 'yedlapur', 'nagalapur', 'hegsanhalli', 'deosugur', 
+                               'wadloor', 'hanumandoddi', 'ganjhalli', 'ibrahimdoddi', 'korvihal', 'korthkunda', 'mamadadoddi', 
+                               'yergunta', 'sagamkunta', 'kadlur', 'madmandoddi', 'raldoddi', 'waddepalli', 'dongarampur', 'korvakhurd', 
+'agrahar', 'korvakala', 'budidipad', 'kurtipli', 'athkur', 'gajral', 'yapaldinni', 'appandoddi', 
+'kothdoddi', 'palwaldoddi', 'nagandoddi', 'ganmur', 'shakwadi', 'polkamdoddi', 'katlatkur', 
+'kadgamdoddi', 'chandrabanda', 'arsigera', 'wadlamdoddi', 'mandalgera', 'singnodi', 'yegnur', 
+'sanknur', 'kurabdoddi', 'wadwati', 'baidoddi', 'ghousenagar', 'bolmandoddi', 'sidrampur', 
+'maliabad', 'mittimalkapur', 'bijangera', 'devanpalli', 'rajalbanda', 'ayazpur', 'bapur', 
+'undral doddi', 'mallapur', 'jegarkal', 'chicksugur', 'kuknoor', 'manslapur', 'merched', 'hospet', 
+'arlappanahuda', 'raghunathanhalli', 'sultanpur', 'murhanpur', 'halvenktapur', 'kalmala', 
+'j venktapur', 'fathepur', 'gonhal', 'hunsihalhuda', 'mamdapur', 'nelhal', 'pesaldinni', 
+'merchathal', 'asapur', 'arlibenchi', 'jalibenchi', 'dinni', 'garaldinni', 'khanapur', 'udamgal', 
+'kamlapur', 'anwar', 'gonwar', 'tuntapur', 'murkidoddi', 'masdoddi', 'julamgera', 'lingankhan doddi', 
+'jambaldinni', 'mallapur', 'yergera', 'manjerla', 'gadhar', 'naglapur', 'purtipali', 'alkur', 'godihal', 
+'upral', 'gunjhalli', 'midgaldinni', 'puchaldinni', 'kannedoddi', 'kothdoddi', 'maldoddi', 
+'matmari', 'moodaldinni', 'heerapur', 'gatbichal', 'kataknur', 'hanmapur', 'bichal', 'yedlapur', 
+'turkandona', 'dugnoor', 'karebudur', 'hanchinhal', 'gandhal', 'gillesugur', 'tungabhadra', 'bullapur', 
+'chickmanchal', 'gunderveli', 'buddinni', 'naddigaddimalkapur', 'gangwar', 'idapnur', 'meerapur', 
+'mirzapur', 'talmari', 'shaktinagar', 'raichur'
+],
+                'Manvi' : ['yatgal', 'kachapur', 'eklasapur', 'watgal', 'nelkola', 'ameengad', 'kotekal', 'pamankallur', 'anandgal', 'harvapur', 'tupdoor', 'benchamardi', 'hilalpur', 'gudihal', 'chilkaragi', 'irkal', 'basapur', 'parasapur', 
+'joladarasi', 'jangamarhalli', 'yeddal dinni', 'm ramaldinni', 'halapur', 'nagaldinni', 'hire kadboor', 'jinnapur', 's ramal dinni', 'kabberhal', 'hanchanhal', 'tuggal dinni', 'toran dinni', 'goge hebbal', 
+'chikkadinni', 'malkapur', 'markamdinni', 'sunknoor', 'hiredinni', 'malladgudda', 'donamaradi', 'chincharaki', 'huda', 'bomsandoddi', 'kasan doddi', 'donmardi', 'heera', 'buddinni', 'toppal doddi', 'timmapur', 
+'hussainpur', 'saidapur', 'u gud dinni', 'kowtal', 'hire hanagi', 'chikka hanagi', 'potapur', 'goldinni', 'chikkabadardinni', 'dewatgal', 'bullapur', 'kalamgere', 'kurkunda', 'wadwatti', 'patakam doddi', 'malat', 
+'narabanda', 'hunched', 'murkigudda', 'marata', 'nawalkal', 'nugdoni', 'ballatgi', 'hire badardinni', 'bagalwad', 'nakkunda', 'gavigat', 'aldhal', 'sirwar', 'jakkal dinni', 'atnur', 'shakapur', 'singaddinni', 
+'ganadinni', 'jalapur', 'kadadinni', 'jambaldinni', 'chagbhavi', 'gud dinni k', 'sangapur', 'sannahosur', 'lakkam dinni', 'halli', 'madagiri', 'machnur', 'kallur', 'hokrani', 'bommanahal', 'bevinur', 'tupdur k', 
+'harvi', 'kardigud', 'mallige madugu', 'naslapur', 'chimlapur', 'govinadoddi', 'neermanvi', 'kapgal', 'bettadur', 'bailmarchad', 'kurdi', 'aroli', 'advi khanapur', 'walkam dinni', 'kambalanetti', 'gorkal', 
+'sunkeswara', 'sadapur', 'murharpur', 'seekal', 'bapur', 'korvi', 'pannuru', 'arnalli', 'rajalbanda', 'tammapur', 'jukur', 'rajoli', 'nandihal', 'manvi r', 'rabbankal', 'daddal', 'katarki', 'madlapur', 'burhanpur', 
+'buddinni', 'rangdhal', 'mustoor', 'yarmal doddi', 'rajaldinni', 'jutlapur', 'hosur umli', 'chikkotankal', 'nalgamdinni', 'pannur jagir', 'chikalparvi', 'yedival', 'badlapur', 'belwat', 'utaknur', 'dhotarbandi', 
+'udbal', 'tadkal', 'byagwat', 'jeenur', 'potanhal', 'karegudda', 'janekal', 'amarawati', 'bhogawati', 'hire kotankal', 'muddamgaddi', 'kharabadinni', 'eralgaddi', 'devipur', 'manvi']
+,
+                'Sindhnur' : ['mahampur', 'bommanahal u', 'ratanapur', 'sankanhal', 'gunda', 'hogernhal', 'gudihal', 'gadratigi',
+                              'hattigudda', 'hirebhergi', 'bhogapur', 'mullur u', 'virapur', 'kardchalami', 'gorloti', 'umloti', 'bukanhatti',
+                              'chikbhergi', 'turvihal', 'kalmangi', 'hosshalli k', 'jambunathanahalli', 'bassapur k', 'gandhinagar', 'hanumapur',
+                              'hanchinhal k', 'jalihal', 'hokarani', 'bagalapur', 'boppur', 'kaniganhalu', 'matur', 'uppaldoddi umli', 'tidgol', 
+                              'nedigol', 'kurukunda', 'gunjanalli', 'virapapur', 'arlihalli', 'sunkanur', 'chikkkadbur', 'kyathanahatti', 'udbal umli',
+                              'deensamudra', 'hasamakal', 'gudadur', 'parapura', 'merinahal', 'nanjaldinni', 'hanpanhal', 'gudgaldinni', 'hanchinhal u',
+                              'kanoor', 'hedigibal', 'gonhal', 'rangapur', 'muddapur', 'kholabal', 'harapur', 'yelekudalgi', 'chiratanal', 'bommanhal ej',
+                              'devergudi', 'bassapur ej', 'kunnatgi', 'pagadadinni', 'tippanhatti', 'mullur', 'kallur', 'butaldinni', 'mallapur', 'hullur',
+                              'balganur', 'goudanbhavi', 'govindnaikandoddi', 'belliganur', 'buddinni', 'jalwadgi', 'diddigi', 'jangamerhatti a',
+                              'sivajawalgera', 'amarapur khadehola d', 'sultanpur', 'jawalgera', 'turakatti d', 'maldinni khadehola', 'kanakraddi khadehola',
+                              'ramathanhal', 'banniganur', 'yapalparvi', 'walkamdinni', 'timmapur', 'ragalparvi', 'puldinni', 'dumti', 'gonwar', 
+                              'hulgunchi', 'ayyanur', 'chintamandoddi', 'chitrali', 'pulmeswardinni', 'hedginhal', 'yeddaldoddi', 'giniwar', 
+                              'walbellary', 'udbal jagir', 'gomarsi', 'madsirwar', 'belgurki', 'kannari', 'maldinni', 'alabanoor', 'haretnur', 'badarli', 'gonniganoor', 'uppal', 'hosalapur', 'sindhnur rural', 'sashalli', 'hosshalli ej', 'amarapur', 'budiwal', 'somlapur', 'salgunda', 'dhadesugur', 'bassapur d', 'kengal', 'hatti', 'gorebal', 'sasalmari', 'malakapur', 'konthanur', 'channahalli', 'siddrampur', 'mavinmadu', 'roudkunda', 'gobberkal', 'huda', 'mukunda', 'singapur', 'sindhnur'
+                             ],
+                
+            }
+        }
+
         # Populate Rajasthan data
         rajasthan, created = State.objects.get_or_create(name='Rajasthan')
         self.add_districts(rajasthan, rajasthan_data)
@@ -491,5 +578,9 @@ class Command(BaseCommand):
         # Populate Andhra Pradesh data
         andhra_pradesh, created = State.objects.get_or_create(name='Andhra Pradesh')
         self.add_districts(andhra_pradesh, andhra_pradesh_data)
+
+        # Populate Karnataka data
+        karnataka, created = State.objects.get_or_create(name='Karnataka')
+        self.add_districts(karnataka, karnataka_data)
 
         self.stdout.write(self.style.SUCCESS('Successfully populated the RDS instance with location data.'))
