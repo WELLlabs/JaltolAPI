@@ -39,6 +39,31 @@ def district_boundary(
         )
     except Exception as e:
         raise ValueError(f"Error in fetching district boundary: {e}")
+    
+def subdistrict_boundary(
+        state_name: str,
+        district_name: str, 
+        subdistrict_name: str ) -> ee.FeatureCollection:
+    
+    """
+    Retrieve the boundary for a specified district within a state.
+
+    :param state_name: Name of the state
+    :param district_name: Name of the district
+    :return: Earth Engine FeatureCollection representing the district boundary
+    :raises: ValueError if there is an error fetching the district boundary
+    """
+    try:
+        shrug = shrug_dataset()
+        return shrug.filter(
+            ee.Filter.And(
+                ee.Filter.eq(shrug_fields['state_field'], state_name),
+                ee.Filter.eq(shrug_fields['district_field'], district_name),
+                ee.Filter.eq(shrug_fields['subdistrict_field'], subdistrict_name),
+            )
+        )
+    except Exception as e:
+        raise ValueError(f"Error in fetching district boundary: {e}")
 
 
 def village_boundary(
@@ -136,7 +161,8 @@ def compare_village(
         spatial_filter = ee.Filter.eq(
             shrug_fields['village_field'],
             village_name).Not()
-        buffer_fc = district_boundary(state_name, district_name).filterBounds(
+        # being changed for jaltol testing purpose from district_boundary to subdistrict_boundary
+        buffer_fc = subdistrict_boundary(state_name, district_name, subdistrict_name).filterBounds(
             get_buffer(village)).filter(spatial_filter).filter(null_filter).map(compute_slope)
         value_to_subtract = ee.Number(intervention_slope.get('slope_std_dev'))
 
@@ -190,6 +216,41 @@ def IndiaSAT_lulc(
     except Exception as e:
         raise ValueError(f"Error in fetching IndiaSAT: {e}")
 
+def FarmBoundary_lulc(
+        year: int,
+        state_name: str,
+        district_name: str,
+        subdistrict_name: Optional[str] = None,
+        village_name: Optional[str] = None) -> ee.Image:
+    """
+    Retrieve the Land Use Land Cover (LULC) data for a specified area and year.
+
+    :param year: Year for which to retrieve the LULC data
+    :param state_name: Name of the state
+    :param district_name: Name of the district
+    :param subdistrict_name: Optional name of the subdistrict
+    :param village_name: Optional name of the village
+    :return: Earth Engine Image representing the LULC data
+    :raises: ValueError if there is an error fetching the LULC data
+    """
+    try:
+        farmboundary = ee.ImageCollection(ee_assets['farmboundary'])
+
+        start_date = f'{year}-07-01'
+        end_date = f'{int(year) + 1}-06-30'
+
+        if subdistrict_name and village_name:
+            village_fc = village_boundary(
+                state_name, district_name, subdistrict_name, village_name)
+            return farmboundary.filterBounds(village_fc).filterDate(
+                start_date, end_date).mosaic().clipToCollection(village_fc)
+        else:
+            district_fc = district_boundary(state_name, district_name)
+            return farmboundary.filterBounds(district_fc).filterDate(
+                start_date, end_date).mosaic().clipToCollection(district_fc)
+
+    except Exception as e:
+        raise ValueError(f"Error in fetching FarmBoundary: {e}")
 
 def yearly_sum(year: int) -> ee.Image:
     """

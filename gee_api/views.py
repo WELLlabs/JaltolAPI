@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 
 from .utils import initialize_earth_engine
-from .ee_processing import compare_village, district_boundary, IndiaSAT_lulc, IMD_precipitation, village_boundary
+from .ee_processing import compare_village, district_boundary, IndiaSAT_lulc, IMD_precipitation, village_boundary, FarmBoundary_lulc
 import ee
 
 from gee_api.models import State, District, SubDistrict, Village
@@ -207,12 +207,24 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
             raise ValueError(
                 'parameters (state_name, district_name) are required.')
 
-        image = IndiaSAT_lulc(
-            year,
-            state_name,
-            district_name,
-            subdistrict_name,
-            village_name)
+        # Choose the correct image based on district name
+        # added for jaltol testing purposes the if statement below
+        if district_name in ["chitrakoot", "Saraikela Kharsawan", "Aurangabad", "Nashik"]:
+            print("Using Farmboundary_NDVI asset for district:", district_name)
+
+            image = FarmBoundary_lulc(
+                year,
+                state_name,
+                district_name,
+                subdistrict_name,
+                village_name)
+        else:
+            image = IndiaSAT_lulc(
+                year,
+                state_name,
+                district_name,
+                subdistrict_name,
+                village_name)
 
         valuesToKeep = [6, 8, 9, 10, 11, 12]
         targetValues = [6, 8, 8, 10, 10, 12]
@@ -291,8 +303,12 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
             subdistrict_name,
             village_name).geometry()
 
-        image_collection = ee.ImageCollection(
-            'users/jaltolwelllabs/LULC/IndiaSAT_V2_draft').filterBounds(village_geometry)
+        # Choose the correct image collection based on district name
+        # added for jaltol testing purposes the if statement below
+        if district_name in ["Chitrakoot", "Saraikela Kharsawan", "Aurangabad", "Nashik"]:
+            image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/Farmboundary_NDVI').filterBounds(village_geometry)
+        else:
+            image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/IndiaSAT_V2_draft').filterBounds(village_geometry)
 
         class_labels = {
             '8': 'Single cropping cropland',
@@ -302,11 +318,10 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
         }
 
         area_change_data: Dict[int, Dict[str, float]] = {}
-        for year in range(2014, 2023):
+        for year in range(2017, 2023):
             start_date = ee.Date.fromYMD(year, 6, 1)
             end_date = start_date.advance(1, 'year')
-            year_image = image_collection.filterDate(
-                start_date, end_date).mosaic()
+            year_image = image_collection.filterDate(start_date, end_date).mosaic()
 
             single_cropping_area = sum(
                 calculate_class_area(year_image, int(class_value), village_geometry)
@@ -328,6 +343,7 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
     except Exception as e:
         logger.error('Failed to get area change', exc_info=True)
         return JsonResponse({'error': str(e)}, status=500)
+
 
 
 def get_control_village(request: HttpRequest) -> JsonResponse:
