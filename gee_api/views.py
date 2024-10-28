@@ -209,8 +209,9 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
 
         # Choose the correct image based on district name
         # added for jaltol testing purposes the if statement below
-        if district_name in ["chitrakoot", "Saraikela Kharsawan", "Aurangabad", "Nashik"]:
+        if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"]:
             print("Using Farmboundary_NDVI asset for district:", district_name)
+            
 
             image = FarmBoundary_lulc(
                 year,
@@ -259,7 +260,8 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
 def calculate_class_area(
         image: ee.Image,
         class_value: int,
-        geometry: ee.Geometry) -> float:
+        geometry: ee.Geometry,
+        district_name: str) -> float:
     """
     Calculate the area of a specific land cover class within a given geometry.
 
@@ -275,7 +277,13 @@ def calculate_class_area(
         scale=10,
         maxPixels=1e10
     )
-    return area_calculation.get('b1').getInfo() / 1e4
+    # Use 'NDVI' band for 'chitrakoot' district and 'b1' for others
+    band_name = 'NDVI' if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"] else 'b1'
+    
+    area_value = area_calculation.getInfo()
+    if band_name not in area_value:
+        raise ValueError(f"Band '{band_name}' is missing in the image data for district '{district_name}'.")
+    return area_value[band_name] / 1e4
 
 
 def get_area_change(request: HttpRequest) -> JsonResponse:
@@ -305,8 +313,11 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
 
         # Choose the correct image collection based on district name
         # added for jaltol testing purposes the if statement below
-        if district_name in ["Chitrakoot", "Saraikela Kharsawan", "Aurangabad", "Nashik"]:
+        if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"]:
             image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/Farmboundary_NDVI').filterBounds(village_geometry)
+            print("Using Farmboundary_NDVI asset for area change for district:", district_name)
+            print("band names",ee.Image(image_collection.first()).bandNames().getInfo())
+
         else:
             image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/IndiaSAT_V2_draft').filterBounds(village_geometry)
 
@@ -324,12 +335,12 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
             year_image = image_collection.filterDate(start_date, end_date).mosaic()
 
             single_cropping_area = sum(
-                calculate_class_area(year_image, int(class_value), village_geometry)
+                calculate_class_area(year_image, int(class_value), village_geometry, district_name)
                 for class_value in ['8', '9']
             )
 
             double_cropping_area = sum(
-                calculate_class_area(year_image, int(class_value), village_geometry)
+                calculate_class_area(year_image, int(class_value), village_geometry, district_name)
                 for class_value in ['10', '11']
             )
 
