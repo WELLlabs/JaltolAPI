@@ -329,7 +329,14 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
         }
 
         area_change_data: Dict[int, Dict[str, float]] = {}
-        for year in range(2017, 2023):
+        
+        if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"]:
+            year_range = range(2017, 2024)
+        else:
+            year_range = range(2017, 2023)
+        
+        
+        for year in year_range:
             start_date = ee.Date.fromYMD(year, 6, 1)
             end_date = start_date.advance(1, 'year')
             year_image = image_collection.filterDate(start_date, end_date).mosaic()
