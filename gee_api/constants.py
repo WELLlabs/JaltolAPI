@@ -14,7 +14,7 @@ ee_assets = {
     "srtm": 'USGS/SRTMGL1_003',
     "indiasat": 'users/jaltolwelllabs/LULC/IndiaSAT_V2_draft',
     "imd_rain": "users/jaltolwelllabs/IMD/rain",
-    "farmboundary" : 'users/jaltolwelllabs/LULC/Farmboundary_NDVI',
+    "farmboundary" : 'users/jaltolwelllabs/LULC/Farmboundary_NDVI_Tree',
 }
 
 compare_village_buffer: int = 5000
