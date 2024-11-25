@@ -278,10 +278,12 @@ def calculate_class_area(
         maxPixels=1e10
     )
     # Use 'NDVI' band for 'chitrakoot' district and 'b1' for others
-    band_name = 'NDVI' if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"] else 'b1'
+    # band_name = 'NDVI' if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"] else 'b1'
+    band_name = 'b1'
     
     area_value = area_calculation.getInfo()
     if band_name not in area_value:
+        print(area_value)
         raise ValueError(f"Band '{band_name}' is missing in the image data for district '{district_name}'.")
     return area_value[band_name] / 1e4
 
@@ -314,7 +316,7 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
         # Choose the correct image collection based on district name
         # added for jaltol testing purposes the if statement below
         if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"]:
-            image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/Farmboundary_NDVI').filterBounds(village_geometry)
+            image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/Farmboundary_NDVI_Tree').filterBounds(village_geometry)
             print("Using Farmboundary_NDVI asset for area change for district:", district_name)
             print("band names",ee.Image(image_collection.first()).bandNames().getInfo())
 
@@ -350,10 +352,16 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
                 calculate_class_area(year_image, int(class_value), village_geometry, district_name)
                 for class_value in ['10', '11']
             )
+            
+            tree_cover_area = sum(
+                calculate_class_area(year_image, int(class_value), village_geometry, district_name)
+                for class_value in ['6']
+            )
 
             area_change_data[year] = {
                 'Single cropping cropland': single_cropping_area,
-                'Double cropping cropland': double_cropping_area
+                'Double cropping cropland': double_cropping_area,
+                'Tree Cover Area' : tree_cover_area
             }
 
         return JsonResponse(area_change_data)
