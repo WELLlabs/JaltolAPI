@@ -10,7 +10,7 @@ class VillageSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Village
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'village_id']  # Added village_id here
 
 
 class SubDistrictSerializer(serializers.ModelSerializer):

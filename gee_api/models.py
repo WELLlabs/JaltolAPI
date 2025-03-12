@@ -40,6 +40,7 @@ class Village(models.Model):
     """
     name: str = models.CharField(max_length=100)
     subdistrict: SubDistrict = models.ForeignKey(SubDistrict, related_name='villages', on_delete=models.CASCADE)
+    village_id: int = models.IntegerField(null=True, blank=True)  # New field to store pc11_tv_id
 
     def __str__(self) -> str:
         return self.name

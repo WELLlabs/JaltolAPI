@@ -1,3 +1,5 @@
+# Update your gee_api/admin.py file with this code:
+
 from django.contrib import admin
 from gee_api.models import State, District, SubDistrict, Village
 
@@ -15,4 +17,6 @@ class SubDistrictAdmin(admin.ModelAdmin):
 
 @admin.register(Village)
 class VillageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'subdistrict')
+    list_display = ('id', 'name', 'village_id', 'subdistrict')  # Added village_id here
+    list_filter = ('subdistrict',)  # Add a filter by subdistrict
+    search_fields = ('name',)  # Add search functionality
