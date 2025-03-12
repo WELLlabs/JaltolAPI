@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 
 from .utils import initialize_earth_engine
-from .ee_processing import compare_village, district_boundary, IndiaSAT_lulc, IMD_precipitation, village_boundary, FarmBoundary_lulc
+from .ee_processing import compare_village, district_boundary, IndiaSAT_lulc, IMD_precipitation, village_boundary, FarmBoundary_lulc, subdistrict_boundary
 import ee
 
 from gee_api.models import State, District, SubDistrict, Village
@@ -64,10 +64,18 @@ def village_list(request, subdistrict_id: int) -> JsonResponse:
         subdistrict_id (int): The ID of the subdistrict for which villages are fetched.
 
     Returns:
-        JsonResponse: A JSON response containing a list of villages.
+        JsonResponse: A JSON response containing a list of villages with their IDs.
     """
     villages = Village.objects.filter(subdistrict__id=subdistrict_id)
-    data: List[Dict[str, str]] = [{"id": village.id, "name": village.name} for village in villages]
+    data = [
+        {
+            "id": village.id,            # Database ID (for internal use)
+            "name": village.name,        # Village name
+            "village_id": village.village_id,  # Census village ID (pc11_tv_id)
+            "display_name": f"{village.name} - {village.village_id}" if village.village_id else village.name
+        } 
+        for village in villages
+    ]
     return JsonResponse(data, safe=False)
 
 def health_check(request: HttpRequest) -> HttpResponse:
@@ -133,18 +141,16 @@ def get_karauli_raster(
 
 
 def get_rainfall_data(request: HttpRequest) -> JsonResponse:
-    """
-    Fetch rainfall data for a given location.
-
-    :param request: HttpRequest object
-    :return: JsonResponse containing rainfall data or an error message
-    """
     ee.Initialize(credentials)
 
     state_name = request.GET.get('state_name', '').lower()
     district_name = request.GET.get('district_name', '').lower()
     subdistrict_name = request.GET.get('subdistrict_name', '').lower()
     village_name = request.GET.get('village_name', '').lower()
+    
+    # Extract just the village name if it's in the format "name - id"
+    if ' - ' in village_name:
+        village_name = village_name.split(' - ')[0]
 
     if not (state_name and district_name):
         return JsonResponse(
@@ -166,7 +172,8 @@ def get_rainfall_data(request: HttpRequest) -> JsonResponse:
 
 def get_boundary_data(request: HttpRequest) -> JsonResponse:
     """
-    Get the boundary data for a specified state and district.
+    Get the boundary data for a specified state, district, subdistrict, and village.
+    When a village is specified with an ID, use the ID for more precise boundary selection.
 
     :param request: HttpRequest object
     :return: JsonResponse containing the boundary GeoJSON data or an error message
@@ -175,31 +182,54 @@ def get_boundary_data(request: HttpRequest) -> JsonResponse:
 
     state_name = request.GET.get('state_name', '').lower()
     district_name = request.GET.get('district_name', '').lower()
+    subdistrict_name = request.GET.get('subdistrict_name', '').lower()
+    village_name = request.GET.get('village_name', '').lower()
+    village_id = request.GET.get('village_id', '')
 
     if not (state_name and district_name):
         return JsonResponse(
             {'error': 'All parameters (state_name, district_name) are required.'}, status=400)
 
     try:
-        geojson = district_boundary(state_name, district_name).getInfo()
-        return JsonResponse(geojson)
+        # If we have a village name and subdistrict
+        if subdistrict_name and village_name:
+            # Extract village ID if it's in the format "name - id" and no specific village_id is provided
+            if ' - ' in village_name and not village_id:
+                parts = village_name.split(' - ')
+                village_name = parts[0]  # Use just the village name part
+                if len(parts) > 1:
+                    village_id = parts[1]  # Extract ID if present
+            
+            # Get the village boundary, passing both name and ID if available
+            village_fc = village_boundary(
+                state_name, district_name, subdistrict_name, village_name, village_id)
+            geojson = village_fc.getInfo()
+            return JsonResponse(geojson)
+        elif subdistrict_name:
+            # Get subdistrict boundary
+            subdistrict_fc = subdistrict_boundary(state_name, district_name, subdistrict_name)
+            geojson = subdistrict_fc.getInfo()
+            return JsonResponse(geojson)
+        else:
+            # Get district boundary
+            geojson = district_boundary(state_name, district_name).getInfo()
+            return JsonResponse(geojson)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
 
 def get_lulc_raster(request: HttpRequest) -> JsonResponse:
-    """
-    Get the Land Use Land Cover (LULC) raster for a specified location.
-
-    :param request: HttpRequest object
-    :return: JsonResponse containing the URL for the LULC raster or an error message
-    """
     ee.Initialize(credentials)
 
     state_name = request.GET.get('state_name', '').lower()
     district_name = request.GET.get('district_name', '').lower()
     subdistrict_name = request.GET.get('subdistrict_name', '').lower()
     village_name = request.GET.get('village_name', '').lower()
+    
+    # Extract just the village name if it's in the format "name - id"
+    if ' - ' in village_name:
+        village_name = village_name.split(' - ')[0]
+        
     year = request.GET.get('year')
 
     try:
@@ -208,11 +238,9 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
                 'parameters (state_name, district_name) are required.')
 
         # Choose the correct image based on district name
-        # added for jaltol testing purposes the if statement below
         if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"]:
             print("Using Farmboundary_NDVI asset for district:", district_name)
             
-
             image = FarmBoundary_lulc(
                 year,
                 state_name,
@@ -289,18 +317,16 @@ def calculate_class_area(
 
 
 def get_area_change(request: HttpRequest) -> JsonResponse:
-    """
-    Calculate the area change for single and double cropping cropland over multiple years.
-
-    :param request: HttpRequest object
-    :return: JsonResponse containing the area change data or an error message
-    """
     ee.Initialize(credentials)
 
     state_name = request.GET.get('state_name', '').lower()
     district_name = request.GET.get('district_name', '').lower()
     subdistrict_name = request.GET.get('subdistrict_name', '').lower()
     village_name = request.GET.get('village_name', '').lower()
+    
+    # Extract just the village name if it's in the format "name - id"
+    if ' - ' in village_name:
+        village_name = village_name.split(' - ')[0]
 
     if not (state_name and district_name):
         return JsonResponse(
@@ -314,7 +340,6 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
             village_name).geometry()
 
         # Choose the correct image collection based on district name
-        # added for jaltol testing purposes the if statement below
         if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"]:
             image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/Farmboundary_NDVI_Tree').filterBounds(village_geometry)
             print("Using Farmboundary_NDVI asset for area change for district:", district_name)
@@ -373,16 +398,14 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
 
 
 def get_control_village(request: HttpRequest) -> JsonResponse:
-    """
-    Fetch control village data by comparing it with another village.
-
-    :param request: HttpRequest object
-    :return: JsonResponse containing the control village GeoJSON data or an error message
-    """
     state_name = request.GET.get('state_name', '').lower()
     district_name = request.GET.get('district_name', '').lower()
     subdistrict_name = request.GET.get('subdistrict_name', '').lower()
     village_name = request.GET.get('village_name', '').lower()
+    
+    # Extract just the village name if it's in the format "name - id"
+    if ' - ' in village_name:
+        village_name = village_name.split(' - ')[0]
 
     try:
         control_village = compare_village(

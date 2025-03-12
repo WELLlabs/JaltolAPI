@@ -70,27 +70,58 @@ def village_boundary(
         state_name: str,
         district_name: str,
         subdistrict_name: str,
-        village_name: str) -> ee.FeatureCollection:
+        village_name: str,
+        village_id: Optional[str] = None) -> ee.FeatureCollection:
     """
     Retrieve the boundary for a specified village within a subdistrict, district, and state.
+    If a village_id is provided, it will attempt to use that for more precise boundary matching.
 
     :param state_name: Name of the state
     :param district_name: Name of the district
     :param subdistrict_name: Name of the subdistrict
     :param village_name: Name of the village
+    :param village_id: Optional Census ID of the village (pc11_tv_id)
     :return: Earth Engine FeatureCollection representing the village boundary
     :raises: ValueError if there is an error fetching the village boundary
     """
     try:
         shrug = shrug_dataset()
-        return shrug.filter(
-            ee.Filter.And(
-                ee.Filter.eq(shrug_fields['state_field'], state_name),
-                ee.Filter.eq(shrug_fields['district_field'], district_name),
-                ee.Filter.eq(shrug_fields['subdistrict_field'], subdistrict_name),
-                ee.Filter.eq(shrug_fields['village_field'], village_name)
-            )
+        
+        # If village_id is provided, first try to find the village by ID
+        if village_id:
+            try:
+                # Create a filter using the village ID
+                id_filter = ee.Filter.And(
+                    ee.Filter.eq(shrug_fields['state_field'], state_name),
+                    ee.Filter.eq(shrug_fields['district_field'], district_name),
+                    ee.Filter.eq(shrug_fields['subdistrict_field'], subdistrict_name),
+                    ee.Filter.eq('pc11_tv_id', village_id)
+                )
+                
+                # Apply the filter
+                village_by_id = shrug.filter(id_filter)
+                
+                # Check if we found a village with this ID
+                count = village_by_id.size().getInfo()
+                if count > 0:
+                    return village_by_id
+                
+                # If not found by ID, we'll fall back to using the name
+                print(f"Village ID {village_id} not found, falling back to name")
+            except Exception as e:
+                print(f"Error using village ID: {e}, falling back to name")
+        
+        # If no village_id is provided or if lookup by ID failed,
+        # use the traditional approach with village name
+        name_filter = ee.Filter.And(
+            ee.Filter.eq(shrug_fields['state_field'], state_name),
+            ee.Filter.eq(shrug_fields['district_field'], district_name),
+            ee.Filter.eq(shrug_fields['subdistrict_field'], subdistrict_name),
+            ee.Filter.eq(shrug_fields['village_field'], village_name)
         )
+        
+        return shrug.filter(name_filter)
+        
     except Exception as e:
         raise ValueError(f"Error in fetching village boundary: {e}")
 
