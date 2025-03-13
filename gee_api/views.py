@@ -5,6 +5,8 @@ from rest_framework import viewsets
 import ee
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from .constants import ee_assets, shrug_dataset, shrug_fields
+from datetime import datetime
 
 
 from .utils import initialize_earth_engine
@@ -141,32 +143,84 @@ def get_karauli_raster(
 
 
 def get_rainfall_data(request: HttpRequest) -> JsonResponse:
+    """
+    Fetch rainfall data for a given location.
+
+    :param request: HttpRequest object
+    :return: JsonResponse containing rainfall data or an error message
+    """
     ee.Initialize(credentials)
 
     state_name = request.GET.get('state_name', '').lower()
     district_name = request.GET.get('district_name', '').lower()
     subdistrict_name = request.GET.get('subdistrict_name', '').lower()
     village_name = request.GET.get('village_name', '').lower()
-    
-    # Extract just the village name if it's in the format "name - id"
-    if ' - ' in village_name:
-        village_name = village_name.split(' - ')[0]
+    village_id = request.GET.get('village_id', '')
+
+    # Clean up village name if it contains an ID part
+    if ' - ' in village_name and not village_id:
+        parts = village_name.split(' - ')
+        village_name = parts[0].strip()
+        if len(parts) > 1:
+            village_id = parts[1].strip()
 
     if not (state_name and district_name):
         return JsonResponse(
-            {'error': 'All parameters (state_name, district_name) are required.'}, status=400)
+            {'error': 'Parameters state_name and district_name are required.'}, 
+            status=400)
 
     try:
+        # Get the village boundary - prioritize searching by ID if available
+        if village_id:
+            # Directly query for the village using the ID
+            shrug = shrug_dataset()
+            village_fc = shrug.filter(
+                ee.Filter.And(
+                    ee.Filter.eq(shrug_fields['state_field'], state_name),
+                    ee.Filter.eq(shrug_fields['district_field'], district_name),
+                    ee.Filter.eq(shrug_fields['subdistrict_field'], subdistrict_name),
+                    ee.Filter.eq('pc11_tv_id', village_id)
+                )
+            )
+            
+            # Verify we found exactly one village
+            count = village_fc.size().getInfo()
+            if count == 0:
+                return JsonResponse({'error': f"No village found with ID {village_id}"}, status=404)
+            
+        else:
+            # Search by name if no ID
+            village_fc = village_boundary(state_name, district_name, subdistrict_name, village_name)
+            
+            # Check if we have any results
+            count = village_fc.size().getInfo()
+            if count == 0:
+                return JsonResponse({'error': f"No village found with name {village_name}"}, status=404)
+            elif count > 1:
+                # If multiple villages found, get just the first one
+                first_feature = ee.Feature(village_fc.first())
+                village_fc = ee.FeatureCollection([first_feature])
+                print(f"Warning: Found {count} villages named '{village_name}', using the first one")
+
+        # Now we have a single village feature collection, proceed with rainfall calculation
+        village_geometry = village_fc.geometry()
+        
+        # Import the IMD_precipitation function from ee_processing
+        # This will handle the rainfall calculation using yearly_sum internally
         rainfall_data = IMD_precipitation(
             2014,
             2022,
             state_name,
             district_name,
             subdistrict_name,
-            village_name)
-
+            village_name if not village_id else None,  # Use original village name if no ID
+            village_id  # Pass the village ID
+        )
+        
         return rainfall_data
+        
     except Exception as e:
+        print(f"Error in get_rainfall_data: {e}")
         return JsonResponse({'error': str(e)}, status=500)
 
 
@@ -219,18 +273,31 @@ def get_boundary_data(request: HttpRequest) -> JsonResponse:
 
 
 def get_lulc_raster(request: HttpRequest) -> JsonResponse:
+    """
+    Get the Land Use Land Cover (LULC) raster for a specified location.
+
+    :param request: HttpRequest object
+    :return: JsonResponse containing the URL for the LULC raster or an error message
+    """
     ee.Initialize(credentials)
 
     state_name = request.GET.get('state_name', '').lower()
     district_name = request.GET.get('district_name', '').lower()
     subdistrict_name = request.GET.get('subdistrict_name', '').lower()
     village_name = request.GET.get('village_name', '').lower()
-    
-    # Extract just the village name if it's in the format "name - id"
-    if ' - ' in village_name:
-        village_name = village_name.split(' - ')[0]
-        
+    village_id = request.GET.get('village_id', '')  # Get village_id from request
     year = request.GET.get('year')
+
+    # Extract village ID if it's in the format "name - id" and no specific village_id is provided
+    if ' - ' in village_name and not village_id:
+        parts = village_name.split(' - ')
+        village_name_only = parts[0]
+        if len(parts) > 1:
+            village_id = parts[1]
+    else:
+        village_name_only = village_name
+    
+    print(f"Processing LULC for: {village_name_only}, ID: {village_id}")
 
     try:
         if not all((state_name, district_name)):
@@ -246,14 +313,22 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
                 state_name,
                 district_name,
                 subdistrict_name,
-                village_name)
+                village_name_only,
+                village_id)
         else:
             image = IndiaSAT_lulc(
                 year,
                 state_name,
                 district_name,
                 subdistrict_name,
-                village_name)
+                village_name_only)
+
+        # Ensure we have image bands before proceeding
+        band_names = image.bandNames().getInfo()
+        print(f"Band names for LULC: {band_names}")
+        
+        if not band_names:
+            return JsonResponse({'error': 'No data available for the selected area and year'}, status=404)
 
         valuesToKeep = [6, 8, 9, 10, 11, 12]
         targetValues = [6, 8, 8, 10, 10, 12]
@@ -278,12 +353,12 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
 
         # Construct the tiles URL template
         tiles_url = map_id_dict['tile_fetcher'].url_format
-
+        
+        print(f"LULC tiles URL: {tiles_url}")
         return JsonResponse({'tiles_url': tiles_url})
     except Exception as e:
         logger.error('Failed to get LULC raster', exc_info=True)
         return JsonResponse({'error': str(e)}, status=500)
-
 
 def calculate_class_area(
         image: ee.Image,
@@ -317,82 +392,138 @@ def calculate_class_area(
 
 
 def get_area_change(request: HttpRequest) -> JsonResponse:
+    """
+    Calculate the area change for single and double cropping cropland over multiple years.
+
+    :param request: HttpRequest object
+    :return: JsonResponse containing the area change data or an error message
+    """
     ee.Initialize(credentials)
 
     state_name = request.GET.get('state_name', '').lower()
     district_name = request.GET.get('district_name', '').lower()
     subdistrict_name = request.GET.get('subdistrict_name', '').lower()
     village_name = request.GET.get('village_name', '').lower()
+    village_id = request.GET.get('village_id', '')  # Get village_id from request
     
-    # Extract just the village name if it's in the format "name - id"
-    if ' - ' in village_name:
-        village_name = village_name.split(' - ')[0]
+    # Extract the village ID from the name if in format "name - id" and no explicit ID provided
+    if ' - ' in village_name and not village_id:
+        parts = village_name.split(' - ')
+        village_name = parts[0].strip()
+        if len(parts) > 1:
+            village_id = parts[1].strip()
 
     if not (state_name and district_name):
         return JsonResponse(
             {'error': 'All parameters (state_name, district_name) are required.'}, status=400)
 
     try:
-        village_geometry = village_boundary(
-            state_name,
-            district_name,
-            subdistrict_name,
-            village_name).geometry()
+        # Get precise village boundary using ID if available
+        if village_id:
+            # Try to get the specific village by ID
+            shrug = shrug_dataset()
+            village_fc = shrug.filter(
+                ee.Filter.And(
+                    ee.Filter.eq(shrug_fields['state_field'], state_name),
+                    ee.Filter.eq(shrug_fields['district_field'], district_name),
+                    ee.Filter.eq(shrug_fields['subdistrict_field'], subdistrict_name),
+                    ee.Filter.eq('pc11_tv_id', village_id)
+                )
+            )
+            
+            # Check if we got the village
+            count = village_fc.size().getInfo()
+            if count == 0:
+                print(f"No village found with ID {village_id}, falling back to name search")
+                # Fall back to normal village boundary search if ID not found
+                village_fc = village_boundary(state_name, district_name, subdistrict_name, village_name)
+            else:
+                print(f"Successfully found village with ID {village_id} for area change calculation")
+        else:
+            # If no ID, use the normal village boundary function
+            village_fc = village_boundary(state_name, district_name, subdistrict_name, village_name)
+        
+        # Check if we have village features
+        count = village_fc.size().getInfo()
+        if count == 0:
+            return JsonResponse({'error': f"No village found with name {village_name}"}, status=404)
+        elif count > 1:
+            print(f"Warning: Found {count} features for {village_name}, using the first one for area change")
+            # Get the first feature to be very explicit
+            first_feature = ee.Feature(village_fc.first())
+            village_fc = ee.FeatureCollection([first_feature])
+        
+        village_geometry = village_fc.geometry()
 
         # Choose the correct image collection based on district name
         if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"]:
             image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/Farmboundary_NDVI_Tree').filterBounds(village_geometry)
-            print("Using Farmboundary_NDVI asset for area change for district:", district_name)
-            print("band names",ee.Image(image_collection.first()).bandNames().getInfo())
-
+            print(f"Using Farmboundary_NDVI asset for area change for district: {district_name}")
+            
+            # Print band names for debugging
+            try:
+                first_image = image_collection.first()
+                if first_image:
+                    band_names = first_image.bandNames().getInfo()
+                    print(f"Band names: {band_names}")
+            except Exception as e:
+                print(f"Warning: Couldn't get band names: {e}")
         else:
             image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/IndiaSAT_V2_draft').filterBounds(village_geometry)
 
-        class_labels = {
-            '8': 'Single cropping cropland',
-            '9': 'Single cropping cropland',
-            '10': 'Double cropping cropland',
-            '11': 'Double cropping cropland',
-        }
-
-        area_change_data: Dict[int, Dict[str, float]] = {}
-        
+        # Determine year range based on district
         if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"]:
             year_range = range(2017, 2024)
         else:
             year_range = range(2017, 2023)
         
+        area_change_data = {}
         
         for year in year_range:
-            start_date = ee.Date.fromYMD(year, 6, 1)
-            end_date = start_date.advance(1, 'year')
-            year_image = image_collection.filterDate(start_date, end_date).mosaic()
+            try:
+                start_date = ee.Date.fromYMD(year, 6, 1)
+                end_date = start_date.advance(1, 'year')
+                year_filtered = image_collection.filterDate(start_date, end_date)
+                
+                # Skip years with no data
+                if year_filtered.size().getInfo() == 0:
+                    print(f"No data for year {year}, skipping")
+                    continue
+                    
+                year_image = year_filtered.mosaic()
 
-            single_cropping_area = sum(
-                calculate_class_area(year_image, int(class_value), village_geometry, district_name)
-                for class_value in ['8', '9']
-            )
+                # Calculate areas for different land cover classes
+                single_cropping_area = sum(
+                    calculate_class_area(year_image, int(class_value), village_geometry, district_name)
+                    for class_value in ['8', '9']
+                )
 
-            double_cropping_area = sum(
-                calculate_class_area(year_image, int(class_value), village_geometry, district_name)
-                for class_value in ['10', '11']
-            )
-            
-            tree_cover_area = sum(
-                calculate_class_area(year_image, int(class_value), village_geometry, district_name)
-                for class_value in ['6']
-            )
+                double_cropping_area = sum(
+                    calculate_class_area(year_image, int(class_value), village_geometry, district_name)
+                    for class_value in ['10', '11']
+                )
+                
+                tree_cover_area = sum(
+                    calculate_class_area(year_image, int(class_value), village_geometry, district_name)
+                    for class_value in ['6']
+                )
 
-            area_change_data[year] = {
-                'Single cropping cropland': single_cropping_area,
-                'Double cropping cropland': double_cropping_area,
-                'Tree Cover Area' : tree_cover_area
-            }
+                area_change_data[year] = {
+                    'Single cropping cropland': single_cropping_area,
+                    'Double cropping cropland': double_cropping_area,
+                    'Tree Cover Area': tree_cover_area
+                }
+            except Exception as e:
+                print(f"Error processing year {year}: {e}")
+                # Continue with other years if one fails
+
+        if not area_change_data:
+            return JsonResponse({'error': 'No area change data available for any year'}, status=404)
 
         return JsonResponse(area_change_data)
 
     except Exception as e:
-        logger.error('Failed to get area change', exc_info=True)
+        print(f"Error in get_area_change: {e}")
         return JsonResponse({'error': str(e)}, status=500)
 
 

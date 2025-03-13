@@ -252,15 +252,18 @@ def FarmBoundary_lulc(
         state_name: str,
         district_name: str,
         subdistrict_name: Optional[str] = None,
-        village_name: Optional[str] = None) -> ee.Image:
+        village_name: Optional[str] = None,
+        village_id: Optional[str] = None) -> ee.Image:
     """
     Retrieve the Land Use Land Cover (LULC) data for a specified area and year.
+    When a village_id is provided, it will be used for more precise village boundary retrieval.
 
     :param year: Year for which to retrieve the LULC data
     :param state_name: Name of the state
     :param district_name: Name of the district
     :param subdistrict_name: Optional name of the subdistrict
     :param village_name: Optional name of the village
+    :param village_id: Optional ID of the village for more precise boundary matching
     :return: Earth Engine Image representing the LULC data
     :raises: ValueError if there is an error fetching the LULC data
     """
@@ -271,14 +274,58 @@ def FarmBoundary_lulc(
         end_date = f'{int(year) + 1}-06-30'
 
         if subdistrict_name and village_name:
-            village_fc = village_boundary(
-                state_name, district_name, subdistrict_name, village_name)
-            return farmboundary.filterBounds(village_fc).filterDate(
-                start_date, end_date).mosaic().clipToCollection(village_fc)
+            # Get precise village boundary 
+            if village_id:
+                # Try to get the specific village by ID
+                shrug = shrug_dataset()
+                village_fc = shrug.filter(
+                    ee.Filter.And(
+                        ee.Filter.eq(shrug_fields['state_field'], state_name),
+                        ee.Filter.eq(shrug_fields['district_field'], district_name),
+                        ee.Filter.eq(shrug_fields['subdistrict_field'], subdistrict_name),
+                        ee.Filter.eq('pc11_tv_id', village_id)
+                    )
+                )
+                
+                # Check if we got the village
+                count = village_fc.size().getInfo()
+                if count == 0:
+                    print(f"No village found with ID {village_id}, falling back to name search")
+                    # Fall back to normal village boundary search if ID not found
+                    village_fc = village_boundary(state_name, district_name, subdistrict_name, village_name)
+                else:
+                    print(f"Successfully found village with ID {village_id}")
+            else:
+                # If no ID, use the normal village boundary function
+                village_fc = village_boundary(state_name, district_name, subdistrict_name, village_name)
+            
+            # Check if we have village features
+            count = village_fc.size().getInfo()
+            if count == 0:
+                raise ValueError(f"No village found with name {village_name}")
+            elif count > 1:
+                print(f"Warning: Found {count} features for {village_name}, using the first one")
+                # Get the first feature to be very explicit
+                first_feature = ee.Feature(village_fc.first())
+                village_fc = ee.FeatureCollection([first_feature])
+            
+            # Filter collection by village bounds
+            filtered_collection = farmboundary.filterBounds(village_fc.geometry())
+            date_filtered = filtered_collection.filterDate(start_date, end_date)
+            
+            if date_filtered.size().getInfo() == 0:
+                raise ValueError(f"No FarmBoundary data available for {village_name} in {year}")
+            
+            # Use clipToCollection which is more reliable for visualization
+            return date_filtered.mosaic().clipToCollection(village_fc)
         else:
             district_fc = district_boundary(state_name, district_name)
-            return farmboundary.filterBounds(district_fc).filterDate(
-                start_date, end_date).mosaic().clipToCollection(district_fc)
+            filtered = farmboundary.filterBounds(district_fc.geometry()).filterDate(start_date, end_date)
+            
+            if filtered.size().getInfo() == 0:
+                raise ValueError(f"No FarmBoundary data available for {district_name} in {year}")
+                
+            return filtered.mosaic().clipToCollection(district_fc)
 
     except Exception as e:
         raise ValueError(f"Error in fetching FarmBoundary: {e}")
@@ -322,7 +369,8 @@ def IMD_precipitation(
         state_name: str,
         district_name: str,
         subdistrict_name: Optional[str],
-        village_name: Optional[str]) -> JsonResponse:
+        village_name: Optional[str],
+        village_id: Optional[str] = None) -> JsonResponse:
     """
     Retrieve the IMD precipitation data for a specified time range and location.
 
@@ -332,14 +380,44 @@ def IMD_precipitation(
     :param district_name: Name of the district
     :param subdistrict_name: Optional name of the subdistrict
     :param village_name: Optional name of the village
+    :param village_id: Optional ID of the village for more precise boundary retrieval
     :return: JsonResponse containing the precipitation data or an error message
     """
     try:
-        village_geometry = village_boundary(
-            state_name,
-            district_name,
-            subdistrict_name,
-            village_name).geometry()
+        # Get the village boundary - prioritize searching by ID if available
+        if village_id:
+            # Directly query for the village using the ID
+            shrug = shrug_dataset()
+            village_fc = shrug.filter(
+                ee.Filter.And(
+                    ee.Filter.eq(shrug_fields['state_field'], state_name),
+                    ee.Filter.eq(shrug_fields['district_field'], district_name),
+                    ee.Filter.eq(shrug_fields['subdistrict_field'], subdistrict_name),
+                    ee.Filter.eq('pc11_tv_id', village_id)
+                )
+            )
+            
+            # Verify we found exactly one village
+            count = village_fc.size().getInfo()
+            if count == 0:
+                return JsonResponse({'error': f"No village found with ID {village_id}"}, status=404)
+            
+        else:
+            # Search by name if no ID
+            village_fc = village_boundary(state_name, district_name, subdistrict_name, village_name)
+            
+            # Check if we have any results
+            count = village_fc.size().getInfo()
+            if count == 0:
+                return JsonResponse({'error': f"No village found with name {village_name}"}, status=404)
+            elif count > 1:
+                # If multiple villages found, get just the first one
+                first_feature = ee.Feature(village_fc.first())
+                village_fc = ee.FeatureCollection([first_feature])
+                print(f"Warning: Found {count} villages named '{village_name}', using the first one")
+
+        village_geometry = village_fc.geometry()
+        
         year_list = list(range(start_year, end_year + 1))
         hyd_yr_col = ee.ImageCollection(
             ee.List(year_list).map(lambda year: yearly_sum(year)))
@@ -355,6 +433,12 @@ def IMD_precipitation(
 
         # Combine dates and rain values for the response
         rainfall_data = list(zip(dates, rain_values))
+        
+        if not rainfall_data:
+            return JsonResponse({'error': 'No rainfall data available for this village'}, status=404)
+            
         return JsonResponse({'rainfall_data': rainfall_data})
+        
     except Exception as e:
+        print(f"Error in IMD_precipitation: {e}")
         return JsonResponse({'error': str(e)}, status=500)
