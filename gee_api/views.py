@@ -484,7 +484,6 @@ def calculate_class_area(
     
     return area_value[band_name] / 1e4
 
-
 def get_area_change(request: HttpRequest) -> JsonResponse:
     """
     Calculate the area change for single and double cropping cropland over multiple years.
@@ -550,6 +549,7 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
         village_geometry = village_fc.geometry()
 
         # Choose the correct image collection based on state and district
+        is_bhuvan = False
         if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand']:
             print(f"Using Bhuvan LULC for state: {state_name}")
             image_collection = ee.ImageCollection(ee_assets['bhuvan_lulc']).filterBounds(village_geometry)
@@ -567,8 +567,13 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
         
         area_change_data = {}
         
+        # Batch area calculations more efficiently
         for year in year_range:
             try:
+                if year == 2019 and is_bhuvan:
+                    print(f"Skipping 2019 for Bhuvan LULC states")
+                    continue
+                    
                 start_date = ee.Date.fromYMD(year, 6, 1)
                 end_date = start_date.advance(1, 'year')
                 year_filtered = image_collection.filterDate(start_date, end_date)
@@ -589,16 +594,28 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
                 else:
                     # For IndiaSAT and FarmBoundary, use original remapping approach
                     remapped_image = year_image
-
-                # Calculate areas for different land cover classes
-                single_cropping_area = calculate_class_area(remapped_image, 8, village_geometry, district_name, state_name)
-                double_cropping_area = calculate_class_area(remapped_image, 10, village_geometry, district_name, state_name)
-                tree_cover_area = calculate_class_area(remapped_image, 6, village_geometry, district_name, state_name)
-
+                
+                # Optimize: Calculate all areas at once instead of separately
+                # Create a single image with different bands for each class
+                class_image = ee.Image.cat([
+                    remapped_image.eq(8).rename('single_crop'),  # Single cropping (class 8)
+                    remapped_image.eq(10).rename('double_crop'), # Double cropping (class 10)
+                    remapped_image.eq(6).rename('tree_cover')    # Tree cover (class 6)
+                ]).multiply(ee.Image.pixelArea())
+                
+                # Calculate all areas in a single reduceRegion call
+                areas = class_image.reduceRegion(
+                    reducer=ee.Reducer.sum(),
+                    geometry=village_geometry,
+                    scale=10,
+                    maxPixels=1e10
+                ).getInfo()
+                
+                # Convert from sq m to hectares
                 area_change_data[year] = {
-                    'Single cropping cropland': single_cropping_area,
-                    'Double cropping cropland': double_cropping_area,
-                    'Tree Cover Area': tree_cover_area
+                    'Single cropping cropland': areas.get('single_crop', 0) / 1e4,
+                    'Double cropping cropland': areas.get('double_crop', 0) / 1e4,
+                    'Tree Cover Area': areas.get('tree_cover', 0) / 1e4
                 }
             except Exception as e:
                 print(f"Error processing year {year}: {e}")
