@@ -10,7 +10,16 @@ from datetime import datetime
 
 
 from .utils import initialize_earth_engine
-from .ee_processing import compare_village, district_boundary, IndiaSAT_lulc, IMD_precipitation, village_boundary, FarmBoundary_lulc, subdistrict_boundary
+from .ee_processing import (
+    compare_village, 
+    district_boundary, 
+    IndiaSAT_lulc, 
+    IMD_precipitation, 
+    village_boundary, 
+    FarmBoundary_lulc, 
+    subdistrict_boundary,
+    Bhuvan_lulc
+)
 import ee
 
 from gee_api.models import State, District, SubDistrict, Village
@@ -205,11 +214,22 @@ def get_rainfall_data(request: HttpRequest) -> JsonResponse:
         # Now we have a single village feature collection, proceed with rainfall calculation
         village_geometry = village_fc.geometry()
         
+        # Set year range based on state
+        if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+            # For Bhuvan LULC states, use 2005-2024 excluding 2019
+            start_year = 2005
+            end_year = 2024
+            # We'll handle the exclusion of 2019 in the IMD_precipitation function
+        else:
+            # For other states, use the default range
+            start_year = 2014
+            end_year = 2022
+        
         # Import the IMD_precipitation function from ee_processing
         # This will handle the rainfall calculation using yearly_sum internally
         rainfall_data = IMD_precipitation(
-            2014,
-            2022,
+            start_year,
+            end_year,
             state_name,
             district_name,
             subdistrict_name,
@@ -285,8 +305,11 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
     district_name = request.GET.get('district_name', '').lower()
     subdistrict_name = request.GET.get('subdistrict_name', '').lower()
     village_name = request.GET.get('village_name', '').lower()
-    village_id = request.GET.get('village_id', '')  # Get village_id from request
+    village_id = request.GET.get('village_id', '')
     year = request.GET.get('year')
+
+    if not year:
+        return JsonResponse({'error': 'Year parameter is required.'}, status=400)
 
     # Extract village ID if it's in the format "name - id" and no specific village_id is provided
     if ' - ' in village_name and not village_id:
@@ -304,10 +327,44 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
             raise ValueError(
                 'parameters (state_name, district_name) are required.')
 
-        # Choose the correct image based on district name
-        if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"]:
-            print("Using Farmboundary_NDVI asset for district:", district_name)
+        # Choose the correct image based on state and district
+        if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+            print(f"Using Bhuvan LULC for state: {state_name}")
+            image = Bhuvan_lulc(
+                year,
+                state_name,
+                district_name,
+                subdistrict_name,
+                village_name_only,
+                village_id)
             
+            # For Bhuvan LULC, we need to remap classes
+            # Tree/Forests: 7,8,9 -> 6
+            # Single cropping: 2,3,4 -> 8
+            # Double cropping: 5 -> 10
+            # Shrub/Scrub: 10 -> 12
+            # Remap Bhuvan classes to match our visualization classes
+            valuesToKeep = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+            targetValues = [0, 8, 8, 8, 10, 0, 6, 6, 6, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            remappedImage = image.select('b1').remap(valuesToKeep, targetValues, 0)
+            
+            # Create mask to only show the classes we want (6, 8, 10, 12)
+            mask = remappedImage.eq(6).Or(remappedImage.eq(8)).Or(remappedImage.eq(10)).Or(remappedImage.eq(12))
+            remappedImage = remappedImage.updateMask(mask)
+            
+            # Define visualization parameters for Bhuvan
+            vis_params = {
+                'min': 0,
+                'max': 12,
+                'palette': [
+                    '#b2df8a', '#6382ff', '#d7191c', '#f5ff8b', '#dcaa68',
+                    '#397d49', '#50c361', '#8b9dc3', '#dac190', '#222f5b',
+                    '#38c5f9', '#946b2d'
+                ]
+            }
+            
+        elif district_name in ['vadodara']:
+            print("Using Farmboundary_NDVI asset for district:", district_name)
             image = FarmBoundary_lulc(
                 year,
                 state_name,
@@ -315,38 +372,60 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
                 subdistrict_name,
                 village_name_only,
                 village_id)
+                
+            # For FarmBoundary, use original remapping
+            valuesToKeep = [6, 8, 9, 10, 11, 12]
+            targetValues = [6, 8, 8, 10, 10, 12]
+            remappedImage = image.remap(valuesToKeep, targetValues, 0)
+            mask = remappedImage.gte(6).And(remappedImage.lte(12))
+            remappedImage = remappedImage.updateMask(mask)
+            
+            # Define visualization parameters for FarmBoundary
+            vis_params = {
+                'bands': ['remapped'],
+                'min': 0,
+                'max': 12,
+                'palette': [
+                    '#b2df8a', '#6382ff', '#d7191c', '#f5ff8b', '#dcaa68',
+                    '#397d49', '#50c361', '#8b9dc3', '#dac190', '#222f5b',
+                    '#38c5f9', '#946b2d'
+                ]
+            }
+            
         else:
+            print(f"Using IndiaSAT for state: {state_name}, district: {district_name}")
             image = IndiaSAT_lulc(
                 year,
                 state_name,
                 district_name,
                 subdistrict_name,
                 village_name_only)
+                
+            # For IndiaSAT, use original remapping
+            valuesToKeep = [6, 8, 9, 10, 11, 12]
+            targetValues = [6, 8, 8, 10, 10, 12]
+            remappedImage = image.remap(valuesToKeep, targetValues, 0)
+            mask = remappedImage.gte(6).And(remappedImage.lte(12))
+            remappedImage = remappedImage.updateMask(mask)
+            
+            # Define visualization parameters for IndiaSAT
+            vis_params = {
+                'bands': ['remapped'],
+                'min': 0,
+                'max': 12,
+                'palette': [
+                    '#b2df8a', '#6382ff', '#d7191c', '#f5ff8b', '#dcaa68',
+                    '#397d49', '#50c361', '#8b9dc3', '#dac190', '#222f5b',
+                    '#38c5f9', '#946b2d'
+                ]
+            }
 
         # Ensure we have image bands before proceeding
-        band_names = image.bandNames().getInfo()
+        band_names = remappedImage.bandNames().getInfo()
         print(f"Band names for LULC: {band_names}")
         
         if not band_names:
             return JsonResponse({'error': 'No data available for the selected area and year'}, status=404)
-
-        valuesToKeep = [6, 8, 9, 10, 11, 12]
-        targetValues = [6, 8, 8, 10, 10, 12]
-        remappedImage = image.remap(valuesToKeep, targetValues, 0)
-        mask = remappedImage.gte(6).And(remappedImage.lte(12))
-        remappedImage = remappedImage.updateMask(mask)
-
-        # Define visualization parameters
-        vis_params = {
-            'bands': ['remapped'],
-            'min': 0,
-            'max': 12,
-            'palette': [
-                '#b2df8a', '#6382ff', '#d7191c', '#f5ff8b', '#dcaa68',
-                '#397d49', '#50c361', '#8b9dc3', '#dac190', '#222f5b',
-                '#38c5f9', '#946b2d'
-            ]
-        }
 
         # Get the map ID and token
         map_id_dict = remappedImage.getMapId(vis_params)
@@ -364,13 +443,16 @@ def calculate_class_area(
         image: ee.Image,
         class_value: int,
         geometry: ee.Geometry,
-        district_name: str) -> float:
+        district_name: str,
+        state_name: str) -> float:
     """
     Calculate the area of a specific land cover class within a given geometry.
 
     :param image: Earth Engine Image representing the land cover data
     :param class_value: Integer representing the land cover class
     :param geometry: Earth Engine Geometry defining the area to calculate within
+    :param district_name: Name of the district
+    :param state_name: Name of the state
     :return: Area of the specified class in hectares
     """
     area_image = image.eq(class_value).multiply(ee.Image.pixelArea())
@@ -380,14 +462,26 @@ def calculate_class_area(
         scale=10,
         maxPixels=1e10
     )
-    # Use 'NDVI' band for 'chitrakoot' district and 'b1' for others
-    # band_name = 'NDVI' if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"] else 'b1'
-    band_name = 'b1'
     
+    # Check available bands
     area_value = area_calculation.getInfo()
+    print(f"Available bands: {area_value}")
+    
+    # Determine band name based on what's available in the image
+    if 'remapped' in area_value:
+        band_name = 'remapped'
+    elif 'NDVI' in area_value:
+        band_name = 'NDVI'
+    elif 'b1' in area_value:
+        band_name = 'b1'
+    else:
+        # If none of the expected bands are found, raise an error
+        raise ValueError(f"No expected bands found in the image data. Available bands: {area_value}")
+    
+    # Get the area value for the determined band
     if band_name not in area_value:
-        print(area_value)
         raise ValueError(f"Band '{band_name}' is missing in the image data for district '{district_name}'.")
+    
     return area_value[band_name] / 1e4
 
 
@@ -404,7 +498,7 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
     district_name = request.GET.get('district_name', '').lower()
     subdistrict_name = request.GET.get('subdistrict_name', '').lower()
     village_name = request.GET.get('village_name', '').lower()
-    village_id = request.GET.get('village_id', '')  # Get village_id from request
+    village_id = request.GET.get('village_id', '')
     
     # Extract the village ID from the name if in format "name - id" and no explicit ID provided
     if ' - ' in village_name and not village_id:
@@ -455,27 +549,21 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
         
         village_geometry = village_fc.geometry()
 
-        # Choose the correct image collection based on district name
-        if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"]:
+        # Choose the correct image collection based on state and district
+        if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+            print(f"Using Bhuvan LULC for state: {state_name}")
+            image_collection = ee.ImageCollection(ee_assets['bhuvan_lulc']).filterBounds(village_geometry)
+            year_range = range(2005, 2024)  # Bhuvan data range
+            is_bhuvan = True
+        elif district_name in ['vadodara']:
             image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/Farmboundary_NDVI_Tree').filterBounds(village_geometry)
-            print(f"Using Farmboundary_NDVI asset for area change for district: {district_name}")
-            
-            # Print band names for debugging
-            try:
-                first_image = image_collection.first()
-                if first_image:
-                    band_names = first_image.bandNames().getInfo()
-                    print(f"Band names: {band_names}")
-            except Exception as e:
-                print(f"Warning: Couldn't get band names: {e}")
+            print(f"Using Farmboundary_NDVI asset for district: {district_name}")
+            year_range = range(2017, 2024)
+            is_bhuvan = False
         else:
             image_collection = ee.ImageCollection('users/jaltolwelllabs/LULC/IndiaSAT_V2_draft').filterBounds(village_geometry)
-
-        # Determine year range based on district
-        if district_name in ["chitrakoot", "saraikela kharsawan", "aurangabad", "nashik"]:
-            year_range = range(2017, 2024)
-        else:
             year_range = range(2017, 2023)
+            is_bhuvan = False
         
         area_change_data = {}
         
@@ -492,21 +580,20 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
                     
                 year_image = year_filtered.mosaic()
 
-                # Calculate areas for different land cover classes
-                single_cropping_area = sum(
-                    calculate_class_area(year_image, int(class_value), village_geometry, district_name)
-                    for class_value in ['8', '9']
-                )
+                # Apply appropriate remapping based on the data source
+                if is_bhuvan:
+                    # For Bhuvan LULC, apply remapping specific to Bhuvan classes
+                    valuesToKeep = [2, 3, 4, 5, 7, 8, 9, 10, 12]
+                    targetValues = [8, 8, 8, 10, 6, 6, 6, 12, 12]
+                    remapped_image = year_image.select('b1').remap(valuesToKeep, targetValues, 0)
+                else:
+                    # For IndiaSAT and FarmBoundary, use original remapping approach
+                    remapped_image = year_image
 
-                double_cropping_area = sum(
-                    calculate_class_area(year_image, int(class_value), village_geometry, district_name)
-                    for class_value in ['10', '11']
-                )
-                
-                tree_cover_area = sum(
-                    calculate_class_area(year_image, int(class_value), village_geometry, district_name)
-                    for class_value in ['6']
-                )
+                # Calculate areas for different land cover classes
+                single_cropping_area = calculate_class_area(remapped_image, 8, village_geometry, district_name, state_name)
+                double_cropping_area = calculate_class_area(remapped_image, 10, village_geometry, district_name, state_name)
+                tree_cover_area = calculate_class_area(remapped_image, 6, village_geometry, district_name, state_name)
 
                 area_change_data[year] = {
                     'Single cropping cropland': single_cropping_area,

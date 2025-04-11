@@ -15,6 +15,7 @@ ee_assets = {
     "indiasat": 'users/jaltolwelllabs/LULC/IndiaSAT_V2_draft',
     "imd_rain": "users/jaltolwelllabs/IMD/rain",
     "farmboundary" : 'users/jaltolwelllabs/LULC/Farmboundary_NDVI_Tree',
+    "bhuvan_lulc": 'users/jaltolwelllabs/LULC/Bhuvan_LULC',
 }
 
 compare_village_buffer: int = 5000

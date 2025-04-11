@@ -330,6 +330,92 @@ def FarmBoundary_lulc(
     except Exception as e:
         raise ValueError(f"Error in fetching FarmBoundary: {e}")
 
+def Bhuvan_lulc(
+        year: int,
+        state_name: str,
+        district_name: str,
+        subdistrict_name: Optional[str] = None,
+        village_name: Optional[str] = None,
+        village_id: Optional[str] = None) -> ee.Image:
+    """
+    Retrieve Bhuvan LULC data for Maharashtra and UP.
+    
+    :param year: Year for which LULC data is required
+    :param state_name: Name of the state
+    :param district_name: Name of the district
+    :param subdistrict_name: Optional name of the subdistrict
+    :param village_name: Optional name of the village
+    :param village_id: Optional ID of the village for more precise boundary matching
+    :return: Earth Engine Image containing Bhuvan LULC data
+    :raises: ValueError if there is an error fetching the LULC data
+    """
+    try:
+        # Convert year to int if it's a string
+        year = int(year)
+        
+        # Get the Bhuvan LULC collection
+        bhuvan_lulc = ee.ImageCollection(ee_assets['bhuvan_lulc'])
+
+        start_date = f'{year}-06-01'
+        end_date = f'{int(year) + 1}-05-31'
+
+        if subdistrict_name and village_name:
+            # Get precise village boundary 
+            if village_id:
+                # Try to get the specific village by ID
+                shrug = shrug_dataset()
+                village_fc = shrug.filter(
+                    ee.Filter.And(
+                        ee.Filter.eq(shrug_fields['state_field'], state_name),
+                        ee.Filter.eq(shrug_fields['district_field'], district_name),
+                        ee.Filter.eq(shrug_fields['subdistrict_field'], subdistrict_name),
+                        ee.Filter.eq('pc11_tv_id', village_id)
+                    )
+                )
+                
+                # Check if we got the village
+                count = village_fc.size().getInfo()
+                if count == 0:
+                    print(f"No village found with ID {village_id}, falling back to name search")
+                    # Fall back to normal village boundary search if ID not found
+                    village_fc = village_boundary(state_name, district_name, subdistrict_name, village_name)
+                else:
+                    print(f"Successfully found village with ID {village_id}")
+            else:
+                # If no ID, use the normal village boundary function
+                village_fc = village_boundary(state_name, district_name, subdistrict_name, village_name)
+            
+            # Check if we have village features
+            count = village_fc.size().getInfo()
+            if count == 0:
+                raise ValueError(f"No village found with name {village_name}")
+            elif count > 1:
+                print(f"Warning: Found {count} features for {village_name}, using the first one")
+                # Get the first feature to be very explicit
+                first_feature = ee.Feature(village_fc.first())
+                village_fc = ee.FeatureCollection([first_feature])
+            
+            # Filter collection by village bounds
+            filtered_collection = bhuvan_lulc.filterBounds(village_fc.geometry())
+            date_filtered = filtered_collection.filterDate(start_date, end_date)
+            
+            if date_filtered.size().getInfo() == 0:
+                raise ValueError(f"No Bhuvan LULC data available for {village_name} in {year}")
+            
+            # Use clipToCollection which is more reliable for visualization
+            return date_filtered.mosaic().clipToCollection(village_fc)
+        else:
+            district_fc = district_boundary(state_name, district_name)
+            filtered = bhuvan_lulc.filterBounds(district_fc.geometry()).filterDate(start_date, end_date)
+            
+            if filtered.size().getInfo() == 0:
+                raise ValueError(f"No Bhuvan LULC data available for {district_name} in {year}")
+                
+            return filtered.mosaic().clipToCollection(district_fc)
+            
+    except Exception as e:
+        raise ValueError(f"Error in fetching Bhuvan LULC data: {e}")
+
 def yearly_sum(year: int) -> ee.Image:
     """
     Calculate the yearly sum of precipitation for a given year.
@@ -343,8 +429,16 @@ def yearly_sum(year: int) -> ee.Image:
         ee.Date.fromYMD(
             year, 6, 1), ee.Date.fromYMD(
             ee.Number(year).add(1), 6, 1))
-    date = filter.first().get('system:time_start')
-    return filter.sum().set('system:time_start', date)
+    
+    # Check if filtered collection is empty using server-side operations
+    # Use .size() in a server-side conditional operation
+    return ee.Algorithms.If(
+        filter.size().gt(0),
+        # If collection has data, process it normally
+        filter.sum().set('system:time_start', filter.first().get('system:time_start')),
+        # Otherwise return a placeholder with zero values
+        ee.Image.constant(0).rename('b1').set('system:time_start', ee.Date.fromYMD(year, 6, 1).millis())
+    )
 
 
 def getStats(image: ee.Image, geometry: ee.Geometry) -> ee.Image:
@@ -384,6 +478,18 @@ def IMD_precipitation(
     :return: JsonResponse containing the precipitation data or an error message
     """
     try:
+        # For Maharashtra, UP, and Jharkhand, use fixed year range and skip 2019
+        if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+            # Override the input years with fixed range 2005-2024
+            start_year = 2005
+            end_year = 2024
+            # Create year list excluding 2019
+            year_list = [year for year in range(start_year, end_year + 1) if year != 2019]
+            print(f"Using custom year range 2005-2024 (excluding 2019) for {state_name}")
+        else:
+            # For other states, use the requested year range
+            year_list = list(range(start_year, end_year + 1))
+            
         # Get the village boundary - prioritize searching by ID if available
         if village_id:
             # Directly query for the village using the ID
@@ -418,9 +524,10 @@ def IMD_precipitation(
 
         village_geometry = village_fc.geometry()
         
-        year_list = list(range(start_year, end_year + 1))
+        # Create image collection from year list using the yearly_sum function
         hyd_yr_col = ee.ImageCollection(
             ee.List(year_list).map(lambda year: yearly_sum(year)))
+            
         collection_with_stats = hyd_yr_col.map(
             lambda image: getStats(image, village_geometry))
 
