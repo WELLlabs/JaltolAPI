@@ -20,6 +20,7 @@ from .ee_processing import (
     subdistrict_boundary,
     Bhuvan_lulc
 )
+from .groundwater import get_groundwater_level
 import ee
 
 from gee_api.models import State, District, SubDistrict, Village
@@ -650,3 +651,98 @@ def get_control_village(request: HttpRequest) -> JsonResponse:
         return JsonResponse(geo_json)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+def get_groundwater_data(request: HttpRequest) -> JsonResponse:
+    """
+    Fetch groundwater level data for a given village.
+
+    Args:
+        request: HttpRequest object with query parameters:
+            - state_name: Name of the state
+            - district_name: Name of the district
+            - subdistrict_name: Name of the subdistrict
+            - village_name: Name of the village
+            - village_id (optional): Census ID of the village
+            - start_year (optional): Start year for data (default: 2017)
+            - end_year (optional): End year for data (default: 2022)
+            - buffer_dist (optional): Buffer distance in meters (default: 10000)
+
+    Returns:
+        JsonResponse: A JSON response containing groundwater level data with min and max values by year.
+                     If no stations are found within range, returns null values.
+    """
+    ee.Initialize(credentials)
+
+    # Extract query parameters
+    state_name = request.GET.get('state_name', '').lower()
+    district_name = request.GET.get('district_name', '').lower()
+    subdistrict_name = request.GET.get('subdistrict_name', '').lower()
+    village_name = request.GET.get('village_name', '').lower()
+    village_id = request.GET.get('village_id', '')
+    
+    # Parse optional parameters with defaults
+    try:
+        start_year = int(request.GET.get('start_year', '2017'))
+        end_year = int(request.GET.get('end_year', '2022'))
+        buffer_dist = int(request.GET.get('buffer_dist', '10000'))
+    except ValueError:
+        return JsonResponse(
+            {'error': 'Invalid numeric parameters. start_year, end_year, and buffer_dist must be integers.'},
+            status=400
+        )
+    
+    # Clean up village name if it contains an ID part
+    if ' - ' in village_name and not village_id:
+        parts = village_name.split(' - ')
+        village_name = parts[0].strip()
+        if len(parts) > 1:
+            village_id = parts[1].strip()
+
+    # Validate required parameters
+    if not (state_name and district_name and subdistrict_name and village_name):
+        return JsonResponse(
+            {'error': 'Parameters state_name, district_name, subdistrict_name, and village_name are required.'},
+            status=400
+        )
+
+    try:
+        # Get the village boundary
+        village_fc = village_boundary(
+            state_name,
+            district_name,
+            subdistrict_name,
+            village_name,
+            village_id
+        )
+        
+        # Verify we found exactly one village
+        count = village_fc.size().getInfo()
+        if count == 0:
+            error_msg = f"No village found with name '{village_name}'"
+            if village_id:
+                error_msg += f" and ID '{village_id}'"
+            return JsonResponse({'error': error_msg}, status=404)
+        
+        # Get groundwater level data
+        groundwater_data = get_groundwater_level(
+            village_fc=village_fc,
+            buffer_dist=buffer_dist,
+            start_year=start_year,
+            end_year=end_year
+        )
+        
+        # Format response
+        result = {
+            'village_name': village_name,
+            'district_name': district_name,
+            'state_name': state_name,
+            'groundwater_levels': groundwater_data
+        }
+        
+        return JsonResponse(result)
+    
+    except ValueError as ve:
+        return JsonResponse({'error': str(ve)}, status=400)
+    except Exception as e:
+        logger.error(f'Failed to get groundwater data: {e}', exc_info=True)
+        return JsonResponse({'error': f'Internal server error: {str(e)}'}, status=500)

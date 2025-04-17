@@ -2,7 +2,8 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
     get_boundary_data, get_lulc_raster, get_area_change,
-    get_control_village, get_rainfall_data, health_check
+    get_control_village, get_rainfall_data, health_check,
+    get_groundwater_data
 )
 
 from django.urls import path
@@ -38,6 +39,10 @@ urlpatterns = [
         'get_rainfall_data/',
         get_rainfall_data,
         name='get_rainfall_data'),
+    path(
+        'get_groundwater_data/',
+        get_groundwater_data,
+        name='get_groundwater_data'),
     path(
         'health/',
         health_check,
