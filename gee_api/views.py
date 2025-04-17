@@ -345,7 +345,7 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
             # Shrub/Scrub: 10 -> 12
             # Remap Bhuvan classes to match our visualization classes
             valuesToKeep = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-            targetValues = [0, 8, 8, 8, 10, 0, 6, 6, 6, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            targetValues = [0, 8, 10, 10, 10, 8, 6, 6, 6, 12, 0, 12, 8, 0, 0, 0, 0, 0, 0]
             remappedImage = image.select('b1').remap(valuesToKeep, targetValues, 0)
             
             # Create mask to only show the classes we want (6, 8, 10, 12)
