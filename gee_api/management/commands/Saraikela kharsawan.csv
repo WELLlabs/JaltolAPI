@@ -1,0 +1,1133 @@
+pc11_s_id,pc11_d_id,pc11_sd_id,pc11_tv_id,state_name,district_n,subdistric,village_na,place_name,tot_p,p_sc,p_st
+20,369,2746,378528,jharkhand,saraikela kharsawan,kuchai,barasegoi,barasegoi,749,0,668
+20,369,2746,378529,jharkhand,saraikela kharsawan,kuchai,chotasegoi,chotasegoi,1142,0,1014
+20,369,2746,378530,jharkhand,saraikela kharsawan,kuchai,karalor,karalor,145,0,144
+20,369,2746,378531,jharkhand,saraikela kharsawan,kuchai,chotabandi,chotabandi,663,1,558
+20,369,2746,378532,jharkhand,saraikela kharsawan,kuchai,bara bandi,bara bandi,569,1,499
+20,369,2746,378533,jharkhand,saraikela kharsawan,kuchai,gumpu,gumpu,42,0,42
+20,369,2746,378534,jharkhand,saraikela kharsawan,kuchai,champad,champad,479,0,479
+20,369,2746,378535,jharkhand,saraikela kharsawan,kuchai,ichahatu,ichahatu,281,0,267
+20,369,2746,378536,jharkhand,saraikela kharsawan,kuchai,jamdah,jamdah,199,26,155
+20,369,2746,378537,jharkhand,saraikela kharsawan,kuchai,todangdih,todangdih,364,44,103
+20,369,2746,378538,jharkhand,saraikela kharsawan,kuchai,kuchai,kuchai,1315,30,1068
+20,369,2746,378539,jharkhand,saraikela kharsawan,kuchai,bhurkunda,bhurkunda,1244,13,1117
+20,369,2746,378540,jharkhand,saraikela kharsawan,kuchai,rengsa,rengsa,282,0,282
+20,369,2746,378541,jharkhand,saraikela kharsawan,kuchai,dango,dango,669,0,604
+20,369,2746,378542,jharkhand,saraikela kharsawan,kuchai,regadih,regadih,364,0,363
+20,369,2746,378543,jharkhand,saraikela kharsawan,kuchai,maranghatu,maranghatu,1688,40,972
+20,369,2746,378544,jharkhand,saraikela kharsawan,kuchai,ruchab,ruchab,1100,13,803
+20,369,2746,378545,jharkhand,saraikela kharsawan,kuchai,puniburi,puniburi,630,0,630
+20,369,2746,378546,jharkhand,saraikela kharsawan,kuchai,damodiri,damodiri,396,0,383
+20,369,2746,378547,jharkhand,saraikela kharsawan,kuchai,jora sarjam,jora sarjam,319,16,194
+20,369,2746,378548,jharkhand,saraikela kharsawan,kuchai,kar kata,kar kata,216,0,215
+20,369,2746,378549,jharkhand,saraikela kharsawan,kuchai,beyang,beyang,372,0,339
+20,369,2746,378550,jharkhand,saraikela kharsawan,kuchai,lapta,lapta,396,0,380
+20,369,2746,378551,jharkhand,saraikela kharsawan,kuchai,kundiamarcha,kundiamarcha,524,0,518
+20,369,2746,378552,jharkhand,saraikela kharsawan,kuchai,lapsa,lapsa,321,7,305
+20,369,2746,378553,jharkhand,saraikela kharsawan,kuchai,ramaisal,ramaisal,524,0,267
+20,369,2746,378554,jharkhand,saraikela kharsawan,kuchai,jowajanjir,jowajanjir,562,0,419
+20,369,2746,378555,jharkhand,saraikela kharsawan,kuchai,gogamacha,gogamacha,232,0,218
+20,369,2746,378556,jharkhand,saraikela kharsawan,kuchai,surabera,surabera,636,0,441
+20,369,2746,378557,jharkhand,saraikela kharsawan,kuchai,jugidih,jugidih,578,0,271
+20,369,2746,378558,jharkhand,saraikela kharsawan,kuchai,pagaridih,pagaridih,568,0,454
+20,369,2746,378559,jharkhand,saraikela kharsawan,kuchai,galudih urf narandhara,galudih urf narandhara,502,0,389
+20,369,2746,378560,jharkhand,saraikela kharsawan,kuchai,regadih,regadih,526,0,442
+20,369,2746,378561,jharkhand,saraikela kharsawan,kuchai,patulpir,patulpir,536,0,512
+20,369,2746,378562,jharkhand,saraikela kharsawan,kuchai,barachakri,barachakri,963,8,820
+20,369,2746,378563,jharkhand,saraikela kharsawan,kuchai,mundadeo,mundadeo,839,3,285
+20,369,2746,378564,jharkhand,saraikela kharsawan,kuchai,gumdadih,gumdadih,233,0,212
+20,369,2746,378565,jharkhand,saraikela kharsawan,kuchai,pandakata,pandakata,1238,0,798
+20,369,2746,378566,jharkhand,saraikela kharsawan,kuchai,chirudih,chirudih,422,9,383
+20,369,2746,378567,jharkhand,saraikela kharsawan,kuchai,kalaidih,kalaidih,342,0,66
+20,369,2746,378568,jharkhand,saraikela kharsawan,kuchai,durusai,durusai,512,0,200
+20,369,2746,378569,jharkhand,saraikela kharsawan,kuchai,kunjadih,kunjadih,981,22,443
+20,369,2746,378570,jharkhand,saraikela kharsawan,kuchai,chota chakri,chota chakri,382,0,306
+20,369,2746,378571,jharkhand,saraikela kharsawan,kuchai,paralbadi,paralbadi,524,0,9
+20,369,2746,378572,jharkhand,saraikela kharsawan,kuchai,rurunglohar,rurunglohar,164,0,70
+20,369,2746,378573,jharkhand,saraikela kharsawan,kuchai,bangurdih,bangurdih,409,0,261
+20,369,2746,378575,jharkhand,saraikela kharsawan,kuchai,gopidih,gopidih,546,0,375
+20,369,2746,378576,jharkhand,saraikela kharsawan,kuchai,noagaon,noagaon,1013,0,651
+20,369,2746,378577,jharkhand,saraikela kharsawan,kuchai,bandolohar,bandolohar,1793,64,918
+20,369,2746,378578,jharkhand,saraikela kharsawan,kuchai,tilopada,tilopada,506,0,433
+20,369,2746,378579,jharkhand,saraikela kharsawan,kuchai,dukhiadih,dukhiadih,234,0,232
+20,369,2746,378580,jharkhand,saraikela kharsawan,kuchai,samudih,samudih,193,0,192
+20,369,2746,378581,jharkhand,saraikela kharsawan,kuchai,mangudih,mangudih,868,0,607
+20,369,2746,378582,jharkhand,saraikela kharsawan,kuchai,jilingda,jilingda,907,2,886
+20,369,2746,378583,jharkhand,saraikela kharsawan,kuchai,aruwan,aruwan,2404,240,1194
+20,369,2746,378584,jharkhand,saraikela kharsawan,kuchai,doro,doro,824,95,0
+20,369,2746,378585,jharkhand,saraikela kharsawan,kuchai,dhadkidih,dhadkidih,246,0,104
+20,369,2746,378586,jharkhand,saraikela kharsawan,kuchai,siringda,siringda,1641,61,932
+20,369,2746,378587,jharkhand,saraikela kharsawan,kuchai,raisindri pahar,raisindri pahar,763,0,681
+20,369,2746,378588,jharkhand,saraikela kharsawan,kuchai,rochda,rochda,28,0,28
+20,369,2746,378589,jharkhand,saraikela kharsawan,kuchai,ichadih,ichadih,562,0,544
+20,369,2746,378590,jharkhand,saraikela kharsawan,kuchai,salaidih,salaidih,101,0,84
+20,369,2746,378591,jharkhand,saraikela kharsawan,kuchai,janlongboredih,janlongboredih,912,0,880
+20,369,2746,378592,jharkhand,saraikela kharsawan,kuchai,kudadih,kudadih,570,0,568
+20,369,2746,378593,jharkhand,saraikela kharsawan,kuchai,badu,badu,59,0,59
+20,369,2746,378594,jharkhand,saraikela kharsawan,kuchai,meromjanga,meromjanga,1086,2,969
+20,369,2746,378595,jharkhand,saraikela kharsawan,kuchai,gomiadih,gomiadih,1005,0,987
+20,369,2746,378596,jharkhand,saraikela kharsawan,kuchai,hatuabera,hatuabera,246,0,244
+20,369,2746,378597,jharkhand,saraikela kharsawan,kuchai,kareranga,kareranga,553,0,545
+20,369,2746,378598,jharkhand,saraikela kharsawan,kuchai,korwadih,korwadih,142,0,140
+20,369,2746,378599,jharkhand,saraikela kharsawan,kuchai,baruhatu,baruhatu,2061,87,1827
+20,369,2746,378600,jharkhand,saraikela kharsawan,kuchai,torangdih,torangdih,276,0,276
+20,369,2746,378601,jharkhand,saraikela kharsawan,kuchai,jogohatu,jogohatu,1650,29,783
+20,369,2746,378602,jharkhand,saraikela kharsawan,kuchai,sursi,sursi,1300,10,1086
+20,369,2746,378603,jharkhand,saraikela kharsawan,kuchai,sasokara,sasokara,505,0,502
+20,369,2746,378604,jharkhand,saraikela kharsawan,kuchai,bijar,bijar,1032,47,850
+20,369,2746,378605,jharkhand,saraikela kharsawan,kuchai,dhunadih,dhunadih,1337,7,1132
+20,369,2746,378606,jharkhand,saraikela kharsawan,kuchai,dalbhanga,dalbhanga,1295,18,1174
+20,369,2746,378607,jharkhand,saraikela kharsawan,kuchai,para,para,262,0,259
+20,369,2746,378608,jharkhand,saraikela kharsawan,kuchai,bonodih,bonodih,325,0,321
+20,369,2746,378609,jharkhand,saraikela kharsawan,kuchai,desma pahar,desma pahar,346,0,336
+20,369,2746,378610,jharkhand,saraikela kharsawan,kuchai,siadih,siadih,1258,0,1184
+20,369,2746,378611,jharkhand,saraikela kharsawan,kuchai,mutugura,mutugura,1305,0,1286
+20,369,2746,378612,jharkhand,saraikela kharsawan,kuchai,rugudih,rugudih,1781,0,1570
+20,369,2746,378613,jharkhand,saraikela kharsawan,kuchai,ramdih,ramdih,244,0,226
+20,369,2746,378614,jharkhand,saraikela kharsawan,kuchai,taramba,taramba,378,0,362
+20,369,2746,378615,jharkhand,saraikela kharsawan,kuchai,atra,atra,577,25,547
+20,369,2746,378616,jharkhand,saraikela kharsawan,kuchai,punisir,punisir,209,0,180
+20,369,2746,378617,jharkhand,saraikela kharsawan,kuchai,gelua,gelua,666,0,629
+20,369,2746,378618,jharkhand,saraikela kharsawan,kuchai,basgutu,basgutu,203,0,202
+20,369,2746,378619,jharkhand,saraikela kharsawan,kuchai,rolshatu,rolshatu,877,0,757
+20,369,2746,378620,jharkhand,saraikela kharsawan,kuchai,buruhatu,buruhatu,198,0,197
+20,369,2746,378621,jharkhand,saraikela kharsawan,kuchai,dangl,dangl,118,0,117
+20,369,2746,378622,jharkhand,saraikela kharsawan,kuchai,ludibera,ludibera,187,0,187
+20,369,2746,378623,jharkhand,saraikela kharsawan,kuchai,kusrouli,kusrouli,130,1,127
+20,369,2746,378624,jharkhand,saraikela kharsawan,kuchai,korra,korra,765,0,758
+20,369,2746,378625,jharkhand,saraikela kharsawan,kuchai,kumai,kumai,640,0,636
+20,369,2746,378626,jharkhand,saraikela kharsawan,kuchai,jamro,jamro,559,0,550
+20,369,2746,378627,jharkhand,saraikela kharsawan,kuchai,sikramba,sikramba,492,0,487
+20,369,2747,378628,jharkhand,saraikela kharsawan,kharsawan,jagatpur,jagatpur,149,0,149
+20,369,2747,378630,jharkhand,saraikela kharsawan,kharsawan,rajabasa,rajabasa,521,0,271
+20,369,2747,378631,jharkhand,saraikela kharsawan,kharsawan,gitilata,gitilata,927,0,485
+20,369,2747,378632,jharkhand,saraikela kharsawan,kharsawan,rugri,rugri,297,0,238
+20,369,2747,378633,jharkhand,saraikela kharsawan,kharsawan,jerasai,jerasai,372,0,363
+20,369,2747,378634,jharkhand,saraikela kharsawan,kharsawan,telaidih,telaidih,956,0,301
+20,369,2747,378635,jharkhand,saraikela kharsawan,kharsawan,bara kurma,bara kurma,916,16,130
+20,369,2747,378636,jharkhand,saraikela kharsawan,kharsawan,singadih,singadih,226,0,35
+20,369,2747,378637,jharkhand,saraikela kharsawan,kharsawan,jojo kurma,jojo kurma,861,57,392
+20,369,2747,378638,jharkhand,saraikela kharsawan,kharsawan,losodikir,losodikir,950,7,213
+20,369,2747,378639,jharkhand,saraikela kharsawan,kharsawan,bara sargidih,bara sargidih,737,67,75
+20,369,2747,378641,jharkhand,saraikela kharsawan,kharsawan,bara supaisai,bara supaisai,547,0,180
+20,369,2747,378642,jharkhand,saraikela kharsawan,kharsawan,kotoalsai,kotoalsai,463,0,423
+20,369,2747,378643,jharkhand,saraikela kharsawan,kharsawan,chhota sargidih,chhota sargidih,592,0,475
+20,369,2747,378644,jharkhand,saraikela kharsawan,kharsawan,mahadebbuta,mahadebbuta,163,0,140
+20,369,2747,378645,jharkhand,saraikela kharsawan,kharsawan,pitakolang,pitakolang,778,0,449
+20,369,2747,378646,jharkhand,saraikela kharsawan,kharsawan,telangjari,telangjari,709,0,666
+20,369,2747,378647,jharkhand,saraikela kharsawan,kharsawan,samursai,samursai,895,415,371
+20,369,2747,378648,jharkhand,saraikela kharsawan,kharsawan,gandamara,gandamara,1151,934,50
+20,369,2747,378649,jharkhand,saraikela kharsawan,kharsawan,bara bambu,bara bambu,1878,1026,231
+20,369,2747,378650,jharkhand,saraikela kharsawan,kharsawan,sonaposi,sonaposi,457,0,296
+20,369,2747,378651,jharkhand,saraikela kharsawan,kharsawan,jordiha,jordiha,1242,42,214
+20,369,2747,378652,jharkhand,saraikela kharsawan,kharsawan,chhota bambu,chhota bambu,622,0,0
+20,369,2747,378653,jharkhand,saraikela kharsawan,kharsawan,potobera,potobera,811,55,78
+20,369,2747,378654,jharkhand,saraikela kharsawan,kharsawan,gopalpur,gopalpur,405,0,72
+20,369,2747,378655,jharkhand,saraikela kharsawan,kharsawan,udhria,udhria,791,0,580
+20,369,2747,378656,jharkhand,saraikela kharsawan,kharsawan,kisnapur,kisnapur,1291,0,289
+20,369,2747,378657,jharkhand,saraikela kharsawan,kharsawan,kontala,kontala,73,0,23
+20,369,2747,378658,jharkhand,saraikela kharsawan,kharsawan,kudasing,kudasing,1099,13,140
+20,369,2747,378659,jharkhand,saraikela kharsawan,kharsawan,nischintpur,nischintpur,177,0,5
+20,369,2747,378660,jharkhand,saraikela kharsawan,kharsawan,khamardih,khamardih,767,0,701
+20,369,2747,378661,jharkhand,saraikela kharsawan,kharsawan,kuchai,kuchai,848,0,311
+20,369,2747,378662,jharkhand,saraikela kharsawan,kharsawan,naranpur,naranpur,293,0,128
+20,369,2747,378663,jharkhand,saraikela kharsawan,kharsawan,bandubera,bandubera,138,0,11
+20,369,2747,378664,jharkhand,saraikela kharsawan,kharsawan,udalkham,udalkham,841,46,76
+20,369,2747,378665,jharkhand,saraikela kharsawan,kharsawan,bara amda,bara amda,2146,137,411
+20,369,2747,378666,jharkhand,saraikela kharsawan,kharsawan,chhota amda,chhota amda,650,118,59
+20,369,2747,378667,jharkhand,saraikela kharsawan,kharsawan,tirildih,tirildih,683,5,171
+20,369,2747,378668,jharkhand,saraikela kharsawan,kharsawan,asantalia,asantalia,755,0,135
+20,369,2747,378669,jharkhand,saraikela kharsawan,kharsawan,mauda,mauda,324,0,68
+20,369,2747,378670,jharkhand,saraikela kharsawan,kharsawan,kocha,kocha,385,0,142
+20,369,2747,378671,jharkhand,saraikela kharsawan,kharsawan,santoshpur,santoshpur,129,0,129
+20,369,2747,378672,jharkhand,saraikela kharsawan,kharsawan,baramsal,baramsal,509,0,274
+20,369,2747,378673,jharkhand,saraikela kharsawan,kharsawan,hindusai,hindusai,536,2,251
+20,369,2747,378674,jharkhand,saraikela kharsawan,kharsawan,dalai kela,dalai kela,1587,130,743
+20,369,2747,378675,jharkhand,saraikela kharsawan,kharsawan,khudipir,khudipir,361,0,30
+20,369,2747,378676,jharkhand,saraikela kharsawan,kharsawan,pirki,pirki,772,0,324
+20,369,2747,378677,jharkhand,saraikela kharsawan,kharsawan,banai kela,banai kela,174,0,174
+20,369,2747,378678,jharkhand,saraikela kharsawan,kharsawan,buritopa,buritopa,1288,6,150
+20,369,2747,378679,jharkhand,saraikela kharsawan,kharsawan,sargaposi,sargaposi,118,0,0
+20,369,2747,378680,jharkhand,saraikela kharsawan,kharsawan,gurlu pada,gurlu pada,252,0,252
+20,369,2747,378681,jharkhand,saraikela kharsawan,kharsawan,jarkatolah urf sandadih,jarkatolah urf sandadih,407,0,222
+20,369,2747,378682,jharkhand,saraikela kharsawan,kharsawan,tiringtipa,tiringtipa,526,0,44
+20,369,2747,378683,jharkhand,saraikela kharsawan,kharsawan,chamrudih,chamrudih,411,0,87
+20,369,2747,378684,jharkhand,saraikela kharsawan,kharsawan,nayadih,nayadih,81,0,0
+20,369,2747,378685,jharkhand,saraikela kharsawan,kharsawan,gopidih,gopidih,399,0,124
+20,369,2747,378688,jharkhand,saraikela kharsawan,kharsawan,kadamdiha,kadamdiha,2655,25,125
+20,369,2747,378689,jharkhand,saraikela kharsawan,kharsawan,baidnathpur,baidnathpur,388,22,315
+20,369,2747,378690,jharkhand,saraikela kharsawan,kharsawan,barahsai,barahsai,430,25,312
+20,369,2747,378691,jharkhand,saraikela kharsawan,kharsawan,dharamdih,dharamdih,243,0,243
+20,369,2747,378692,jharkhand,saraikela kharsawan,kharsawan,bardah,bardah,665,0,517
+20,369,2747,378693,jharkhand,saraikela kharsawan,kharsawan,gopinathpur,gopinathpur,267,0,267
+20,369,2747,378694,jharkhand,saraikela kharsawan,kharsawan,telisai,telisai,1025,60,375
+20,369,2747,378695,jharkhand,saraikela kharsawan,kharsawan,padampur,padampur,1296,10,427
+20,369,2747,378696,jharkhand,saraikela kharsawan,kharsawan,iojodih,iojodih,1558,0,776
+20,369,2747,378697,jharkhand,saraikela kharsawan,kharsawan,maladih urf jhumar teril,maladih urf jhumar teril,543,0,0
+20,369,2747,378698,jharkhand,saraikela kharsawan,kharsawan,ananddih,ananddih,869,0,867
+20,369,2747,378699,jharkhand,saraikela kharsawan,kharsawan,dehuridih,dehuridih,912,201,498
+20,369,2747,378701,jharkhand,saraikela kharsawan,kharsawan,kotoalbadi,kotoalbadi,147,4,143
+20,369,2747,378702,jharkhand,saraikela kharsawan,kharsawan,khejurda,khejurda,1195,9,779
+20,369,2747,378703,jharkhand,saraikela kharsawan,kharsawan,rughunath pur,rughunath pur,138,0,137
+20,369,2747,378704,jharkhand,saraikela kharsawan,kharsawan,riring,riring,2654,195,1083
+20,369,2747,378705,jharkhand,saraikela kharsawan,kharsawan,pat pat,pat pat,1150,0,948
+20,369,2747,378706,jharkhand,saraikela kharsawan,kharsawan,raijama,raijama,752,1,751
+20,369,2747,378707,jharkhand,saraikela kharsawan,kharsawan,hurangda,hurangda,571,0,506
+20,369,2747,378708,jharkhand,saraikela kharsawan,kharsawan,narainbera,narainbera,405,0,390
+20,369,2747,378709,jharkhand,saraikela kharsawan,kharsawan,mudadih,mudadih,154,0,152
+20,369,2747,378710,jharkhand,saraikela kharsawan,kharsawan,tankodih,tankodih,495,0,159
+20,369,2747,378711,jharkhand,saraikela kharsawan,kharsawan,katadih,katadih,360,0,320
+20,369,2747,378712,jharkhand,saraikela kharsawan,kharsawan,diriora,diriora,239,0,138
+20,369,2747,378713,jharkhand,saraikela kharsawan,kharsawan,kondadih,kondadih,106,0,100
+20,369,2747,378714,jharkhand,saraikela kharsawan,kharsawan,burjudih alias panjanbera,burjudih alias panjanbera,261,0,193
+20,369,2747,378715,jharkhand,saraikela kharsawan,kharsawan,saurang,saurang,103,0,68
+20,369,2747,378716,jharkhand,saraikela kharsawan,kharsawan,pundidah,pundidah,827,31,440
+20,369,2747,378717,jharkhand,saraikela kharsawan,kharsawan,haribhanja,haribhanja,2133,102,1600
+20,369,2747,378718,jharkhand,saraikela kharsawan,kharsawan,teligora,teligora,100,0,100
+20,369,2747,378719,jharkhand,saraikela kharsawan,kharsawan,khelarisai,khelarisai,665,124,195
+20,369,2747,378721,jharkhand,saraikela kharsawan,kharsawan,ramgarh,ramgarh,513,45,337
+20,369,2747,378722,jharkhand,saraikela kharsawan,kharsawan,kashidih,kashidih,284,0,59
+20,369,2747,378723,jharkhand,saraikela kharsawan,kharsawan,bitaburu,bitaburu,1338,81,904
+20,369,2747,378724,jharkhand,saraikela kharsawan,kharsawan,raidih,raidih,593,31,198
+20,369,2747,378725,jharkhand,saraikela kharsawan,kharsawan,sauntari,sauntari,777,1,235
+20,369,2747,378726,jharkhand,saraikela kharsawan,kharsawan,sandeburu,sandeburu,670,0,135
+20,369,2747,378727,jharkhand,saraikela kharsawan,kharsawan,buriguta,buriguta,362,0,88
+20,369,2747,378728,jharkhand,saraikela kharsawan,kharsawan,chilku,chilku,2876,509,696
+20,369,2747,378729,jharkhand,saraikela kharsawan,kharsawan,katwan,katwan,115,0,38
+20,369,2747,378730,jharkhand,saraikela kharsawan,kharsawan,bandiram,bandiram,634,0,0
+20,369,2747,378733,jharkhand,saraikela kharsawan,kharsawan,gandpur,gandpur,963,29,213
+20,369,2747,378734,jharkhand,saraikela kharsawan,kharsawan,simla,simla,2029,303,907
+20,369,2747,378735,jharkhand,saraikela kharsawan,kharsawan,gajudih,gajudih,741,218,493
+20,369,2747,378736,jharkhand,saraikela kharsawan,kharsawan,rengogara,rengogara,611,16,148
+20,369,2747,378737,jharkhand,saraikela kharsawan,kharsawan,begnadih,begnadih,496,222,76
+20,369,2747,378738,jharkhand,saraikela kharsawan,kharsawan,asura,asura,699,46,257
+20,369,2747,378739,jharkhand,saraikela kharsawan,kharsawan,kal burudih,kal burudih,323,101,210
+20,369,2747,378740,jharkhand,saraikela kharsawan,kharsawan,potka,potka,476,221,207
+20,369,2747,378742,jharkhand,saraikela kharsawan,kharsawan,burudih,burudih,608,31,0
+20,369,2747,378743,jharkhand,saraikela kharsawan,kharsawan,mohalisai,mohalisai,422,99,4
+20,369,2747,378744,jharkhand,saraikela kharsawan,kharsawan,hansda,hansda,243,0,75
+20,369,2747,378745,jharkhand,saraikela kharsawan,kharsawan,harisai,harisai,151,0,151
+20,369,2747,378746,jharkhand,saraikela kharsawan,kharsawan,paradiha,paradiha,180,0,132
+20,369,2747,378747,jharkhand,saraikela kharsawan,kharsawan,rudarpur,rudarpur,655,7,558
+20,369,2747,378748,jharkhand,saraikela kharsawan,kharsawan,deoli,deoli,814,389,293
+20,369,2747,378749,jharkhand,saraikela kharsawan,kharsawan,guabera,guabera,394,0,304
+20,369,2747,378750,jharkhand,saraikela kharsawan,kharsawan,balrampur,balrampur,227,1,207
+20,369,2747,378751,jharkhand,saraikela kharsawan,kharsawan,bagraidih,bagraidih,617,36,93
+20,369,2747,378752,jharkhand,saraikela kharsawan,kharsawan,boragaon,boragaon,716,0,7
+20,369,2747,378753,jharkhand,saraikela kharsawan,kharsawan,saharbera,saharbera,125,0,119
+20,369,2747,378754,jharkhand,saraikela kharsawan,kharsawan,kadambera,kadambera,556,0,542
+20,369,2747,378755,jharkhand,saraikela kharsawan,kharsawan,sidma kudar,sidma kudar,176,0,169
+20,369,2747,378756,jharkhand,saraikela kharsawan,kharsawan,naraindih,naraindih,556,0,98
+20,369,2747,378757,jharkhand,saraikela kharsawan,kharsawan,silpingda,silpingda,1066,8,517
+20,369,2747,378758,jharkhand,saraikela kharsawan,kharsawan,nowabera,nowabera,251,0,251
+20,369,2747,378759,jharkhand,saraikela kharsawan,kharsawan,jhunjki,jhunjki,269,0,21
+20,369,2747,378760,jharkhand,saraikela kharsawan,kharsawan,lakhandih,lakhandih,185,0,106
+20,369,2748,378762,jharkhand,saraikela kharsawan,chandil,dungridih,dungridih,1054,0,13
+20,369,2748,378763,jharkhand,saraikela kharsawan,chandil,heremda,heremda,195,0,19
+20,369,2748,378764,jharkhand,saraikela kharsawan,chandil,dubadih,dubadih,300,0,122
+20,369,2748,378765,jharkhand,saraikela kharsawan,chandil,urmal,urmal,2377,63,1255
+20,369,2748,378766,jharkhand,saraikela kharsawan,chandil,dinai,dinai,1363,1,216
+20,369,2748,378767,jharkhand,saraikela kharsawan,chandil,parka,parka,909,19,598
+20,369,2748,378768,jharkhand,saraikela kharsawan,chandil,siddih,siddih,941,132,50
+20,369,2748,378769,jharkhand,saraikela kharsawan,chandil,padadih,padadih,331,8,138
+20,369,2748,378770,jharkhand,saraikela kharsawan,chandil,jhabri,jhabri,1721,124,195
+20,369,2748,378771,jharkhand,saraikela kharsawan,chandil,lengdih,lengdih,449,7,404
+20,369,2748,378772,jharkhand,saraikela kharsawan,chandil,pathrakhun,pathrakhun,1195,8,304
+20,369,2748,378773,jharkhand,saraikela kharsawan,chandil,singati,singati,1423,51,262
+20,369,2748,378774,jharkhand,saraikela kharsawan,chandil,gordih,gordih,225,51,73
+20,369,2748,378775,jharkhand,saraikela kharsawan,chandil,kashidih,kashidih,704,0,653
+20,369,2748,378776,jharkhand,saraikela kharsawan,chandil,janta,janta,298,166,52
+20,369,2748,378777,jharkhand,saraikela kharsawan,chandil,dirlang,dirlang,1009,558,250
+20,369,2748,378779,jharkhand,saraikela kharsawan,chandil,chaulibasa,chaulibasa,2000,481,50
+20,369,2748,378780,jharkhand,saraikela kharsawan,chandil,rugri,rugri,984,91,136
+20,369,2748,378781,jharkhand,saraikela kharsawan,chandil,mirudih,mirudih,333,47,285
+20,369,2748,378782,jharkhand,saraikela kharsawan,chandil,tuidungri,tuidungri,837,2,729
+20,369,2748,378783,jharkhand,saraikela kharsawan,chandil,chauka,chauka,1492,1,42
+20,369,2748,378784,jharkhand,saraikela kharsawan,chandil,khunti,khunti,3487,282,488
+20,369,2748,378785,jharkhand,saraikela kharsawan,chandil,musribera,musribera,889,18,102
+20,369,2748,378786,jharkhand,saraikela kharsawan,chandil,kokebera,kokebera,189,0,17
+20,369,2748,378787,jharkhand,saraikela kharsawan,chandil,palna,palna,843,81,293
+20,369,2748,378788,jharkhand,saraikela kharsawan,chandil,ranka,ranka,1153,60,1030
+20,369,2748,378789,jharkhand,saraikela kharsawan,chandil,turu,turu,645,0,645
+20,369,2748,378790,jharkhand,saraikela kharsawan,chandil,tanisaya,tanisaya,236,1,235
+20,369,2748,378791,jharkhand,saraikela kharsawan,chandil,mutuda,mutuda,603,0,597
+20,369,2748,378792,jharkhand,saraikela kharsawan,chandil,rearda,rearda,736,0,678
+20,369,2748,378793,jharkhand,saraikela kharsawan,chandil,barsira,barsira,553,0,496
+20,369,2748,378794,jharkhand,saraikela kharsawan,chandil,rangamatia,rangamatia,673,0,665
+20,369,2748,378795,jharkhand,saraikela kharsawan,chandil,hesakocha,hesakocha,1995,0,1938
+20,369,2748,378796,jharkhand,saraikela kharsawan,chandil,labaibera,labaibera,512,0,439
+20,369,2748,378797,jharkhand,saraikela kharsawan,chandil,gutiuli,gutiuli,445,0,288
+20,369,2748,378798,jharkhand,saraikela kharsawan,chandil,madkamdih,madkamdih,1223,14,648
+20,369,2748,378799,jharkhand,saraikela kharsawan,chandil,kadlakocha,kadlakocha,397,0,301
+20,369,2748,378800,jharkhand,saraikela kharsawan,chandil,dhobaotama,dhobaotama,268,8,245
+20,369,2748,378801,jharkhand,saraikela kharsawan,chandil,chutiakhal,chutiakhal,421,0,346
+20,369,2748,378802,jharkhand,saraikela kharsawan,chandil,paharpur,paharpur,323,6,0
+20,369,2748,378803,jharkhand,saraikela kharsawan,chandil,khuchidih,khuchidih,1342,0,369
+20,369,2748,378804,jharkhand,saraikela kharsawan,chandil,bansa,bansa,1170,135,235
+20,369,2748,378805,jharkhand,saraikela kharsawan,chandil,dhunaburu,dhunaburu,1843,111,894
+20,369,2748,378806,jharkhand,saraikela kharsawan,chandil,palgam,palgam,500,32,22
+20,369,2748,378808,jharkhand,saraikela kharsawan,chandil,raidih,raidih,1032,11,492
+20,369,2748,378809,jharkhand,saraikela kharsawan,chandil,juga,juga,613,24,343
+20,369,2748,378810,jharkhand,saraikela kharsawan,chandil,ghat dulmi,ghat dulmi,573,6,484
+20,369,2748,378811,jharkhand,saraikela kharsawan,chandil,tulgram,tulgram,966,21,174
+20,369,2748,378812,jharkhand,saraikela kharsawan,chandil,balidih,balidih,514,32,359
+20,369,2748,378813,jharkhand,saraikela kharsawan,chandil,kurli,kurli,2205,215,329
+20,369,2748,378814,jharkhand,saraikela kharsawan,chandil,ghoraling,ghoraling,3454,81,616
+20,369,2748,378815,jharkhand,saraikela kharsawan,chandil,dubrajpur,dubrajpur,796,0,619
+20,369,2748,378817,jharkhand,saraikela kharsawan,chandil,rayadih,rayadih,916,0,899
+20,369,2748,378818,jharkhand,saraikela kharsawan,chandil,chandadih,chandadih,826,30,626
+20,369,2748,378819,jharkhand,saraikela kharsawan,chandil,dimudih,dimudih,542,18,485
+20,369,2748,378820,jharkhand,saraikela kharsawan,chandil,barabinda,barabinda,929,0,907
+20,369,2748,378821,jharkhand,saraikela kharsawan,chandil,kesargaria,kesargaria,121,0,88
+20,369,2748,378822,jharkhand,saraikela kharsawan,chandil,ruyani,ruyani,312,23,166
+20,369,2748,378823,jharkhand,saraikela kharsawan,chandil,rasunia,rasunia,1929,96,668
+20,369,2748,378824,jharkhand,saraikela kharsawan,chandil,hathnada,hathnada,570,0,368
+20,369,2748,378825,jharkhand,saraikela kharsawan,chandil,ruchap,ruchap,4147,518,588
+20,369,2748,378826,jharkhand,saraikela kharsawan,chandil,kanglatanr,kanglatanr,330,0,315
+20,369,2748,378827,jharkhand,saraikela kharsawan,chandil,sukh shari,sukh shari,1113,174,120
+20,369,2748,378828,jharkhand,saraikela kharsawan,chandil,tirildih,tirildih,221,0,124
+20,369,2748,378829,jharkhand,saraikela kharsawan,chandil,raotora,raotora,1348,34,33
+20,369,2748,378830,jharkhand,saraikela kharsawan,chandil,lengdil,lengdil,737,10,17
+20,369,2748,378831,jharkhand,saraikela kharsawan,chandil,kadamdih,kadamdih,2071,24,51
+20,369,2748,378832,jharkhand,saraikela kharsawan,chandil,dalgaon,dalgaon,725,79,345
+20,369,2748,378833,jharkhand,saraikela kharsawan,chandil,gangudih,gangudih,2924,211,1557
+20,369,2748,378834,jharkhand,saraikela kharsawan,chandil,hirmili,hirmili,934,189,393
+20,369,2748,378835,jharkhand,saraikela kharsawan,chandil,rudih,rudih,1957,566,880
+20,369,2748,378836,jharkhand,saraikela kharsawan,chandil,saharbera,saharbera,504,16,272
+20,369,2748,378837,jharkhand,saraikela kharsawan,chandil,shikli,shikli,471,18,117
+20,369,2748,378838,jharkhand,saraikela kharsawan,chandil,bara lakha,bara lakha,484,1,462
+20,369,2748,378839,jharkhand,saraikela kharsawan,chandil,pata,pata,1321,88,769
+20,369,2748,378840,jharkhand,saraikela kharsawan,chandil,chainpur,chainpur,769,10,248
+20,369,2748,378841,jharkhand,saraikela kharsawan,chandil,danrda,danrda,560,246,26
+20,369,2748,378842,jharkhand,saraikela kharsawan,chandil,katea,katea,1115,12,931
+20,369,2748,378843,jharkhand,saraikela kharsawan,chandil,tarkuvang,tarkuvang,502,8,358
+20,369,2748,378844,jharkhand,saraikela kharsawan,chandil,chhota lakha,chhota lakha,1611,16,810
+20,369,2748,378845,jharkhand,saraikela kharsawan,chandil,manikui,manikui,723,16,645
+20,369,2748,378846,jharkhand,saraikela kharsawan,chandil,bhadudih,bhadudih,2793,92,1034
+20,369,2748,378847,jharkhand,saraikela kharsawan,chandil,karnidih,karnidih,1682,819,291
+20,369,2748,378848,jharkhand,saraikela kharsawan,chandil,chilgo,chilgo,2195,271,679
+20,369,2748,378849,jharkhand,saraikela kharsawan,chandil,chakulia,chakulia,590,0,386
+20,369,2748,378850,jharkhand,saraikela kharsawan,chandil,saharbera,saharbera,1492,15,791
+20,369,2748,378851,jharkhand,saraikela kharsawan,chandil,makula kocha,makula kocha,392,0,381
+20,369,2748,378852,jharkhand,saraikela kharsawan,chandil,tulin,tulin,160,0,159
+20,369,2748,378853,jharkhand,saraikela kharsawan,chandil,katjor,katjor,1635,41,1217
+20,369,2748,378854,jharkhand,saraikela kharsawan,chandil,hamsada,hamsada,869,0,722
+20,369,2748,378855,jharkhand,saraikela kharsawan,chandil,joreyadih,joreyadih,606,0,551
+20,369,2748,378856,jharkhand,saraikela kharsawan,chandil,humid,humid,859,25,69
+20,369,2748,378857,jharkhand,saraikela kharsawan,chandil,kadamjhor,kadamjhor,285,0,283
+20,369,2748,378858,jharkhand,saraikela kharsawan,chandil,asan bani,asan bani,3876,124,1735
+20,369,2748,378859,jharkhand,saraikela kharsawan,chandil,ramgarh,ramgarh,752,1,541
+20,369,2748,378860,jharkhand,saraikela kharsawan,chandil,kandarberya,kandarberya,1159,0,805
+20,369,2748,378861,jharkhand,saraikela kharsawan,chandil,pusisili,pusisili,1262,18,727
+20,369,2748,378862,jharkhand,saraikela kharsawan,chandil,gouri,gouri,1000,0,577
+20,369,2748,378863,jharkhand,saraikela kharsawan,chandil,rugri,rugri,675,17,121
+20,369,2748,378864,jharkhand,saraikela kharsawan,chandil,dobo,dobo,2235,50,760
+20,369,2748,378865,jharkhand,saraikela kharsawan,chandil,tamilia,tamilia,3792,168,927
+20,369,2748,378866,jharkhand,saraikela kharsawan,chandil,,chandil,4839,465,217
+20,369,2748,378867,jharkhand,saraikela kharsawan,chandil,,kopali,43256,297,1225
+20,369,2749,378868,jharkhand,saraikela kharsawan,ichagarh,situ,situ,2217,256,269
+20,369,2749,378869,jharkhand,saraikela kharsawan,ichagarh,raghunathpur,raghunathpur,532,26,0
+20,369,2749,378870,jharkhand,saraikela kharsawan,ichagarh,soro,soro,2392,134,368
+20,369,2749,378871,jharkhand,saraikela kharsawan,ichagarh,raharadih,raharadih,274,0,76
+20,369,2749,378872,jharkhand,saraikela kharsawan,ichagarh,birdih,birdih,618,151,319
+20,369,2749,378873,jharkhand,saraikela kharsawan,ichagarh,bamundih,bamundih,434,0,96
+20,369,2749,378874,jharkhand,saraikela kharsawan,ichagarh,khiri,khiri,622,14,116
+20,369,2749,378875,jharkhand,saraikela kharsawan,ichagarh,badadih,badadih,726,0,8
+20,369,2749,378876,jharkhand,saraikela kharsawan,ichagarh,matkumdih,matkumdih,288,0,16
+20,369,2749,378877,jharkhand,saraikela kharsawan,ichagarh,choga,choga,1074,0,53
+20,369,2749,378878,jharkhand,saraikela kharsawan,ichagarh,adardih,adardih,943,101,0
+20,369,2749,378879,jharkhand,saraikela kharsawan,ichagarh,baradih,baradih,134,0,48
+20,369,2749,378880,jharkhand,saraikela kharsawan,ichagarh,kurmadih,kurmadih,666,0,35
+20,369,2749,378881,jharkhand,saraikela kharsawan,ichagarh,barachunchuria,barachunchuria,573,0,199
+20,369,2749,378882,jharkhand,saraikela kharsawan,ichagarh,chhota chunchuria,chhota chunchuria,247,0,0
+20,369,2749,378883,jharkhand,saraikela kharsawan,ichagarh,jharua,jharua,143,0,89
+20,369,2749,378884,jharkhand,saraikela kharsawan,ichagarh,punrihesa,punrihesa,490,0,13
+20,369,2749,378885,jharkhand,saraikela kharsawan,ichagarh,hartaldih,hartaldih,615,0,0
+20,369,2749,378886,jharkhand,saraikela kharsawan,ichagarh,dumra,dumra,1263,130,492
+20,369,2749,378887,jharkhand,saraikela kharsawan,ichagarh,salukdih,salukdih,787,0,0
+20,369,2749,378888,jharkhand,saraikela kharsawan,ichagarh,kutam,kutam,1334,47,505
+20,369,2749,378889,jharkhand,saraikela kharsawan,ichagarh,laba,laba,1151,127,311
+20,369,2749,378890,jharkhand,saraikela kharsawan,ichagarh,chunidih,chunidih,898,0,78
+20,369,2749,378891,jharkhand,saraikela kharsawan,ichagarh,tirildih,tirildih,1566,150,616
+20,369,2749,378892,jharkhand,saraikela kharsawan,ichagarh,dhundadih,dhundadih,1222,2,1122
+20,369,2749,378893,jharkhand,saraikela kharsawan,ichagarh,separam,separam,675,10,656
+20,369,2749,378894,jharkhand,saraikela kharsawan,ichagarh,pamea,pamea,694,1,323
+20,369,2749,378895,jharkhand,saraikela kharsawan,ichagarh,burudih,burudih,64,0,34
+20,369,2749,378896,jharkhand,saraikela kharsawan,ichagarh,baruna,baruna,638,7,491
+20,369,2749,378897,jharkhand,saraikela kharsawan,ichagarh,chipri,chipri,978,127,160
+20,369,2749,378898,jharkhand,saraikela kharsawan,ichagarh,jiling adar,jiling adar,690,214,142
+20,369,2749,378899,jharkhand,saraikela kharsawan,ichagarh,deultanr,deultanr,1721,281,268
+20,369,2749,378900,jharkhand,saraikela kharsawan,ichagarh,nawadih,nawadih,1407,227,770
+20,369,2749,378901,jharkhand,saraikela kharsawan,ichagarh,basahatu,basahatu,767,0,374
+20,369,2749,378902,jharkhand,saraikela kharsawan,ichagarh,rugri,rugri,855,84,274
+20,369,2749,378904,jharkhand,saraikela kharsawan,ichagarh,bamandih,bamandih,185,0,0
+20,369,2749,378905,jharkhand,saraikela kharsawan,ichagarh,ratai,ratai,193,0,0
+20,369,2749,378906,jharkhand,saraikela kharsawan,ichagarh,tikar,tikar,4470,285,676
+20,369,2749,378907,jharkhand,saraikela kharsawan,ichagarh,dulmidih,dulmidih,603,0,333
+20,369,2749,378908,jharkhand,saraikela kharsawan,ichagarh,bora,bora,742,0,330
+20,369,2749,378909,jharkhand,saraikela kharsawan,ichagarh,tuta,tuta,1092,99,157
+20,369,2749,378910,jharkhand,saraikela kharsawan,ichagarh,kuidih,kuidih,1037,94,748
+20,369,2749,378911,jharkhand,saraikela kharsawan,ichagarh,chitri,chitri,638,23,98
+20,369,2749,378912,jharkhand,saraikela kharsawan,ichagarh,kristapur,kristapur,152,0,62
+20,369,2749,378913,jharkhand,saraikela kharsawan,ichagarh,atargram,atargram,754,0,4
+20,369,2749,378914,jharkhand,saraikela kharsawan,ichagarh,tamari,tamari,642,11,156
+20,369,2749,378915,jharkhand,saraikela kharsawan,ichagarh,rugri,rugri,774,0,225
+20,369,2749,378916,jharkhand,saraikela kharsawan,ichagarh,chimtia,chimtia,1107,0,65
+20,369,2749,378917,jharkhand,saraikela kharsawan,ichagarh,paharpur,paharpur,210,0,0
+20,369,2749,378919,jharkhand,saraikela kharsawan,ichagarh,harat,harat,1157,24,163
+20,369,2749,378920,jharkhand,saraikela kharsawan,ichagarh,gobindpur,gobindpur,152,0,0
+20,369,2749,378922,jharkhand,saraikela kharsawan,ichagarh,khokhro,khokhro,832,0,406
+20,369,2749,378923,jharkhand,saraikela kharsawan,ichagarh,maysara,maysara,1022,0,136
+20,369,2749,378924,jharkhand,saraikela kharsawan,ichagarh,diadih,diadih,840,22,45
+20,369,2749,378925,jharkhand,saraikela kharsawan,ichagarh,purandih,purandih,916,0,240
+20,369,2749,378926,jharkhand,saraikela kharsawan,ichagarh,garadih,garadih,309,0,8
+20,369,2749,378927,jharkhand,saraikela kharsawan,ichagarh,karka,karka,770,50,603
+20,369,2749,378928,jharkhand,saraikela kharsawan,ichagarh,buruhata,buruhata,919,23,157
+20,369,2749,378929,jharkhand,saraikela kharsawan,ichagarh,matekumdih,matekumdih,162,0,155
+20,369,2749,378931,jharkhand,saraikela kharsawan,ichagarh,lapsadih,lapsadih,264,35,196
+20,369,2749,378932,jharkhand,saraikela kharsawan,ichagarh,bakaltoria,bakaltoria,625,579,4
+20,369,2749,378933,jharkhand,saraikela kharsawan,ichagarh,ichagarh,ichagarh,1546,332,63
+20,369,2749,378934,jharkhand,saraikela kharsawan,ichagarh,banksai,banksai,848,211,20
+20,369,2749,378935,jharkhand,saraikela kharsawan,ichagarh,lepatanr,lepatanr,1494,23,947
+20,369,2749,378936,jharkhand,saraikela kharsawan,ichagarh,patpur,patpur,734,0,614
+20,369,2749,378937,jharkhand,saraikela kharsawan,ichagarh,dumardih,dumardih,1057,52,506
+20,369,2749,378938,jharkhand,saraikela kharsawan,ichagarh,jaragora,jaragora,418,0,415
+20,369,2749,378939,jharkhand,saraikela kharsawan,ichagarh,kanrebera,kanrebera,330,295,31
+20,369,2749,378940,jharkhand,saraikela kharsawan,ichagarh,kundrilang,kundrilang,801,304,26
+20,369,2749,378941,jharkhand,saraikela kharsawan,ichagarh,bankati,bankati,287,0,21
+20,369,2749,378942,jharkhand,saraikela kharsawan,ichagarh,naro,naro,962,454,51
+20,369,2749,378943,jharkhand,saraikela kharsawan,ichagarh,serengdih,serengdih,116,50,55
+20,369,2749,378944,jharkhand,saraikela kharsawan,ichagarh,agsia,agsia,882,261,228
+20,369,2749,378945,jharkhand,saraikela kharsawan,ichagarh,kutam,kutam,1003,0,396
+20,369,2749,378946,jharkhand,saraikela kharsawan,ichagarh,choureadi,choureadi,130,0,77
+20,369,2749,378947,jharkhand,saraikela kharsawan,ichagarh,nadisai,nadisai,1221,115,316
+20,369,2749,378948,jharkhand,saraikela kharsawan,ichagarh,hutup,hutup,805,480,299
+20,369,2749,378949,jharkhand,saraikela kharsawan,ichagarh,ghatsila,ghatsila,372,115,107
+20,369,2749,378950,jharkhand,saraikela kharsawan,ichagarh,ghatia,ghatia,408,2,0
+20,369,2749,378951,jharkhand,saraikela kharsawan,ichagarh,budalang,budalang,1447,0,1129
+20,369,2749,378952,jharkhand,saraikela kharsawan,ichagarh,salbani,salbani,449,0,423
+20,369,2749,378953,jharkhand,saraikela kharsawan,ichagarh,kunjaban,kunjaban,50,50,0
+20,369,2749,378954,jharkhand,saraikela kharsawan,ichagarh,silda,silda,618,0,100
+20,369,2749,378955,jharkhand,saraikela kharsawan,ichagarh,kathghara,kathghara,1201,0,866
+20,369,2749,378956,jharkhand,saraikela kharsawan,ichagarh,gudri,gudri,1618,0,919
+20,369,2749,378957,jharkhand,saraikela kharsawan,ichagarh,chhota amra,chhota amra,426,1,424
+20,369,2749,378958,jharkhand,saraikela kharsawan,ichagarh,bara amra,bara amra,816,0,199
+20,369,2749,378959,jharkhand,saraikela kharsawan,ichagarh,hundi,hundi,627,0,8
+20,369,2749,378960,jharkhand,saraikela kharsawan,ichagarh,daurda,daurda,501,39,311
+20,369,2749,378961,jharkhand,saraikela kharsawan,ichagarh,amandiri,amandiri,711,0,268
+20,369,2749,378962,jharkhand,saraikela kharsawan,ichagarh,sankradih,sankradih,574,0,313
+20,369,2749,378963,jharkhand,saraikela kharsawan,ichagarh,gurma,gurma,351,0,130
+20,369,2749,378964,jharkhand,saraikela kharsawan,ichagarh,ghagri,ghagri,265,1,264
+20,369,2749,378965,jharkhand,saraikela kharsawan,ichagarh,bandu,bandu,1773,0,815
+20,369,2749,378966,jharkhand,saraikela kharsawan,ichagarh,jamdaha,jamdaha,340,0,292
+20,369,2749,378967,jharkhand,saraikela kharsawan,ichagarh,gaurang kocha,gaurang kocha,2466,47,922
+20,369,2749,378968,jharkhand,saraikela kharsawan,ichagarh,patkum,patkum,1639,111,209
+20,369,2749,378969,jharkhand,saraikela kharsawan,ichagarh,dalgam,dalgam,504,65,44
+20,369,2749,378970,jharkhand,saraikela kharsawan,ichagarh,karandih,karandih,424,0,75
+20,369,2749,378971,jharkhand,saraikela kharsawan,ichagarh,udal,udal,416,0,249
+20,369,2749,378972,jharkhand,saraikela kharsawan,ichagarh,hurlung,hurlung,305,0,298
+20,369,2749,378973,jharkhand,saraikela kharsawan,ichagarh,chamda,chamda,323,10,42
+20,369,2749,378974,jharkhand,saraikela kharsawan,ichagarh,kalichamda,kalichamda,262,0,170
+20,369,2749,378977,jharkhand,saraikela kharsawan,ichagarh,kuruktopa,kuruktopa,918,0,510
+20,369,2750,378978,jharkhand,saraikela kharsawan,kukru,saparam,saparam,750,3,43
+20,369,2750,378979,jharkhand,saraikela kharsawan,kukru,tiraldih,tiraldih,1069,21,173
+20,369,2750,378980,jharkhand,saraikela kharsawan,kukru,gundlidih,gundlidih,443,30,0
+20,369,2750,378981,jharkhand,saraikela kharsawan,kukru,kuda,kuda,1315,100,121
+20,369,2750,378983,jharkhand,saraikela kharsawan,kukru,sirkadih,sirkadih,802,286,28
+20,369,2750,378984,jharkhand,saraikela kharsawan,kukru,sapada,sapada,1037,129,390
+20,369,2750,378985,jharkhand,saraikela kharsawan,kukru,chano,chano,420,1,380
+20,369,2750,378986,jharkhand,saraikela kharsawan,kukru,heremuli,heremuli,569,125,192
+20,369,2750,378987,jharkhand,saraikela kharsawan,kukru,datam,datam,913,167,222
+20,369,2750,378988,jharkhand,saraikela kharsawan,kukru,shishi,shishi,662,72,104
+20,369,2750,378989,jharkhand,saraikela kharsawan,kukru,chara,chara,4032,465,286
+20,369,2750,378990,jharkhand,saraikela kharsawan,kukru,panra,panra,1179,16,126
+20,369,2750,378991,jharkhand,saraikela kharsawan,kukru,chhota lapang,chhota lapang,797,17,62
+20,369,2750,378992,jharkhand,saraikela kharsawan,kukru,kukru,kukru,3292,204,410
+20,369,2750,378993,jharkhand,saraikela kharsawan,kukru,dere,dere,460,0,117
+20,369,2750,378995,jharkhand,saraikela kharsawan,kukru,edaldih,edaldih,341,60,197
+20,369,2750,378996,jharkhand,saraikela kharsawan,kukru,karkidih,karkidih,621,0,188
+20,369,2750,378997,jharkhand,saraikela kharsawan,kukru,bakar kuri,bakar kuri,1662,169,183
+20,369,2750,378998,jharkhand,saraikela kharsawan,kukru,ichadih,ichadih,1620,36,266
+20,369,2750,378999,jharkhand,saraikela kharsawan,kukru,bandabir,bandabir,1072,55,131
+20,369,2750,379000,jharkhand,saraikela kharsawan,kukru,jargo,jargo,800,51,107
+20,369,2750,379001,jharkhand,saraikela kharsawan,kukru,latenda,latenda,1850,194,90
+20,369,2750,379002,jharkhand,saraikela kharsawan,kukru,bara lapang,bara lapang,1849,74,248
+20,369,2750,379003,jharkhand,saraikela kharsawan,kukru,chauki,chauki,688,1,128
+20,369,2750,379004,jharkhand,saraikela kharsawan,kukru,adardih,adardih,630,146,0
+20,369,2750,379005,jharkhand,saraikela kharsawan,kukru,janum,janum,2184,150,159
+20,369,2750,379006,jharkhand,saraikela kharsawan,kukru,rupru,rupru,998,3,196
+20,369,2750,379007,jharkhand,saraikela kharsawan,kukru,berasisiram,berasisiram,5742,196,678
+20,369,2750,379008,jharkhand,saraikela kharsawan,kukru,haitiral,haitiral,894,4,726
+20,369,2750,379009,jharkhand,saraikela kharsawan,kukru,chunchuria,chunchuria,581,1,186
+20,369,2750,379010,jharkhand,saraikela kharsawan,kukru,pargama,pargama,1589,33,314
+20,369,2750,379011,jharkhand,saraikela kharsawan,kukru,karka,karka,405,8,395
+20,369,2750,379012,jharkhand,saraikela kharsawan,kukru,sindurpur,sindurpur,1130,0,498
+20,369,2750,379013,jharkhand,saraikela kharsawan,kukru,kishundih,kishundih,759,0,183
+20,369,2750,379014,jharkhand,saraikela kharsawan,kukru,karargama,karargama,860,0,106
+20,369,2750,379015,jharkhand,saraikela kharsawan,kukru,uria,uria,2175,33,488
+20,369,2750,379016,jharkhand,saraikela kharsawan,kukru,hesalang,hesalang,1786,32,31
+20,369,2750,379017,jharkhand,saraikela kharsawan,kukru,shyam nagar,shyam nagar,441,4,76
+20,369,2750,379018,jharkhand,saraikela kharsawan,kukru,khudilong,khudilong,762,72,19
+20,369,2750,379019,jharkhand,saraikela kharsawan,kukru,dulmi,dulmi,1572,367,16
+20,369,2750,379020,jharkhand,saraikela kharsawan,kukru,udhatanr,udhatanr,524,20,4
+20,369,2750,379021,jharkhand,saraikela kharsawan,kukru,kendaenda,kendaenda,473,0,103
+20,369,2750,379022,jharkhand,saraikela kharsawan,kukru,kumari,kumari,301,0,69
+20,369,2750,379023,jharkhand,saraikela kharsawan,kukru,dayapur,dayapur,922,0,28
+20,369,2751,379024,jharkhand,saraikela kharsawan,nimdih,bagri,bagri,848,0,484
+20,369,2751,379025,jharkhand,saraikela kharsawan,nimdih,burudih,burudih,338,0,328
+20,369,2751,379026,jharkhand,saraikela kharsawan,nimdih,chatarma,chatarma,1289,29,1082
+20,369,2751,379027,jharkhand,saraikela kharsawan,nimdih,kadla,kadla,1096,0,144
+20,369,2751,379028,jharkhand,saraikela kharsawan,nimdih,lakri,lakri,2530,0,1368
+20,369,2751,379029,jharkhand,saraikela kharsawan,nimdih,bandu,bandu,757,0,4
+20,369,2751,379030,jharkhand,saraikela kharsawan,nimdih,ruriara,ruriara,856,0,272
+20,369,2751,379031,jharkhand,saraikela kharsawan,nimdih,murugdih,murugdih,1156,0,587
+20,369,2751,379032,jharkhand,saraikela kharsawan,nimdih,heben,heben,1997,2,1193
+20,369,2751,379033,jharkhand,saraikela kharsawan,nimdih,muru,muru,2757,172,275
+20,369,2751,379034,jharkhand,saraikela kharsawan,nimdih,jhimiri,jhimiri,3381,162,76
+20,369,2751,379035,jharkhand,saraikela kharsawan,nimdih,hutu,hutu,508,0,38
+20,369,2751,379036,jharkhand,saraikela kharsawan,nimdih,anda,anda,977,7,149
+20,369,2751,379037,jharkhand,saraikela kharsawan,nimdih,kalyanpur,kalyanpur,1351,12,133
+20,369,2751,379040,jharkhand,saraikela kharsawan,nimdih,kashipur,kashipur,669,15,351
+20,369,2751,379041,jharkhand,saraikela kharsawan,nimdih,lawa,lawa,1024,28,100
+20,369,2751,379042,jharkhand,saraikela kharsawan,nimdih,ugdih,ugdih,708,103,204
+20,369,2751,379043,jharkhand,saraikela kharsawan,nimdih,burudungri,burudungri,1621,252,127
+20,369,2751,379044,jharkhand,saraikela kharsawan,nimdih,boch kam kocha,boch kam kocha,489,1,484
+20,369,2751,379045,jharkhand,saraikela kharsawan,nimdih,tankocha,tankocha,441,0,396
+20,369,2751,379046,jharkhand,saraikela kharsawan,nimdih,tengadih,tengadih,1282,20,1164
+20,369,2751,379047,jharkhand,saraikela kharsawan,nimdih,jharidih,jharidih,221,0,198
+20,369,2751,379048,jharkhand,saraikela kharsawan,nimdih,janta,janta,1227,117,316
+20,369,2751,379049,jharkhand,saraikela kharsawan,nimdih,tetla,tetla,1032,165,275
+20,369,2751,379050,jharkhand,saraikela kharsawan,nimdih,lupungdih,lupungdih,2105,2,363
+20,369,2751,379051,jharkhand,saraikela kharsawan,nimdih,pitki,pitki,1013,106,381
+20,369,2751,379052,jharkhand,saraikela kharsawan,nimdih,bana,bana,493,0,323
+20,369,2751,379053,jharkhand,saraikela kharsawan,nimdih,kusputul,kusputul,1611,218,439
+20,369,2751,379054,jharkhand,saraikela kharsawan,nimdih,sirka,sirka,1284,197,332
+20,369,2751,379055,jharkhand,saraikela kharsawan,nimdih,tilla,tilla,3500,295,594
+20,369,2751,379056,jharkhand,saraikela kharsawan,nimdih,gunda,gunda,2349,98,294
+20,369,2751,379057,jharkhand,saraikela kharsawan,nimdih,sima,sima,1433,40,339
+20,369,2751,379058,jharkhand,saraikela kharsawan,nimdih,ramnagar,ramnagar,1134,42,418
+20,369,2751,379059,jharkhand,saraikela kharsawan,nimdih,raghunathpur,raghunathpur,3351,267,927
+20,369,2751,379060,jharkhand,saraikela kharsawan,nimdih,chingra panrkidih,chingra panrkidih,1772,56,1637
+20,369,2751,379061,jharkhand,saraikela kharsawan,nimdih,jugilang,jugilang,1198,43,170
+20,369,2751,379062,jharkhand,saraikela kharsawan,nimdih,hurrupathardih,hurrupathardih,1389,32,642
+20,369,2751,379063,jharkhand,saraikela kharsawan,nimdih,adardih,adardih,3861,354,126
+20,369,2751,379064,jharkhand,saraikela kharsawan,nimdih,gouridih,gouridih,460,1,261
+20,369,2751,379065,jharkhand,saraikela kharsawan,nimdih,gordih,gordih,1806,70,1307
+20,369,2751,379066,jharkhand,saraikela kharsawan,nimdih,but parsa ghutiadih,but parsa ghutiadih,856,57,154
+20,369,2751,379067,jharkhand,saraikela kharsawan,nimdih,madhupur,madhupur,1449,28,1141
+20,369,2751,379068,jharkhand,saraikela kharsawan,nimdih,makula,makula,689,42,580
+20,369,2751,379069,jharkhand,saraikela kharsawan,nimdih,purna pani,purna pani,634,0,460
+20,369,2751,379070,jharkhand,saraikela kharsawan,nimdih,ketunga,ketunga,869,55,35
+20,369,2751,379071,jharkhand,saraikela kharsawan,nimdih,sangira,sangira,617,27,91
+20,369,2751,379073,jharkhand,saraikela kharsawan,nimdih,nimdih,nimdih,1349,114,113
+20,369,2751,379074,jharkhand,saraikela kharsawan,nimdih,hakasara,hakasara,295,27,253
+20,369,2751,379075,jharkhand,saraikela kharsawan,nimdih,hulung,hulung,68,0,0
+20,369,2751,379076,jharkhand,saraikela kharsawan,nimdih,bamni,bamni,1699,264,261
+20,369,2751,379077,jharkhand,saraikela kharsawan,nimdih,kamadula,kamadula,214,0,123
+20,369,2751,379078,jharkhand,saraikela kharsawan,nimdih,atasimal,atasimal,198,0,108
+20,369,2751,379079,jharkhand,saraikela kharsawan,nimdih,baghadih,baghadih,274,64,166
+20,369,2751,379080,jharkhand,saraikela kharsawan,nimdih,rupadih,rupadih,239,0,68
+20,369,2751,379081,jharkhand,saraikela kharsawan,nimdih,chelema,chelema,3242,162,1076
+20,369,2751,379082,jharkhand,saraikela kharsawan,nimdih,bandhdih,bandhdih,851,0,729
+20,369,2751,379083,jharkhand,saraikela kharsawan,nimdih,pharenga,pharenga,543,46,209
+20,369,2751,379084,jharkhand,saraikela kharsawan,nimdih,dahubera,dahubera,572,0,447
+20,369,2751,379085,jharkhand,saraikela kharsawan,nimdih,barughutu alias pathardih,barughutu alias pathardih,473,0,342
+20,369,2751,379086,jharkhand,saraikela kharsawan,nimdih,samanpur,samanpur,1803,5,1380
+20,369,2751,379087,jharkhand,saraikela kharsawan,nimdih,burudih,burudih,555,12,450
+20,369,2751,379088,jharkhand,saraikela kharsawan,nimdih,bareda,bareda,3836,244,2935
+20,369,2752,379089,jharkhand,saraikela kharsawan,adityapur gamharia,burudih,burudih,947,23,394
+20,369,2752,379090,jharkhand,saraikela kharsawan,adityapur gamharia,bardih,bardih,313,0,167
+20,369,2752,379091,jharkhand,saraikela kharsawan,adityapur gamharia,santaldih,santaldih,334,0,334
+20,369,2752,379092,jharkhand,saraikela kharsawan,adityapur gamharia,sirdharpur,sirdharpur,491,0,439
+20,369,2752,379093,jharkhand,saraikela kharsawan,adityapur gamharia,rearda,rearda,365,0,364
+20,369,2752,379094,jharkhand,saraikela kharsawan,adityapur gamharia,sudhapur,sudhapur,233,0,84
+20,369,2752,379095,jharkhand,saraikela kharsawan,adityapur gamharia,chotabaramari,chotabaramari,593,0,246
+20,369,2752,379096,jharkhand,saraikela kharsawan,adityapur gamharia,manipur,manipur,300,0,283
+20,369,2752,379097,jharkhand,saraikela kharsawan,adityapur gamharia,kanki,kanki,210,3,197
+20,369,2752,379098,jharkhand,saraikela kharsawan,adityapur gamharia,raipur,raipur,668,0,640
+20,369,2752,379099,jharkhand,saraikela kharsawan,adityapur gamharia,gidibera,gidibera,503,0,495
+20,369,2752,379100,jharkhand,saraikela kharsawan,adityapur gamharia,baijnathpur,baijnathpur,49,0,5
+20,369,2752,379101,jharkhand,saraikela kharsawan,adityapur gamharia,barikocha,barikocha,48,0,48
+20,369,2752,379102,jharkhand,saraikela kharsawan,adityapur gamharia,raghunathpur,raghunathpur,392,0,134
+20,369,2752,379103,jharkhand,saraikela kharsawan,adityapur gamharia,ratanpur,ratanpur,462,0,11
+20,369,2752,379105,jharkhand,saraikela kharsawan,adityapur gamharia,raimara,raimara,458,0,443
+20,369,2752,379106,jharkhand,saraikela kharsawan,adityapur gamharia,baramari,baramari,670,80,505
+20,369,2752,379107,jharkhand,saraikela kharsawan,adityapur gamharia,salampathar,salampathar,623,0,550
+20,369,2752,379108,jharkhand,saraikela kharsawan,adityapur gamharia,shibpur,shibpur,168,128,27
+20,369,2752,379109,jharkhand,saraikela kharsawan,adityapur gamharia,murgaghutu,murgaghutu,690,184,443
+20,369,2752,379110,jharkhand,saraikela kharsawan,adityapur gamharia,raghudih,raghudih,192,0,191
+20,369,2752,379111,jharkhand,saraikela kharsawan,adityapur gamharia,musari kudar,musari kudar,271,6,77
+20,369,2752,379112,jharkhand,saraikela kharsawan,adityapur gamharia,mohanpur,mohanpur,414,0,30
+20,369,2752,379113,jharkhand,saraikela kharsawan,adityapur gamharia,harisundarpur,harisundarpur,315,2,313
+20,369,2752,379114,jharkhand,saraikela kharsawan,adityapur gamharia,champanagar,champanagar,209,0,209
+20,369,2752,379115,jharkhand,saraikela kharsawan,adityapur gamharia,rapcha,rapcha,1983,148,1267
+20,369,2752,379116,jharkhand,saraikela kharsawan,adityapur gamharia,penderbera,penderbera,1115,0,825
+20,369,2752,379117,jharkhand,saraikela kharsawan,adityapur gamharia,bankipur,bankipur,308,0,25
+20,369,2752,379118,jharkhand,saraikela kharsawan,adityapur gamharia,tilepada,tilepada,132,0,0
+20,369,2752,379120,jharkhand,saraikela kharsawan,adityapur gamharia,palubera,palubera,731,0,589
+20,369,2752,379121,jharkhand,saraikela kharsawan,adityapur gamharia,khudibera,khudibera,337,0,285
+20,369,2752,379123,jharkhand,saraikela kharsawan,adityapur gamharia,birampur,birampur,488,0,461
+20,369,2752,379124,jharkhand,saraikela kharsawan,adityapur gamharia,udaipur,udaipur,102,0,102
+20,369,2752,379125,jharkhand,saraikela kharsawan,adityapur gamharia,mahtabera,mahtabera,491,1,463
+20,369,2752,379126,jharkhand,saraikela kharsawan,adityapur gamharia,dumra,dumra,1480,36,468
+20,369,2752,379127,jharkhand,saraikela kharsawan,adityapur gamharia,hanribhanga,hanribhanga,538,86,127
+20,369,2752,379128,jharkhand,saraikela kharsawan,adityapur gamharia,ghutubera,ghutubera,320,0,96
+20,369,2752,379129,jharkhand,saraikela kharsawan,adityapur gamharia,padampur,padampur,349,0,337
+20,369,2752,379130,jharkhand,saraikela kharsawan,adityapur gamharia,sitarampur,sitarampur,920,369,471
+20,369,2752,379132,jharkhand,saraikela kharsawan,adityapur gamharia,kalikapur,kalikapur,2526,85,338
+20,369,2752,379133,jharkhand,saraikela kharsawan,adityapur gamharia,saldih,saldih,1491,123,741
+20,369,2752,379134,jharkhand,saraikela kharsawan,adityapur gamharia,balrampur,balrampur,3893,235,605
+20,369,2752,379135,jharkhand,saraikela kharsawan,adityapur gamharia,narainpur,narainpur,2278,61,1649
+20,369,2752,379136,jharkhand,saraikela kharsawan,adityapur gamharia,jagarnathpur,jagarnathpur,5289,126,74
+20,369,2752,379137,jharkhand,saraikela kharsawan,adityapur gamharia,uparbera,uparbera,614,99,7
+20,369,2752,379138,jharkhand,saraikela kharsawan,adityapur gamharia,barubad,barubad,62,0,12
+20,369,2752,379141,jharkhand,saraikela kharsawan,adityapur gamharia,gonadih,gonadih,55,0,6
+20,369,2752,379142,jharkhand,saraikela kharsawan,adityapur gamharia,sarupdih,sarupdih,133,0,133
+20,369,2752,379143,jharkhand,saraikela kharsawan,adityapur gamharia,barkatanr,barkatanr,588,258,307
+20,369,2752,379144,jharkhand,saraikela kharsawan,adityapur gamharia,jagannathpur,jagannathpur,19,0,11
+20,369,2752,379145,jharkhand,saraikela kharsawan,adityapur gamharia,bara hariharpur,bara hariharpur,382,19,280
+20,369,2752,379146,jharkhand,saraikela kharsawan,adityapur gamharia,chota hariharpur,chota hariharpur,243,0,101
+20,369,2752,379147,jharkhand,saraikela kharsawan,adityapur gamharia,bikanipur,bikanipur,327,0,149
+20,369,2752,379148,jharkhand,saraikela kharsawan,adityapur gamharia,gopinathpur,gopinathpur,243,12,166
+20,369,2752,379150,jharkhand,saraikela kharsawan,adityapur gamharia,manoharpur,manoharpur,86,0,73
+20,369,2752,379151,jharkhand,saraikela kharsawan,adityapur gamharia,beltanr,beltanr,306,0,303
+20,369,2752,379152,jharkhand,saraikela kharsawan,adityapur gamharia,patharghora,patharghora,58,0,58
+20,369,2752,379153,jharkhand,saraikela kharsawan,adityapur gamharia,nischitpur,nischitpur,148,0,123
+20,369,2752,379154,jharkhand,saraikela kharsawan,adityapur gamharia,kendudih,kendudih,258,0,248
+20,369,2752,379155,jharkhand,saraikela kharsawan,adityapur gamharia,khakudih,khakudih,96,0,96
+20,369,2752,379156,jharkhand,saraikela kharsawan,adityapur gamharia,nimaidih,nimaidih,91,0,91
+20,369,2752,379157,jharkhand,saraikela kharsawan,adityapur gamharia,bhaduagora,bhaduagora,405,0,405
+20,369,2752,379158,jharkhand,saraikela kharsawan,adityapur gamharia,chora,chora,654,0,654
+20,369,2752,379159,jharkhand,saraikela kharsawan,adityapur gamharia,bholadih,bholadih,338,0,169
+20,369,2752,379160,jharkhand,saraikela kharsawan,adityapur gamharia,baliguma,baliguma,1088,0,57
+20,369,2752,379161,jharkhand,saraikela kharsawan,adityapur gamharia,birbans,birbans,1311,284,155
+20,369,2752,379162,jharkhand,saraikela kharsawan,adityapur gamharia,ramjibonpur,ramjibonpur,702,0,159
+20,369,2752,379163,jharkhand,saraikela kharsawan,adityapur gamharia,pratappur,pratappur,248,65,183
+20,369,2752,379164,jharkhand,saraikela kharsawan,adityapur gamharia,khuchidih,khuchidih,546,0,374
+20,369,2752,379165,jharkhand,saraikela kharsawan,adityapur gamharia,hundurbera,hundurbera,81,23,0
+20,369,2752,379166,jharkhand,saraikela kharsawan,adityapur gamharia,haridih,haridih,343,23,152
+20,369,2752,379167,jharkhand,saraikela kharsawan,adityapur gamharia,dugdha,dugdha,1928,18,675
+20,369,2752,379168,jharkhand,saraikela kharsawan,adityapur gamharia,jhurkuli,jhurkuli,664,9,326
+20,369,2752,379169,jharkhand,saraikela kharsawan,adityapur gamharia,jhar gaobindpur,jhar gaobindpur,607,0,48
+20,369,2752,379170,jharkhand,saraikela kharsawan,adityapur gamharia,pakhurgora,pakhurgora,343,69,207
+20,369,2752,379171,jharkhand,saraikela kharsawan,adityapur gamharia,raimasa,raimasa,807,476,136
+20,369,2752,379172,jharkhand,saraikela kharsawan,adityapur gamharia,murkum,murkum,1119,29,765
+20,369,2752,379173,jharkhand,saraikela kharsawan,adityapur gamharia,udaipur,udaipur,1151,39,389
+20,369,2752,379174,jharkhand,saraikela kharsawan,adityapur gamharia,gangia,gangia,788,361,211
+20,369,2752,379175,jharkhand,saraikela kharsawan,adityapur gamharia,ujainpur,ujainpur,187,187,0
+20,369,2752,379176,jharkhand,saraikela kharsawan,adityapur gamharia,rajgaon,rajgaon,788,288,221
+20,369,2752,379177,jharkhand,saraikela kharsawan,adityapur gamharia,jaspur,jaspur,1312,26,282
+20,369,2752,379178,jharkhand,saraikela kharsawan,adityapur gamharia,rangatanr,rangatanr,383,3,162
+20,369,2752,379179,jharkhand,saraikela kharsawan,adityapur gamharia,nengtasai,nengtasai,1429,55,134
+20,369,2752,379180,jharkhand,saraikela kharsawan,adityapur gamharia,chamaru,chamaru,1760,34,273
+20,369,2752,379182,jharkhand,saraikela kharsawan,adityapur gamharia,jiwanpur,jiwanpur,627,102,84
+20,369,2752,379183,jharkhand,saraikela kharsawan,adityapur gamharia,kolabira,kolabira,1129,92,104
+20,369,2752,379184,jharkhand,saraikela kharsawan,adityapur gamharia,tirildih,tirildih,749,298,242
+20,369,2752,379185,jharkhand,saraikela kharsawan,adityapur gamharia,saldih,saldih,896,0,15
+20,369,2752,379186,jharkhand,saraikela kharsawan,adityapur gamharia,muria,muria,1377,16,149
+20,369,2752,379188,jharkhand,saraikela kharsawan,adityapur gamharia,maslewa,maslewa,264,6,199
+20,369,2752,379189,jharkhand,saraikela kharsawan,adityapur gamharia,jordina,jordina,1082,0,183
+20,369,2752,379190,jharkhand,saraikela kharsawan,adityapur gamharia,jambohal,jambohal,506,35,75
+20,369,2752,379191,jharkhand,saraikela kharsawan,adityapur gamharia,hatitand,hatitand,591,102,27
+20,369,2752,379192,jharkhand,saraikela kharsawan,adityapur gamharia,chandarpur,chandarpur,1078,144,38
+20,369,2752,379193,jharkhand,saraikela kharsawan,adityapur gamharia,donda,donda,708,76,57
+20,369,2752,379194,jharkhand,saraikela kharsawan,adityapur gamharia,rangamatia,rangamatia,1482,69,106
+20,369,2752,379195,jharkhand,saraikela kharsawan,adityapur gamharia,gura,gura,1251,114,56
+20,369,2752,379196,jharkhand,saraikela kharsawan,adityapur gamharia,sindukopa,sindukopa,863,77,35
+20,369,2752,379197,jharkhand,saraikela kharsawan,adityapur gamharia,begnadih,begnadih,667,8,13
+20,369,2752,379198,jharkhand,saraikela kharsawan,adityapur gamharia,dubrajpur,dubrajpur,308,0,242
+20,369,2752,379199,jharkhand,saraikela kharsawan,adityapur gamharia,simalbera,simalbera,577,0,340
+20,369,2752,379200,jharkhand,saraikela kharsawan,adityapur gamharia,ramnagar,ramnagar,180,8,164
+20,369,2752,379201,jharkhand,saraikela kharsawan,adityapur gamharia,narainpur,narainpur,2107,181,153
+20,369,2752,379202,jharkhand,saraikela kharsawan,adityapur gamharia,bejai,bejai,1446,145,157
+20,369,2752,379203,jharkhand,saraikela kharsawan,adityapur gamharia,khudidih,khudidih,51,0,8
+20,369,2752,379204,jharkhand,saraikela kharsawan,adityapur gamharia,dugni,dugni,2619,454,543
+20,369,2752,379205,jharkhand,saraikela kharsawan,adityapur gamharia,nil mohanpur,nil mohanpur,350,1,233
+20,369,2752,379206,jharkhand,saraikela kharsawan,adityapur gamharia,sahebganj,sahebganj,488,6,301
+20,369,2752,379207,jharkhand,saraikela kharsawan,adityapur gamharia,rengodih,rengodih,83,0,83
+20,369,2752,379208,jharkhand,saraikela kharsawan,adityapur gamharia,dhadkidih,dhadkidih,1089,0,340
+20,369,2752,379209,jharkhand,saraikela kharsawan,adityapur gamharia,singhpur,singhpur,703,0,0
+20,369,2752,379210,jharkhand,saraikela kharsawan,adityapur gamharia,ghagi,ghagi,576,18,39
+20,369,2752,379211,jharkhand,saraikela kharsawan,adityapur gamharia,baliposi,baliposi,525,0,0
+20,369,2752,379212,jharkhand,saraikela kharsawan,adityapur gamharia,asanbani,asanbani,278,0,98
+20,369,2752,379213,jharkhand,saraikela kharsawan,adityapur gamharia,haladbani,haladbani,607,32,75
+20,369,2752,379214,jharkhand,saraikela kharsawan,adityapur gamharia,hidibili,hidibili,795,0,564
+20,369,2752,379215,jharkhand,saraikela kharsawan,adityapur gamharia,ugma,ugma,117,0,42
+20,369,2752,379218,jharkhand,saraikela kharsawan,adityapur gamharia,gohira,gohira,1172,17,88
+20,369,2752,379219,jharkhand,saraikela kharsawan,adityapur gamharia,tetoposi,tetoposi,1373,63,70
+20,369,2752,379220,jharkhand,saraikela kharsawan,adityapur gamharia,tirintipa,tirintipa,487,0,0
+20,369,2752,379221,jharkhand,saraikela kharsawan,adityapur gamharia,jhapragura,jhapragura,661,34,30
+20,369,2752,379222,jharkhand,saraikela kharsawan,adityapur gamharia,dadiamara,dadiamara,165,0,165
+20,369,2752,379223,jharkhand,saraikela kharsawan,adityapur gamharia,banddih,banddih,855,0,0
+20,369,2752,379224,jharkhand,saraikela kharsawan,adityapur gamharia,ramchandarpur,ramchandarpur,305,44,78
+20,369,2752,379225,jharkhand,saraikela kharsawan,adityapur gamharia,hardala,hardala,457,0,102
+20,369,2752,379226,jharkhand,saraikela kharsawan,adityapur gamharia,thasakpur,thasakpur,69,0,62
+20,369,2752,379227,jharkhand,saraikela kharsawan,adityapur gamharia,nua dih,nua dih,194,0,78
+20,369,2752,379228,jharkhand,saraikela kharsawan,adityapur gamharia,daraikocha,daraikocha,215,0,72
+20,369,2752,379229,jharkhand,saraikela kharsawan,adityapur gamharia,bhalubassa,bhalubassa,218,0,0
+20,369,2752,379230,jharkhand,saraikela kharsawan,adityapur gamharia,nata dih,nata dih,280,5,125
+20,369,2752,379231,jharkhand,saraikela kharsawan,adityapur gamharia,guna dih,guna dih,258,0,124
+20,369,2752,379232,jharkhand,saraikela kharsawan,adityapur gamharia,madhupur,madhupur,432,48,0
+20,369,2752,379233,jharkhand,saraikela kharsawan,adityapur gamharia,chota kankra,chota kankra,232,14,12
+20,369,2752,379235,jharkhand,saraikela kharsawan,adityapur gamharia,gaurang dih,gaurang dih,185,118,6
+20,369,2752,379236,jharkhand,saraikela kharsawan,adityapur gamharia,bara kankra,bara kankra,1202,8,497
+20,369,2752,379237,jharkhand,saraikela kharsawan,adityapur gamharia,pora dih,pora dih,308,7,238
+20,369,2752,379238,jharkhand,saraikela kharsawan,adityapur gamharia,jaganathpur,jaganathpur,208,0,170
+20,369,2752,379239,jharkhand,saraikela kharsawan,adityapur gamharia,nisakpur,nisakpur,160,0,145
+20,369,2752,379240,jharkhand,saraikela kharsawan,adityapur gamharia,barhmatand,barhmatand,139,0,139
+20,369,2752,379241,jharkhand,saraikela kharsawan,adityapur gamharia,tiunia,tiunia,849,53,3
+20,369,2752,379243,jharkhand,saraikela kharsawan,adityapur gamharia,nawa dih,nawa dih,741,18,320
+20,369,2752,379244,jharkhand,saraikela kharsawan,adityapur gamharia,chandanpur,chandanpur,306,9,2
+20,369,2752,379245,jharkhand,saraikela kharsawan,adityapur gamharia,karangura,karangura,95,0,7
+20,369,2752,379247,jharkhand,saraikela kharsawan,adityapur gamharia,ramchandarpur,ramchandarpur,1126,19,380
+20,369,2752,379248,jharkhand,saraikela kharsawan,adityapur gamharia,jambera,jambera,213,161,27
+20,369,2752,379249,jharkhand,saraikela kharsawan,adityapur gamharia,gopi dih,gopi dih,165,0,65
+20,369,2752,379250,jharkhand,saraikela kharsawan,adityapur gamharia,awlatanr,awlatanr,393,0,64
+20,369,2752,379251,jharkhand,saraikela kharsawan,adityapur gamharia,birajpur,birajpur,39,0,5
+20,369,2752,379252,jharkhand,saraikela kharsawan,adityapur gamharia,kamalpur,kamalpur,58,0,16
+20,369,2752,379254,jharkhand,saraikela kharsawan,adityapur gamharia,birdhajpur,birdhajpur,66,0,66
+20,369,2752,379255,jharkhand,saraikela kharsawan,adityapur gamharia,jilingbera,jilingbera,903,0,627
+20,369,2752,379256,jharkhand,saraikela kharsawan,adityapur gamharia,kamalpur,kamalpur,1274,26,114
+20,369,2752,379257,jharkhand,saraikela kharsawan,adityapur gamharia,dudra,dudra,1232,351,94
+20,369,2752,379258,jharkhand,saraikela kharsawan,adityapur gamharia,itagarh,itagarh,1812,95,412
+20,369,2752,379259,jharkhand,saraikela kharsawan,adityapur gamharia,dhahkidih,dhahkidih,584,0,11
+20,369,2752,379260,jharkhand,saraikela kharsawan,adityapur gamharia,nayagarh,nayagarh,1822,145,346
+20,369,2752,379261,jharkhand,saraikela kharsawan,adityapur gamharia,basulikocha,basulikocha,303,23,0
+20,369,2752,379262,jharkhand,saraikela kharsawan,adityapur gamharia,samram,samram,1084,25,155
+20,369,2752,379263,jharkhand,saraikela kharsawan,adityapur gamharia,ujalpur,ujalpur,707,0,81
+20,369,2752,379264,jharkhand,saraikela kharsawan,adityapur gamharia,nayadih,nayadih,49,0,49
+20,369,2752,379265,jharkhand,saraikela kharsawan,adityapur gamharia,tirla,tirla,1014,0,605
+20,369,2752,379266,jharkhand,saraikela kharsawan,adityapur gamharia,koludih,koludih,959,7,543
+20,369,2752,379267,jharkhand,saraikela kharsawan,adityapur gamharia,basurda,basurda,1085,60,141
+20,369,2752,379268,jharkhand,saraikela kharsawan,adityapur gamharia,bastandih,bastandih,182,0,36
+20,369,2752,379269,jharkhand,saraikela kharsawan,adityapur gamharia,parbatipur,parbatipur,294,0,20
+20,369,2752,379270,jharkhand,saraikela kharsawan,adityapur gamharia,dhatkidih,dhatkidih,626,0,274
+20,369,2752,379271,jharkhand,saraikela kharsawan,adityapur gamharia,kumharea,kumharea,457,0,439
+20,369,2752,379272,jharkhand,saraikela kharsawan,adityapur gamharia,mahuldih,mahuldih,531,61,274
+20,369,2752,379273,jharkhand,saraikela kharsawan,adityapur gamharia,amdih,amdih,144,0,0
+20,369,2752,379274,jharkhand,saraikela kharsawan,adityapur gamharia,tirildih,tirildih,475,112,26
+20,369,2752,379275,jharkhand,saraikela kharsawan,adityapur gamharia,chota jamjora,chota jamjora,445,30,263
+20,369,2752,379276,jharkhand,saraikela kharsawan,adityapur gamharia,bandih,bandih,157,0,149
+20,369,2752,379277,jharkhand,saraikela kharsawan,adityapur gamharia,bamdih,bamdih,327,0,229
+20,369,2752,379278,jharkhand,saraikela kharsawan,adityapur gamharia,bindapur,bindapur,820,1,602
+20,369,2752,379279,jharkhand,saraikela kharsawan,adityapur gamharia,ukam,ukam,423,0,365
+20,369,2752,379280,jharkhand,saraikela kharsawan,adityapur gamharia,bara jamjora,bara jamjora,896,0,749
+20,369,2752,379281,jharkhand,saraikela kharsawan,adityapur gamharia,daraimach,daraimach,309,0,8
+20,369,2752,379282,jharkhand,saraikela kharsawan,adityapur gamharia,jaikam,jaikam,1092,6,65
+20,369,2752,379283,jharkhand,saraikela kharsawan,adityapur gamharia,sobhapur,sobhapur,774,1,22
+20,369,2752,379284,jharkhand,saraikela kharsawan,adityapur gamharia,pagrodihi,pagrodihi,292,0,33
+20,369,2752,379285,jharkhand,saraikela kharsawan,adityapur gamharia,dighi,dighi,369,1,78
+20,369,2752,379286,jharkhand,saraikela kharsawan,adityapur gamharia,adityapratappur,adityapratappur,355,0,354
+20,369,2752,379287,jharkhand,saraikela kharsawan,adityapur gamharia,,kandra,8157,891,624
+20,369,2752,379288,jharkhand,saraikela kharsawan,adityapur gamharia,,chota gamahria,7505,167,700
+20,369,2752,801801,jharkhand,saraikela kharsawan,adityapur gamharia,,adityapur,174355,8843,24104
+20,369,2753,379289,jharkhand,saraikela kharsawan,saraikela,poradih,poradih,192,0,191
+20,369,2753,379290,jharkhand,saraikela kharsawan,saraikela,kalajor,kalajor,313,0,313
+20,369,2753,379291,jharkhand,saraikela kharsawan,saraikela,konamarcha,konamarcha,238,0,237
+20,369,2753,379292,jharkhand,saraikela kharsawan,saraikela,uperbera,uperbera,364,12,239
+20,369,2753,379293,jharkhand,saraikela kharsawan,saraikela,hudu,hudu,809,23,550
+20,369,2753,379294,jharkhand,saraikela kharsawan,saraikela,kuanrdahi,kuanrdahi,278,1,10
+20,369,2753,379295,jharkhand,saraikela kharsawan,saraikela,tirildih,tirildih,152,0,152
+20,369,2753,379296,jharkhand,saraikela kharsawan,saraikela,tumsa,tumsa,487,0,483
+20,369,2753,379297,jharkhand,saraikela kharsawan,saraikela,palobera,palobera,287,10,245
+20,369,2753,379298,jharkhand,saraikela kharsawan,saraikela,hatnada,hatnada,362,0,285
+20,369,2753,379299,jharkhand,saraikela kharsawan,saraikela,kasida,kasida,120,0,110
+20,369,2753,379300,jharkhand,saraikela kharsawan,saraikela,jankipur,jankipur,188,0,187
+20,369,2753,379301,jharkhand,saraikela kharsawan,saraikela,junglikhas,junglikhas,236,0,192
+20,369,2753,379302,jharkhand,saraikela kharsawan,saraikela,mahadebpur,mahadebpur,906,0,487
+20,369,2753,379303,jharkhand,saraikela kharsawan,saraikela,chorok pathar,chorok pathar,494,0,493
+20,369,2753,379304,jharkhand,saraikela kharsawan,saraikela,baldeopur,baldeopur,87,0,0
+20,369,2753,379305,jharkhand,saraikela kharsawan,saraikela,sakladih,sakladih,339,0,243
+20,369,2753,379306,jharkhand,saraikela kharsawan,saraikela,panarol,panarol,310,0,305
+20,369,2753,379307,jharkhand,saraikela kharsawan,saraikela,santipur,santipur,80,0,28
+20,369,2753,379308,jharkhand,saraikela kharsawan,saraikela,madhupur,madhupur,119,0,65
+20,369,2753,379309,jharkhand,saraikela kharsawan,saraikela,bhalupahari,bhalupahari,553,8,177
+20,369,2753,379310,jharkhand,saraikela kharsawan,saraikela,juritand,juritand,129,0,28
+20,369,2753,379311,jharkhand,saraikela kharsawan,saraikela,rangamatia,rangamatia,181,1,124
+20,369,2753,379312,jharkhand,saraikela kharsawan,saraikela,sobhapur,sobhapur,254,1,202
+20,369,2753,379313,jharkhand,saraikela kharsawan,saraikela,dhadkidih,dhadkidih,376,8,76
+20,369,2753,379314,jharkhand,saraikela kharsawan,saraikela,lakarbadi,lakarbadi,526,0,0
+20,369,2753,379315,jharkhand,saraikela kharsawan,saraikela,chaitanpur,chaitanpur,352,0,340
+20,369,2753,379316,jharkhand,saraikela kharsawan,saraikela,gangpur,gangpur,267,4,164
+20,369,2753,379317,jharkhand,saraikela kharsawan,saraikela,sindri,sindri,769,2,402
+20,369,2753,379318,jharkhand,saraikela kharsawan,saraikela,gopinathpur,gopinathpur,580,4,327
+20,369,2753,379319,jharkhand,saraikela kharsawan,saraikela,domjori,domjori,346,146,150
+20,369,2753,379320,jharkhand,saraikela kharsawan,saraikela,raghunathpur,raghunathpur,207,0,44
+20,369,2753,379321,jharkhand,saraikela kharsawan,saraikela,ulidih,ulidih,431,0,23
+20,369,2753,379322,jharkhand,saraikela kharsawan,saraikela,mundatand,mundatand,869,0,526
+20,369,2753,379323,jharkhand,saraikela kharsawan,saraikela,bhadradih,bhadradih,52,0,50
+20,369,2753,379324,jharkhand,saraikela kharsawan,saraikela,mahitpur,mahitpur,1174,71,220
+20,369,2753,379325,jharkhand,saraikela kharsawan,saraikela,serengda,serengda,203,0,28
+20,369,2753,379326,jharkhand,saraikela kharsawan,saraikela,padampur,padampur,277,0,177
+20,369,2753,379327,jharkhand,saraikela kharsawan,saraikela,gopalpur,gopalpur,314,1,307
+20,369,2753,379328,jharkhand,saraikela kharsawan,saraikela,kursonpur,kursonpur,364,7,357
+20,369,2753,379329,jharkhand,saraikela kharsawan,saraikela,ranka kocha,ranka kocha,430,6,267
+20,369,2753,379330,jharkhand,saraikela kharsawan,saraikela,sowanpur,sowanpur,426,349,71
+20,369,2753,379331,jharkhand,saraikela kharsawan,saraikela,sohandih,sohandih,706,83,18
+20,369,2753,379332,jharkhand,saraikela kharsawan,saraikela,khatuakudar,khatuakudar,211,32,29
+20,369,2753,379334,jharkhand,saraikela kharsawan,saraikela,kusnopur,kusnopur,517,26,0
+20,369,2753,379335,jharkhand,saraikela kharsawan,saraikela,chitadih,chitadih,147,6,47
+20,369,2753,379336,jharkhand,saraikela kharsawan,saraikela,padampur,padampur,444,0,409
+20,369,2753,379337,jharkhand,saraikela kharsawan,saraikela,dungridih,dungridih,138,0,110
+20,369,2753,379338,jharkhand,saraikela kharsawan,saraikela,bhalaidih,bhalaidih,523,0,97
+20,369,2753,379339,jharkhand,saraikela kharsawan,saraikela,palasdih,palasdih,218,0,86
+20,369,2753,379340,jharkhand,saraikela kharsawan,saraikela,bordih,bordih,374,0,1
+20,369,2753,379342,jharkhand,saraikela kharsawan,saraikela,uperdungi,uperdungi,730,38,9
+20,369,2753,379343,jharkhand,saraikela kharsawan,saraikela,ukri,ukri,548,213,197
+20,369,2753,379344,jharkhand,saraikela kharsawan,saraikela,jojo,jojo,664,42,497
+20,369,2753,379345,jharkhand,saraikela kharsawan,saraikela,kamalpur,kamalpur,2651,0,85
+20,369,2753,379346,jharkhand,saraikela kharsawan,saraikela,sidma,sidma,624,0,122
+20,369,2753,379347,jharkhand,saraikela kharsawan,saraikela,koira,koira,399,235,12
+20,369,2753,379348,jharkhand,saraikela kharsawan,saraikela,kadambera,kadambera,402,18,379
+20,369,2753,379349,jharkhand,saraikela kharsawan,saraikela,kanchanpur,kanchanpur,158,0,0
+20,369,2753,379350,jharkhand,saraikela kharsawan,saraikela,banksai,banksai,540,220,9
+20,369,2753,379351,jharkhand,saraikela kharsawan,saraikela,begnadih,begnadih,159,38,0
+20,369,2753,379352,jharkhand,saraikela kharsawan,saraikela,birdadih,birdadih,67,0,0
+20,369,2753,379353,jharkhand,saraikela kharsawan,saraikela,surmali,surmali,651,7,184
+20,369,2753,379354,jharkhand,saraikela kharsawan,saraikela,mohulpani,mohulpani,96,0,0
+20,369,2753,379355,jharkhand,saraikela kharsawan,saraikela,ghoralang,ghoralang,759,65,296
+20,369,2753,379356,jharkhand,saraikela kharsawan,saraikela,guradih,guradih,190,1,124
+20,369,2753,379357,jharkhand,saraikela kharsawan,saraikela,naraindih,naraindih,465,1,134
+20,369,2753,379358,jharkhand,saraikela kharsawan,saraikela,rengodih,rengodih,272,0,1
+20,369,2753,379359,jharkhand,saraikela kharsawan,saraikela,jagarnathpur,jagarnathpur,507,0,28
+20,369,2753,379360,jharkhand,saraikela kharsawan,saraikela,dhadkidih,dhadkidih,499,175,124
+20,369,2753,379361,jharkhand,saraikela kharsawan,saraikela,huringdih,huringdih,193,1,183
+20,369,2753,379362,jharkhand,saraikela kharsawan,saraikela,mahali murup,mahali murup,562,10,434
+20,369,2753,379363,jharkhand,saraikela kharsawan,saraikela,murup,murup,1242,9,189
+20,369,2753,379364,jharkhand,saraikela kharsawan,saraikela,dasiadih,dasiadih,346,0,166
+20,369,2753,379365,jharkhand,saraikela kharsawan,saraikela,hatia,hatia,766,14,95
+20,369,2753,379366,jharkhand,saraikela kharsawan,saraikela,lakhodih,lakhodih,226,61,152
+20,369,2753,379367,jharkhand,saraikela kharsawan,saraikela,kendua,kendua,795,44,112
+20,369,2753,379368,jharkhand,saraikela kharsawan,saraikela,itakudar,itakudar,1597,61,1014
+20,369,2753,379369,jharkhand,saraikela kharsawan,saraikela,dudhi,dudhi,452,0,244
+20,369,2753,379370,jharkhand,saraikela kharsawan,saraikela,bundu,bundu,1012,1,814
+20,369,2753,379371,jharkhand,saraikela kharsawan,saraikela,hensa,hensa,761,0,427
+20,369,2753,379372,jharkhand,saraikela kharsawan,saraikela,digarsahai,digarsahai,186,6,159
+20,369,2753,379373,jharkhand,saraikela kharsawan,saraikela,kadamadiha,kadamadiha,92,16,0
+20,369,2753,379374,jharkhand,saraikela kharsawan,saraikela,sardabera,sardabera,312,2,265
+20,369,2753,379375,jharkhand,saraikela kharsawan,saraikela,gobindpur,gobindpur,1436,364,614
+20,369,2753,379376,jharkhand,saraikela kharsawan,saraikela,harua,harua,514,58,371
+20,369,2753,379377,jharkhand,saraikela kharsawan,saraikela,kasipur,kasipur,654,74,285
+20,369,2753,379378,jharkhand,saraikela kharsawan,saraikela,pandua,pandua,457,141,266
+20,369,2753,379379,jharkhand,saraikela kharsawan,saraikela,karandagora,karandagora,321,10,262
+20,369,2753,379380,jharkhand,saraikela kharsawan,saraikela,saldih,saldih,262,71,79
+20,369,2753,379381,jharkhand,saraikela kharsawan,saraikela,rangpur,rangpur,126,0,10
+20,369,2753,379382,jharkhand,saraikela kharsawan,saraikela,kita,kita,282,81,140
+20,369,2753,379383,jharkhand,saraikela kharsawan,saraikela,biram chandarpur,biram chandarpur,385,0,331
+20,369,2753,379384,jharkhand,saraikela kharsawan,saraikela,bhurkuli,bhurkuli,774,0,194
+20,369,2753,379385,jharkhand,saraikela kharsawan,saraikela,deogirisahi,deogirisahi,303,0,265
+20,369,2753,379386,jharkhand,saraikela kharsawan,saraikela,dolandih,dolandih,593,0,540
+20,369,2753,379387,jharkhand,saraikela kharsawan,saraikela,makundpur,makundpur,117,0,111
+20,369,2753,379388,jharkhand,saraikela kharsawan,saraikela,balrampur,balrampur,185,0,184
+20,369,2753,379390,jharkhand,saraikela kharsawan,saraikela,pandra,pandra,1033,0,283
+20,369,2753,379391,jharkhand,saraikela kharsawan,saraikela,padampur,padampur,74,0,68
+20,369,2753,379392,jharkhand,saraikela kharsawan,saraikela,narsinghpur,narsinghpur,179,0,145
+20,369,2753,379393,jharkhand,saraikela kharsawan,saraikela,basudebpur,basudebpur,126,0,126
+20,369,2753,379395,jharkhand,saraikela kharsawan,saraikela,manki bazar,manki bazar,947,73,115
+20,369,2753,379396,jharkhand,saraikela kharsawan,saraikela,kudarsai,kudarsai,594,0,347
+20,369,2753,379397,jharkhand,saraikela kharsawan,saraikela,kendumposi,kendumposi,249,0,249
+20,369,2753,379398,jharkhand,saraikela kharsawan,saraikela,paralposi,paralposi,327,161,149
+20,369,2753,379399,jharkhand,saraikela kharsawan,saraikela,natidi,natidi,158,0,115
+20,369,2753,379400,jharkhand,saraikela kharsawan,saraikela,baliposi,baliposi,84,84,0
+20,369,2753,379401,jharkhand,saraikela kharsawan,saraikela,barudih,barudih,116,0,116
+20,369,2753,379402,jharkhand,saraikela kharsawan,saraikela,patahesel,patahesel,997,0,554
+20,369,2753,379403,jharkhand,saraikela kharsawan,saraikela,jilingburu,jilingburu,347,0,325
+20,369,2753,379404,jharkhand,saraikela kharsawan,saraikela,mahuldiha,mahuldiha,238,0,230
+20,369,2753,379405,jharkhand,saraikela kharsawan,saraikela,hathimara,hathimara,588,0,468
+20,369,2753,379406,jharkhand,saraikela kharsawan,saraikela,paharpur,paharpur,559,1,452
+20,369,2753,379407,jharkhand,saraikela kharsawan,saraikela,kuri,kuri,530,115,211
+20,369,2753,379408,jharkhand,saraikela kharsawan,saraikela,baladbandha,baladbandha,104,0,104
+20,369,2753,379410,jharkhand,saraikela kharsawan,saraikela,chengdubi,chengdubi,52,0,52
+20,369,2753,379411,jharkhand,saraikela kharsawan,saraikela,dhobadiha,dhobadiha,348,0,347
+20,369,2753,379412,jharkhand,saraikela kharsawan,saraikela,pampra,pampra,351,0,215
+20,369,2753,379413,jharkhand,saraikela kharsawan,saraikela,lakrapahari,lakrapahari,42,0,35
+20,369,2753,379414,jharkhand,saraikela kharsawan,saraikela,bara tengrani,bara tengrani,254,0,90
+20,369,2753,379415,jharkhand,saraikela kharsawan,saraikela,chota tengrani,chota tengrani,470,0,137
+20,369,2753,379417,jharkhand,saraikela kharsawan,saraikela,rajabasa,rajabasa,25,1,20
+20,369,2753,379418,jharkhand,saraikela kharsawan,saraikela,bishun paduka,bishun paduka,830,0,825
+20,369,2753,379419,jharkhand,saraikela kharsawan,saraikela,tablapur,tablapur,460,100,98
+20,369,2753,379420,jharkhand,saraikela kharsawan,saraikela,thatupara alias begnadih,thatupara alias begnadih,665,225,311
+20,369,2753,379421,jharkhand,saraikela kharsawan,saraikela,noagaon,noagaon,706,232,212
+20,369,2753,379422,jharkhand,saraikela kharsawan,saraikela,tirildih,tirildih,711,0,671
+20,369,2753,379423,jharkhand,saraikela kharsawan,saraikela,kalapathar,kalapathar,596,0,132
+20,369,2753,379424,jharkhand,saraikela kharsawan,saraikela,kalaguju,kalaguju,472,7,179
+20,369,2753,379425,jharkhand,saraikela kharsawan,saraikela,senisidma,senisidma,691,1,649
+20,369,2753,379426,jharkhand,saraikela kharsawan,saraikela,majhia daona,majhia daona,191,0,191
+20,369,2753,379427,jharkhand,saraikela kharsawan,saraikela,bara daona,bara daona,170,3,143
+20,369,2753,379428,jharkhand,saraikela kharsawan,saraikela,chota daona,chota daona,685,16,631
+20,369,2753,379429,jharkhand,saraikela kharsawan,saraikela,bistamsai,bistamsai,434,0,434
+20,369,2753,379430,jharkhand,saraikela kharsawan,saraikela,akhilnathpur,akhilnathpur,118,0,118
+20,369,2753,379431,jharkhand,saraikela kharsawan,saraikela,jurguria,jurguria,303,0,264
+20,369,2753,379432,jharkhand,saraikela kharsawan,saraikela,baralupung,baralupung,317,0,87
+20,369,2753,379433,jharkhand,saraikela kharsawan,saraikela,turasai,turasai,325,0,9
+20,369,2753,379434,jharkhand,saraikela kharsawan,saraikela,chota lupung,chota lupung,439,112,284
+20,369,2753,379435,jharkhand,saraikela kharsawan,saraikela,kadamdiha,kadamdiha,668,0,214
+20,369,2753,379437,jharkhand,saraikela kharsawan,saraikela,rujurisai,rujurisai,363,0,330
+20,369,2753,379438,jharkhand,saraikela kharsawan,saraikela,rundasai,rundasai,91,0,91
+20,369,2753,379439,jharkhand,saraikela kharsawan,saraikela,komdih,komdih,91,0,90
+20,369,2753,379440,jharkhand,saraikela kharsawan,saraikela,batiadih,batiadih,193,0,22
+20,369,2753,379441,jharkhand,saraikela kharsawan,saraikela,bhondarisai,bhondarisai,883,29,351
+20,369,2753,379442,jharkhand,saraikela kharsawan,saraikela,satrusal,satrusal,363,0,279
+20,369,2753,379443,jharkhand,saraikela kharsawan,saraikela,noagura,noagura,343,0,343
+20,369,2753,379444,jharkhand,saraikela kharsawan,saraikela,joddiha,joddiha,1027,238,528
+20,369,2753,379445,jharkhand,saraikela kharsawan,saraikela,mangudih,mangudih,192,0,136
+20,369,2753,379446,jharkhand,saraikela kharsawan,saraikela,pathanmara,pathanmara,932,0,858
+20,369,2753,379447,jharkhand,saraikela kharsawan,saraikela,ragragi,ragragi,469,0,225
+20,369,2753,379448,jharkhand,saraikela kharsawan,saraikela,tholka,tholka,260,0,68
+20,369,2753,379449,jharkhand,saraikela kharsawan,saraikela,hurangda,hurangda,686,145,376
+20,369,2753,379450,jharkhand,saraikela kharsawan,saraikela,dharamdiha,dharamdiha,533,25,190
+20,369,2753,379452,jharkhand,saraikela kharsawan,saraikela,kushnupur,kushnupur,329,0,299
+20,369,2753,379453,jharkhand,saraikela kharsawan,saraikela,noadihi,noadihi,269,71,198
+20,369,2753,379454,jharkhand,saraikela kharsawan,saraikela,jhaliaposi,jhaliaposi,196,1,149
+20,369,2753,379455,jharkhand,saraikela kharsawan,saraikela,sidadih,sidadih,417,0,411
+20,369,2753,379456,jharkhand,saraikela kharsawan,saraikela,mirgi,mirgi,732,25,184
+20,369,2753,379457,jharkhand,saraikela kharsawan,saraikela,soada,soada,445,0,324
+20,369,2753,379458,jharkhand,saraikela kharsawan,saraikela,bara bana,bara bana,594,0,594
+20,369,2753,379459,jharkhand,saraikela kharsawan,saraikela,sijudih,sijudih,527,0,197
+20,369,2753,379460,jharkhand,saraikela kharsawan,saraikela,murkum,murkum,1234,87,928
+20,369,2753,379461,jharkhand,saraikela kharsawan,saraikela,kope,kope,300,0,292
+20,369,2753,379462,jharkhand,saraikela kharsawan,saraikela,,sini,6382,928,515
+20,369,2753,801802,jharkhand,saraikela kharsawan,saraikela,,seraikela,14252,921,2070
+20,369,2754,379463,jharkhand,saraikela kharsawan,gobindpur rajnagar,chorbandha,chorbandha,399,0,178
+20,369,2754,379464,jharkhand,saraikela kharsawan,gobindpur rajnagar,gopalpur,gopalpur,294,0,269
+20,369,2754,379465,jharkhand,saraikela kharsawan,gobindpur rajnagar,jota,jota,526,0,513
+20,369,2754,379467,jharkhand,saraikela kharsawan,gobindpur rajnagar,tipangtanr,tipangtanr,47,0,0
+20,369,2754,379468,jharkhand,saraikela kharsawan,gobindpur rajnagar,mundakati,mundakati,319,0,105
+20,369,2754,379469,jharkhand,saraikela kharsawan,gobindpur rajnagar,bharatpur,bharatpur,639,20,129
+20,369,2754,379470,jharkhand,saraikela kharsawan,gobindpur rajnagar,bara kunabera,bara kunabera,1232,29,212
+20,369,2754,379471,jharkhand,saraikela kharsawan,gobindpur rajnagar,chota kunabera,chota kunabera,617,0,560
+20,369,2754,379472,jharkhand,saraikela kharsawan,gobindpur rajnagar,majgaon,majgaon,201,0,201
+20,369,2754,379473,jharkhand,saraikela kharsawan,gobindpur rajnagar,bisrampur,bisrampur,427,0,425
+20,369,2754,379474,jharkhand,saraikela kharsawan,gobindpur rajnagar,bidri,bidri,714,0,498
+20,369,2754,379475,jharkhand,saraikela kharsawan,gobindpur rajnagar,batarbera,batarbera,847,0,593
+20,369,2754,379476,jharkhand,saraikela kharsawan,gobindpur rajnagar,kendmundi,kendmundi,987,0,292
+20,369,2754,379477,jharkhand,saraikela kharsawan,gobindpur rajnagar,bend kalsai,bend kalsai,718,0,309
+20,369,2754,379478,jharkhand,saraikela kharsawan,gobindpur rajnagar,balarampur,balarampur,580,0,498
+20,369,2754,379479,jharkhand,saraikela kharsawan,gobindpur rajnagar,gangadihi,gangadihi,277,0,0
+20,369,2754,379480,jharkhand,saraikela kharsawan,gobindpur rajnagar,tuibasa,tuibasa,564,0,496
+20,369,2754,379481,jharkhand,saraikela kharsawan,gobindpur rajnagar,sosodih,sosodih,528,34,456
+20,369,2754,379482,jharkhand,saraikela kharsawan,gobindpur rajnagar,gengeruri,gengeruri,1366,8,92
+20,369,2754,379483,jharkhand,saraikela kharsawan,gobindpur rajnagar,khair kocha,khair kocha,91,0,0
+20,369,2754,379484,jharkhand,saraikela kharsawan,gobindpur rajnagar,bana,bana,1161,0,402
+20,369,2754,379485,jharkhand,saraikela kharsawan,gobindpur rajnagar,tengrani,tengrani,1262,12,525
+20,369,2754,379486,jharkhand,saraikela kharsawan,gobindpur rajnagar,kolabaria,kolabaria,865,12,152
+20,369,2754,379487,jharkhand,saraikela kharsawan,gobindpur rajnagar,chhelkani,chhelkani,385,7,138
+20,369,2754,379488,jharkhand,saraikela kharsawan,gobindpur rajnagar,chapra,chapra,732,0,429
+20,369,2754,379489,jharkhand,saraikela kharsawan,gobindpur rajnagar,dumardiha,dumardiha,1006,39,213
+20,369,2754,379490,jharkhand,saraikela kharsawan,gobindpur rajnagar,burudih,burudih,185,17,52
+20,369,2754,379491,jharkhand,saraikela kharsawan,gobindpur rajnagar,bikrampur,bikrampur,338,4,76
+20,369,2754,379492,jharkhand,saraikela kharsawan,gobindpur rajnagar,saragchira,saragchira,499,0,32
+20,369,2754,379493,jharkhand,saraikela kharsawan,gobindpur rajnagar,haumanada,haumanada,489,0,60
+20,369,2754,379494,jharkhand,saraikela kharsawan,gobindpur rajnagar,barakanki,barakanki,674,79,25
+20,369,2754,379495,jharkhand,saraikela kharsawan,gobindpur rajnagar,bhalubasa,bhalubasa,413,0,19
+20,369,2754,379496,jharkhand,saraikela kharsawan,gobindpur rajnagar,chhota khiri,chhota khiri,767,29,97
+20,369,2754,379497,jharkhand,saraikela kharsawan,gobindpur rajnagar,sidadih,sidadih,421,0,0
+20,369,2754,379498,jharkhand,saraikela kharsawan,gobindpur rajnagar,bara khiri,bara khiri,631,63,220
+20,369,2754,379499,jharkhand,saraikela kharsawan,gobindpur rajnagar,baljori,baljori,370,0,68
+20,369,2754,379500,jharkhand,saraikela kharsawan,gobindpur rajnagar,baramtalia,baramtalia,451,0,24
+20,369,2754,379501,jharkhand,saraikela kharsawan,gobindpur rajnagar,bankhairbani,bankhairbani,648,0,578
+20,369,2754,379502,jharkhand,saraikela kharsawan,gobindpur rajnagar,bera kudar,bera kudar,443,0,285
+20,369,2754,379503,jharkhand,saraikela kharsawan,gobindpur rajnagar,matkumbera,matkumbera,1183,0,1035
+20,369,2754,379504,jharkhand,saraikela kharsawan,gobindpur rajnagar,padnam sahi,padnam sahi,409,0,172
+20,369,2754,379505,jharkhand,saraikela kharsawan,gobindpur rajnagar,sosomuli,sosomuli,878,41,87
+20,369,2754,379506,jharkhand,saraikela kharsawan,gobindpur rajnagar,salbani,salbani,280,0,31
+20,369,2754,379507,jharkhand,saraikela kharsawan,gobindpur rajnagar,tangarjora,tangarjora,894,17,201
+20,369,2754,379508,jharkhand,saraikela kharsawan,gobindpur rajnagar,kesar sara,kesar sara,656,0,619
+20,369,2754,379509,jharkhand,saraikela kharsawan,gobindpur rajnagar,lakhiposi,lakhiposi,663,0,590
+20,369,2754,379510,jharkhand,saraikela kharsawan,gobindpur rajnagar,paharpur,paharpur,662,0,103
+20,369,2754,379511,jharkhand,saraikela kharsawan,gobindpur rajnagar,tumung,tumung,1062,5,141
+20,369,2754,379512,jharkhand,saraikela kharsawan,gobindpur rajnagar,antusahi,antusahi,630,0,217
+20,369,2754,379513,jharkhand,saraikela kharsawan,gobindpur rajnagar,nagadi,nagadi,329,35,77
+20,369,2754,379514,jharkhand,saraikela kharsawan,gobindpur rajnagar,chaliama,chaliama,754,90,35
+20,369,2754,379515,jharkhand,saraikela kharsawan,gobindpur rajnagar,batujhar,batujhar,376,0,0
+20,369,2754,379516,jharkhand,saraikela kharsawan,gobindpur rajnagar,barsasai,barsasai,216,0,155
+20,369,2754,379517,jharkhand,saraikela kharsawan,gobindpur rajnagar,gumdipani,gumdipani,65,0,65
+20,369,2754,379518,jharkhand,saraikela kharsawan,gobindpur rajnagar,bhuyanachna,bhuyanachna,805,0,71
+20,369,2754,379519,jharkhand,saraikela kharsawan,gobindpur rajnagar,mahesh kudar,mahesh kudar,674,0,363
+20,369,2754,379520,jharkhand,saraikela kharsawan,gobindpur rajnagar,bongadandu,bongadandu,439,0,439
+20,369,2754,379521,jharkhand,saraikela kharsawan,gobindpur rajnagar,bandi,bandi,88,0,88
+20,369,2754,379522,jharkhand,saraikela kharsawan,gobindpur rajnagar,gopinathpur,gopinathpur,464,53,0
+20,369,2754,379523,jharkhand,saraikela kharsawan,gobindpur rajnagar,adarhatu,adarhatu,191,0,13
+20,369,2754,379524,jharkhand,saraikela kharsawan,gobindpur rajnagar,ranjor,ranjor,511,13,177
+20,369,2754,379525,jharkhand,saraikela kharsawan,gobindpur rajnagar,chhota kanki,chhota kanki,299,0,54
+20,369,2754,379527,jharkhand,saraikela kharsawan,gobindpur rajnagar,kuorda,kuorda,730,132,140
+20,369,2754,379528,jharkhand,saraikela kharsawan,gobindpur rajnagar,sanjar,sanjar,624,0,438
+20,369,2754,379529,jharkhand,saraikela kharsawan,gobindpur rajnagar,lakshmiposi,lakshmiposi,760,0,157
+20,369,2754,379530,jharkhand,saraikela kharsawan,gobindpur rajnagar,lakshmipur,lakshmipur,554,0,289
+20,369,2754,379531,jharkhand,saraikela kharsawan,gobindpur rajnagar,nichintpur,nichintpur,273,0,172
+20,369,2754,379532,jharkhand,saraikela kharsawan,gobindpur rajnagar,muhuldiha,muhuldiha,93,0,93
+20,369,2754,379533,jharkhand,saraikela kharsawan,gobindpur rajnagar,bankati,bankati,288,0,287
+20,369,2754,379534,jharkhand,saraikela kharsawan,gobindpur rajnagar,asua,asua,500,0,290
+20,369,2754,379535,jharkhand,saraikela kharsawan,gobindpur rajnagar,baridih,baridih,272,0,67
+20,369,2754,379536,jharkhand,saraikela kharsawan,gobindpur rajnagar,bara dholadih,bara dholadih,550,94,119
+20,369,2754,379537,jharkhand,saraikela kharsawan,gobindpur rajnagar,ranigunj,ranigunj,161,0,105
+20,369,2754,379538,jharkhand,saraikela kharsawan,gobindpur rajnagar,chota dholadih,chota dholadih,445,0,158
+20,369,2754,379539,jharkhand,saraikela kharsawan,gobindpur rajnagar,chheria pahari,chheria pahari,511,0,487
+20,369,2754,379540,jharkhand,saraikela kharsawan,gobindpur rajnagar,kendmuri,kendmuri,327,0,189
+20,369,2754,379541,jharkhand,saraikela kharsawan,gobindpur rajnagar,hakasara,hakasara,308,0,144
+20,369,2754,379542,jharkhand,saraikela kharsawan,gobindpur rajnagar,gura,gura,638,0,561
+20,369,2754,379543,jharkhand,saraikela kharsawan,gobindpur rajnagar,jarkan,jarkan,638,0,615
+20,369,2754,379544,jharkhand,saraikela kharsawan,gobindpur rajnagar,tentla,tentla,287,0,113
+20,369,2754,379545,jharkhand,saraikela kharsawan,gobindpur rajnagar,tentidih,tentidih,817,0,170
+20,369,2754,379546,jharkhand,saraikela kharsawan,gobindpur rajnagar,kamalpur,kamalpur,454,0,0
+20,369,2754,379547,jharkhand,saraikela kharsawan,gobindpur rajnagar,sobhapur,sobhapur,825,0,290
+20,369,2754,379548,jharkhand,saraikela kharsawan,gobindpur rajnagar,nayasai,nayasai,277,0,52
+20,369,2754,379549,jharkhand,saraikela kharsawan,gobindpur rajnagar,dandu,dandu,1039,207,576
+20,369,2754,379550,jharkhand,saraikela kharsawan,gobindpur rajnagar,khairbani,khairbani,514,0,351
+20,369,2754,379551,jharkhand,saraikela kharsawan,gobindpur rajnagar,pachrikutung,pachrikutung,312,0,0
+20,369,2754,379552,jharkhand,saraikela kharsawan,gobindpur rajnagar,rupanachra,rupanachra,608,1,179
+20,369,2754,379553,jharkhand,saraikela kharsawan,gobindpur rajnagar,edal,edal,1681,84,185
+20,369,2754,379554,jharkhand,saraikela kharsawan,gobindpur rajnagar,natairuri,natairuri,630,20,108
+20,369,2754,379555,jharkhand,saraikela kharsawan,gobindpur rajnagar,nayadih,nayadih,239,0,232
+20,369,2754,379556,jharkhand,saraikela kharsawan,gobindpur rajnagar,dumardiha,dumardiha,164,0,0
+20,369,2754,379557,jharkhand,saraikela kharsawan,gobindpur rajnagar,sonardi,sonardi,624,0,63
+20,369,2754,379558,jharkhand,saraikela kharsawan,gobindpur rajnagar,hesal,hesal,1730,21,12
+20,369,2754,379559,jharkhand,saraikela kharsawan,gobindpur rajnagar,bamankutung,bamankutung,457,34,116
+20,369,2754,379560,jharkhand,saraikela kharsawan,gobindpur rajnagar,golokutung,golokutung,528,0,219
+20,369,2754,379561,jharkhand,saraikela kharsawan,gobindpur rajnagar,chota sijulata,chota sijulata,248,72,0
+20,369,2754,379562,jharkhand,saraikela kharsawan,gobindpur rajnagar,khokro,khokro,799,0,544
+20,369,2754,379563,jharkhand,saraikela kharsawan,gobindpur rajnagar,bankati,bankati,909,0,41
+20,369,2754,379564,jharkhand,saraikela kharsawan,gobindpur rajnagar,gobindpur,gobindpur,1577,24,965
+20,369,2754,379565,jharkhand,saraikela kharsawan,gobindpur rajnagar,amlatala,amlatala,542,0,537
+20,369,2754,379566,jharkhand,saraikela kharsawan,gobindpur rajnagar,pandugiti,pandugiti,766,0,736
+20,369,2754,379567,jharkhand,saraikela kharsawan,gobindpur rajnagar,baghraisai,baghraisai,453,0,353
+20,369,2754,379568,jharkhand,saraikela kharsawan,gobindpur rajnagar,bariasai,bariasai,369,52,316
+20,369,2754,379569,jharkhand,saraikela kharsawan,gobindpur rajnagar,kushnopur,kushnopur,1025,189,17
+20,369,2754,379570,jharkhand,saraikela kharsawan,gobindpur rajnagar,kurma,kurma,609,0,603
+20,369,2754,379571,jharkhand,saraikela kharsawan,gobindpur rajnagar,jogitopa,jogitopa,173,0,0
+20,369,2754,379573,jharkhand,saraikela kharsawan,gobindpur rajnagar,bara paharpur,bara paharpur,258,0,248
+20,369,2754,379574,jharkhand,saraikela kharsawan,gobindpur rajnagar,chhota paharpur,chhota paharpur,505,0,474
+20,369,2754,379575,jharkhand,saraikela kharsawan,gobindpur rajnagar,sarangpos,sarangpos,282,0,272
+20,369,2754,379576,jharkhand,saraikela kharsawan,gobindpur rajnagar,madanasai,madanasai,359,0,275
+20,369,2754,379577,jharkhand,saraikela kharsawan,gobindpur rajnagar,magarkola,magarkola,469,0,34
+20,369,2754,379578,jharkhand,saraikela kharsawan,gobindpur rajnagar,namibera,namibera,585,0,484
+20,369,2754,379579,jharkhand,saraikela kharsawan,gobindpur rajnagar,changua,changua,362,0,0
+20,369,2754,379581,jharkhand,saraikela kharsawan,gobindpur rajnagar,murumdih,murumdih,769,0,457
+20,369,2754,379582,jharkhand,saraikela kharsawan,gobindpur rajnagar,rajnagar,rajnagar,1806,264,544
+20,369,2754,379583,jharkhand,saraikela kharsawan,gobindpur rajnagar,hensra,hensra,148,0,145
+20,369,2754,379584,jharkhand,saraikela kharsawan,gobindpur rajnagar,muriapara,muriapara,662,11,177
+20,369,2754,379585,jharkhand,saraikela kharsawan,gobindpur rajnagar,gangdesai,gangdesai,1177,9,1033
+20,369,2754,379586,jharkhand,saraikela kharsawan,gobindpur rajnagar,majgaon,majgaon,189,0,189
+20,369,2754,379587,jharkhand,saraikela kharsawan,gobindpur rajnagar,gamaria,gamaria,978,2,545
+20,369,2754,379588,jharkhand,saraikela kharsawan,gobindpur rajnagar,karko,karko,341,0,340
+20,369,2754,379589,jharkhand,saraikela kharsawan,gobindpur rajnagar,solgaria,solgaria,640,9,526
+20,369,2754,379590,jharkhand,saraikela kharsawan,gobindpur rajnagar,rutudih,rutudih,707,0,84
+20,369,2754,379591,jharkhand,saraikela kharsawan,gobindpur rajnagar,urughutu,urughutu,492,0,143
+20,369,2754,379592,jharkhand,saraikela kharsawan,gobindpur rajnagar,bara sijulata,bara sijulata,900,0,149
+20,369,2754,379593,jharkhand,saraikela kharsawan,gobindpur rajnagar,patahesal,patahesal,879,144,13
+20,369,2754,379594,jharkhand,saraikela kharsawan,gobindpur rajnagar,dangardiha,dangardiha,521,0,69
+20,369,2754,379595,jharkhand,saraikela kharsawan,gobindpur rajnagar,gobardhan,gobardhan,887,123,578
+20,369,2754,379596,jharkhand,saraikela kharsawan,gobindpur rajnagar,rampur,rampur,300,0,297
+20,369,2754,379597,jharkhand,saraikela kharsawan,gobindpur rajnagar,phuphundi,phuphundi,200,0,200
+20,369,2754,379598,jharkhand,saraikela kharsawan,gobindpur rajnagar,muchiasai,muchiasai,155,0,120
+20,369,2754,379599,jharkhand,saraikela kharsawan,gobindpur rajnagar,itapokhar,itapokhar,358,0,358
+20,369,2754,379600,jharkhand,saraikela kharsawan,gobindpur rajnagar,jambani,jambani,1412,1,239
+20,369,2754,379601,jharkhand,saraikela kharsawan,gobindpur rajnagar,jumal,jumal,1699,15,1541
+20,369,2754,379602,jharkhand,saraikela kharsawan,gobindpur rajnagar,teasara,teasara,710,32,510
+20,369,2754,379603,jharkhand,saraikela kharsawan,gobindpur rajnagar,chhota kadal,chhota kadal,811,19,318
+20,369,2754,379604,jharkhand,saraikela kharsawan,gobindpur rajnagar,bara kadal,bara kadal,1192,4,543
+20,369,2754,379606,jharkhand,saraikela kharsawan,gobindpur rajnagar,ichamara,ichamara,145,0,129
+20,369,2754,379607,jharkhand,saraikela kharsawan,gobindpur rajnagar,rora,rora,931,0,828
+20,369,2754,379608,jharkhand,saraikela kharsawan,gobindpur rajnagar,chadri,chadri,822,37,313
+20,369,2754,379609,jharkhand,saraikela kharsawan,gobindpur rajnagar,nauka,nauka,421,0,119
+20,369,2754,379610,jharkhand,saraikela kharsawan,gobindpur rajnagar,gajidih,gajidih,950,35,538
+20,369,2754,379611,jharkhand,saraikela kharsawan,gobindpur rajnagar,kalajharna,kalajharna,1157,0,515
+20,369,2754,379613,jharkhand,saraikela kharsawan,gobindpur rajnagar,maharajganj,maharajganj,375,0,143
+20,369,2754,379614,jharkhand,saraikela kharsawan,gobindpur rajnagar,khandadera,khandadera,181,0,181
+20,369,2754,379615,jharkhand,saraikela kharsawan,gobindpur rajnagar,kesargaria,kesargaria,235,0,235
+20,369,2754,379616,jharkhand,saraikela kharsawan,gobindpur rajnagar,kotarichara,kotarichara,250,0,214
+20,369,2754,379617,jharkhand,saraikela kharsawan,gobindpur rajnagar,bahadurganj,bahadurganj,132,0,132
+20,369,2754,379619,jharkhand,saraikela kharsawan,gobindpur rajnagar,bandu,bandu,829,38,754
+20,369,2754,379620,jharkhand,saraikela kharsawan,gobindpur rajnagar,patakocha,patakocha,432,0,372
+20,369,2754,379621,jharkhand,saraikela kharsawan,gobindpur rajnagar,rabankocha,rabankocha,322,0,321
+20,369,2754,379622,jharkhand,saraikela kharsawan,gobindpur rajnagar,burisiring,burisiring,338,0,317
+20,369,2754,379623,jharkhand,saraikela kharsawan,gobindpur rajnagar,richituka,richituka,631,0,545
+20,369,2754,379624,jharkhand,saraikela kharsawan,gobindpur rajnagar,barubera,barubera,324,0,228
+20,369,2754,379625,jharkhand,saraikela kharsawan,gobindpur rajnagar,letoteril,letoteril,1035,85,269
+20,369,2754,379626,jharkhand,saraikela kharsawan,gobindpur rajnagar,chakradharpur,chakradharpur,398,11,73
+20,369,2754,379627,jharkhand,saraikela kharsawan,gobindpur rajnagar,dubrajpur,dubrajpur,305,0,252
+20,369,2754,379628,jharkhand,saraikela kharsawan,gobindpur rajnagar,chaunradih,chaunradih,508,0,477
+20,369,2754,379629,jharkhand,saraikela kharsawan,gobindpur rajnagar,hanumatbera,hanumatbera,644,0,644
+20,369,2754,379630,jharkhand,saraikela kharsawan,gobindpur rajnagar,phuljhari,phuljhari,239,0,234
+20,369,2754,379632,jharkhand,saraikela kharsawan,gobindpur rajnagar,radhanagar,radhanagar,173,0,62
+20,369,2754,379633,jharkhand,saraikela kharsawan,gobindpur rajnagar,jamdih,jamdih,824,9,761
+20,369,2754,379634,jharkhand,saraikela kharsawan,gobindpur rajnagar,suriaposi,suriaposi,383,0,334
+20,369,2754,379635,jharkhand,saraikela kharsawan,gobindpur rajnagar,hatnabera,hatnabera,583,0,323
+20,369,2754,379636,jharkhand,saraikela kharsawan,gobindpur rajnagar,sursi,sursi,619,5,602
+20,369,2754,379637,jharkhand,saraikela kharsawan,gobindpur rajnagar,khairbani,khairbani,558,14,517
+20,369,2754,379638,jharkhand,saraikela kharsawan,gobindpur rajnagar,barhai,barhai,529,17,7
+20,369,2754,379639,jharkhand,saraikela kharsawan,gobindpur rajnagar,bhursa,bhursa,457,0,453
+20,369,2754,379640,jharkhand,saraikela kharsawan,gobindpur rajnagar,burudih,burudih,418,13,403
+20,369,2754,379641,jharkhand,saraikela kharsawan,gobindpur rajnagar,utidih,utidih,698,0,406
+20,369,2754,379642,jharkhand,saraikela kharsawan,gobindpur rajnagar,chota bana,chota bana,517,0,384
+20,369,2754,379643,jharkhand,saraikela kharsawan,gobindpur rajnagar,dholadih,dholadih,631,0,620
+20,369,2754,379644,jharkhand,saraikela kharsawan,gobindpur rajnagar,puha,puha,482,0,466
+20,369,2754,379645,jharkhand,saraikela kharsawan,gobindpur rajnagar,katanga,katanga,982,0,758
+20,369,2754,379646,jharkhand,saraikela kharsawan,gobindpur rajnagar,kerki,kerki,328,0,71
+20,369,2754,379647,jharkhand,saraikela kharsawan,gobindpur rajnagar,gangidih,gangidih,203,0,158
+20,369,2754,379648,jharkhand,saraikela kharsawan,gobindpur rajnagar,bandna,bandna,898,0,326
+20,369,2754,379649,jharkhand,saraikela kharsawan,gobindpur rajnagar,chokay,chokay,505,0,224
+20,369,2754,379651,jharkhand,saraikela kharsawan,gobindpur rajnagar,komdih,komdih,660,0,596
+20,369,2754,379652,jharkhand,saraikela kharsawan,gobindpur rajnagar,rola,rola,619,34,568
+20,369,2754,379653,jharkhand,saraikela kharsawan,gobindpur rajnagar,somar sai,somar sai,93,0,93
+20,369,2754,379654,jharkhand,saraikela kharsawan,gobindpur rajnagar,bajadih,bajadih,576,0,575
+20,369,2754,379655,jharkhand,saraikela kharsawan,gobindpur rajnagar,arjunbila,arjunbila,613,0,540
+20,369,2754,379656,jharkhand,saraikela kharsawan,gobindpur rajnagar,pukhuria,pukhuria,584,0,550
+20,369,2754,379657,jharkhand,saraikela kharsawan,gobindpur rajnagar,raghunathpur,raghunathpur,333,158,63
+20,369,2754,379658,jharkhand,saraikela kharsawan,gobindpur rajnagar,kumrasol,kumrasol,428,0,398
+20,369,2754,379659,jharkhand,saraikela kharsawan,gobindpur rajnagar,uparsira,uparsira,700,0,606
+20,369,2754,379660,jharkhand,saraikela kharsawan,gobindpur rajnagar,arahasa,arahasa,331,0,322
+20,369,2754,379661,jharkhand,saraikela kharsawan,gobindpur rajnagar,kamarbasa,kamarbasa,607,0,472
+20,369,2754,379662,jharkhand,saraikela kharsawan,gobindpur rajnagar,keshargaria,keshargaria,764,0,345
+20,369,2754,379663,jharkhand,saraikela kharsawan,gobindpur rajnagar,bhurkuli,bhurkuli,387,0,316
+20,369,2754,379664,jharkhand,saraikela kharsawan,gobindpur rajnagar,kashida,kashida,437,0,360
+20,369,2754,379665,jharkhand,saraikela kharsawan,gobindpur rajnagar,bardih,bardih,641,5,487
+20,369,2754,379666,jharkhand,saraikela kharsawan,gobindpur rajnagar,dhuripada,dhuripada,1347,0,1287
+20,369,2754,379667,jharkhand,saraikela kharsawan,gobindpur rajnagar,jonbani,jonbani,860,0,801
+20,369,2754,379668,jharkhand,saraikela kharsawan,gobindpur rajnagar,dhanudihi,dhanudihi,445,0,445
+20,369,2754,379669,jharkhand,saraikela kharsawan,gobindpur rajnagar,atodih,atodih,290,0,116
+20,369,2754,379670,jharkhand,saraikela kharsawan,gobindpur rajnagar,rangamatia,rangamatia,219,0,212
+20,369,2754,379671,jharkhand,saraikela kharsawan,gobindpur rajnagar,joddiha,joddiha,685,0,344
+20,369,2754,379672,jharkhand,saraikela kharsawan,gobindpur rajnagar,barhai,barhai,241,0,227
+20,369,2754,379673,jharkhand,saraikela kharsawan,gobindpur rajnagar,patka,patka,706,0,218
+20,369,2754,379674,jharkhand,saraikela kharsawan,gobindpur rajnagar,telai,telai,555,8,122
+20,369,2754,379675,jharkhand,saraikela kharsawan,gobindpur rajnagar,chailma,chailma,503,13,220
+20,369,2754,379676,jharkhand,saraikela kharsawan,gobindpur rajnagar,bankasai,bankasai,158,0,30
+20,369,2754,379677,jharkhand,saraikela kharsawan,gobindpur rajnagar,lodha,lodha,480,0,142
+20,369,2754,379678,jharkhand,saraikela kharsawan,gobindpur rajnagar,soso,soso,516,0,138
+20,369,2754,379679,jharkhand,saraikela kharsawan,gobindpur rajnagar,kuju,kuju,1225,0,483
+20,369,2754,379680,jharkhand,saraikela kharsawan,gobindpur rajnagar,rengalbera,rengalbera,147,20,70
+20,369,2754,379681,jharkhand,saraikela kharsawan,gobindpur rajnagar,icha,icha,904,47,0
+20,369,2754,379684,jharkhand,saraikela kharsawan,gobindpur rajnagar,dehuridih,dehuridih,217,0,111
+20,369,2754,379685,jharkhand,saraikela kharsawan,gobindpur rajnagar,hensal,hensal,260,0,215
+20,369,2754,379686,jharkhand,saraikela kharsawan,gobindpur rajnagar,baddihi,baddihi,134,0,134
+20,369,2754,379687,jharkhand,saraikela kharsawan,gobindpur rajnagar,bita,bita,940,0,740
+20,369,2754,379688,jharkhand,saraikela kharsawan,gobindpur rajnagar,bisrampur,bisrampur,579,0,495
+20,369,2754,379689,jharkhand,saraikela kharsawan,gobindpur rajnagar,amla tala,amla tala,488,0,116
+20,369,2754,379690,jharkhand,saraikela kharsawan,gobindpur rajnagar,bhalupani,bhalupani,608,97,270
+20,369,2754,379691,jharkhand,saraikela kharsawan,gobindpur rajnagar,jhalak,jhalak,665,1,523
+20,369,2754,379692,jharkhand,saraikela kharsawan,gobindpur rajnagar,seresai,seresai,378,0,191
+20,369,2754,379693,jharkhand,saraikela kharsawan,gobindpur rajnagar,sitani,sitani,748,0,633
+20,369,2754,379694,jharkhand,saraikela kharsawan,gobindpur rajnagar,rajabasa,rajabasa,517,11,366
+20,369,2754,379695,jharkhand,saraikela kharsawan,gobindpur rajnagar,baragidi,baragidi,666,35,399
+20,369,2754,379696,jharkhand,saraikela kharsawan,gobindpur rajnagar,shyam sunderpur,shyam sunderpur,681,6,453
+20,369,2754,379697,jharkhand,saraikela kharsawan,gobindpur rajnagar,chotagidi,chotagidi,368,0,357
+20,369,2754,379698,jharkhand,saraikela kharsawan,gobindpur rajnagar,seni,seni,583,0,530
+20,369,2754,379699,jharkhand,saraikela kharsawan,gobindpur rajnagar,hatisiring,hatisiring,334,0,249
+20,369,2754,379700,jharkhand,saraikela kharsawan,gobindpur rajnagar,dholadih,dholadih,354,0,320
+20,369,2754,379701,jharkhand,saraikela kharsawan,gobindpur rajnagar,jadudih,jadudih,485,0,183
+20,369,2754,379702,jharkhand,saraikela kharsawan,gobindpur rajnagar,kita,kita,595,0,92
+20,369,2754,379703,jharkhand,saraikela kharsawan,gobindpur rajnagar,songria,songria,365,0,363
+20,369,2754,379704,jharkhand,saraikela kharsawan,gobindpur rajnagar,senaposhi,senaposhi,555,0,547
+20,369,2754,379705,jharkhand,saraikela kharsawan,gobindpur rajnagar,gulia,gulia,581,0,547
+20,369,2754,379706,jharkhand,saraikela kharsawan,gobindpur rajnagar,herma,herma,865,0,440
+20,369,2754,379707,jharkhand,saraikela kharsawan,gobindpur rajnagar,sarjamdih,sarjamdih,123,0,122
+20,369,2754,379708,jharkhand,saraikela kharsawan,gobindpur rajnagar,mahuldiha,mahuldiha,230,0,50
+20,369,2754,379709,jharkhand,saraikela kharsawan,gobindpur rajnagar,chandankshiri,chandankshiri,494,0,211
+20,369,2754,379710,jharkhand,saraikela kharsawan,gobindpur rajnagar,nimdih,nimdih,319,10,20
+20,369,2754,379711,jharkhand,saraikela kharsawan,gobindpur rajnagar,kerugot,kerugot,394,18,301
+20,369,2754,379712,jharkhand,saraikela kharsawan,gobindpur rajnagar,dangardiha,dangardiha,223,0,219
+20,369,2754,379713,jharkhand,saraikela kharsawan,gobindpur rajnagar,majgaon,majgaon,103,0,103
+20,369,2754,379714,jharkhand,saraikela kharsawan,gobindpur rajnagar,balidih,balidih,432,0,306
+20,369,2754,379715,jharkhand,saraikela kharsawan,gobindpur rajnagar,bandadih,bandadih,776,21,211
+20,369,2754,379716,jharkhand,saraikela kharsawan,gobindpur rajnagar,gondamara,gondamara,342,0,332
