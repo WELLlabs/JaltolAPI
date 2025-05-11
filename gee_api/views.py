@@ -354,7 +354,7 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
             # Shrub/Scrub: 10 -> 12
             # Remap Bhuvan classes to match our visualization classes
             valuesToKeep = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-            targetValues = [0, 8, 10, 10, 10, 8, 6, 6, 6, 12, 0, 12, 8, 0, 0, 0, 0, 0, 0]
+            targetValues = [0, 8, 8, 8, 10, 0, 6, 6, 6, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             remappedImage = image.select('b1').remap(valuesToKeep, targetValues, 0)
             
             # Create mask to only show the classes we want (6, 8, 10, 12)
@@ -707,45 +707,23 @@ def custom_polygon_comparison(request: HttpRequest) -> JsonResponse:
         )
         
         # Get or find control village
-        try:
-            if control_village_name:
-                # If control village is explicitly specified
-                if ' - ' in control_village_name and not control_village_id:
-                    parts = control_village_name.split(' - ')
-                    control_village_name = parts[0].strip()
-                    if len(parts) > 1:
-                        control_village_id = parts[1].strip()
-                        
-                control_village = village_boundary(
-                    state_name, district_name, subdistrict_name, control_village_name, control_village_id
-                )
-            else:
-                # Find control village automatically using the existing comparison function
-                try:
-                    control_village_feature = compare_village(
-                        state_name, district_name, subdistrict_name, village_name
-                    )
-                    control_village = ee.FeatureCollection([control_village_feature])
-                except Exception as e:
-                    print(f"Error finding control village: {str(e)}")
-                    # Create a default control village using the intervention village boundary with a slight offset
-                    center = intervention_village.geometry().centroid()
-                    offset_point = ee.Geometry.Point([
-                        center.coordinates().get(0).add(0.01),  # Shift slightly east
-                        center.coordinates().get(1).add(0.01)   # Shift slightly north
-                    ])
-                    control_village = ee.FeatureCollection([ee.Feature(offset_point.buffer(1000))])
-                    print("Created fallback control village")
-        except Exception as e:
-            print(f"Error setting up control village: {str(e)}")
-            # Create a default control village as fallback
-            center = intervention_village.geometry().centroid()
-            offset_point = ee.Geometry.Point([
-                center.coordinates().get(0).add(0.01),
-                center.coordinates().get(1).add(0.01)
-            ])
-            control_village = ee.FeatureCollection([ee.Feature(offset_point.buffer(1000))])
-            print("Created fallback control village after exception")
+        if control_village_name:
+            # If control village is explicitly specified
+            if ' - ' in control_village_name and not control_village_id:
+                parts = control_village_name.split(' - ')
+                control_village_name = parts[0].strip()
+                if len(parts) > 1:
+                    control_village_id = parts[1].strip()
+                    
+            control_village = village_boundary(
+                state_name, district_name, subdistrict_name, control_village_name, control_village_id
+            )
+        else:
+            # Find control village automatically using the existing comparison function
+            control_village_feature = compare_village(
+                state_name, district_name, subdistrict_name, village_name
+            )
+            control_village = ee.FeatureCollection([control_village_feature])
         
         # Number of points/circles to generate
         num_points = 10
@@ -754,69 +732,39 @@ def custom_polygon_comparison(request: HttpRequest) -> JsonResponse:
         result = process_custom_polygon(geojson_data, control_village, num_points)
         circles = result['circles']
         
-        try:
-            # Get LULC for analyzing polygon and circles
-            year_int = int(year)
-            
-            # Get LULC for analyzing polygon and circles
-            lulc_image = get_lulc_for_region(
-                year_int, state_name, district_name, intervention_village.geometry().buffer(1000)
-            )
-            
-            # Define LULC class mappings based on the data source
-            if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand']:
-                # Bhuvan LULC classes
-                class_mapping = {
-                    'single_crop': [2, 3, 4],  # Single cropping classes
-                    'double_crop': [5],        # Double cropping classes
-                    'tree_cover': [7, 8, 9]    # Tree cover classes
-                }
-            else:
-                # IndiaSAT/FarmBoundary classes
-                class_mapping = {
-                    'single_crop': [8],        # Single cropping class
-                    'double_crop': [10],       # Double cropping class 
-                    'tree_cover': [6]          # Tree cover class
-                }
-            
-            # Calculate area statistics for the custom polygon
-            try:
-                custom_polygon_stats = lulc_area_stats(
-                    lulc_image, ee.FeatureCollection(geojson_data).geometry(), class_mapping
-                )
-            except Exception as e:
-                print(f"Error calculating polygon stats: {str(e)}")
-                custom_polygon_stats = {
-                    'single_crop': 0,
-                    'double_crop': 0,
-                    'tree_cover': 0
-                }
-            
-            # Calculate area statistics for the circles
-            try:
-                circles_stats = lulc_area_stats(
-                    lulc_image, circles.geometry(), class_mapping
-                )
-            except Exception as e:
-                print(f"Error calculating circle stats: {str(e)}")
-                circles_stats = {
-                    'single_crop': 0,
-                    'double_crop': 0,
-                    'tree_cover': 0
-                }
-        except Exception as e:
-            print(f"Error in LULC processing: {str(e)}")
-            # Provide default statistics when LULC processing fails
-            custom_polygon_stats = {
-                'single_crop': 0,
-                'double_crop': 0,
-                'tree_cover': 0
+        # Get appropriate LULC image based on state/district
+        year_int = int(year)
+        
+        # Get LULC for analyzing polygon and circles
+        lulc_image = get_lulc_for_region(
+            year_int, state_name, district_name, intervention_village.geometry().buffer(1000)
+        )
+        
+        # Define LULC class mappings based on the data source
+        if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+            # Bhuvan LULC classes
+            class_mapping = {
+                'single_crop': [2, 3, 4],  # Single cropping classes
+                'double_crop': [5],        # Double cropping classes
+                'tree_cover': [7, 8, 9]    # Tree cover classes
             }
-            circles_stats = {
-                'single_crop': 0,
-                'double_crop': 0,
-                'tree_cover': 0
+        else:
+            # IndiaSAT/FarmBoundary classes
+            class_mapping = {
+                'single_crop': [8],        # Single cropping class
+                'double_crop': [10],       # Double cropping class 
+                'tree_cover': [6]          # Tree cover class
             }
+        
+        # Calculate area statistics for the custom polygon
+        custom_polygon_stats = lulc_area_stats(
+            lulc_image, ee.FeatureCollection(geojson_data).geometry(), class_mapping
+        )
+        
+        # Calculate area statistics for the circles
+        circles_stats = lulc_area_stats(
+            lulc_image, circles.geometry(), class_mapping
+        )
         
         # Prepare response with comparison results
         response_data = {
@@ -827,13 +775,12 @@ def custom_polygon_comparison(request: HttpRequest) -> JsonResponse:
                 'crop_stats': custom_polygon_stats
             },
             'control': {
-                'name': control_village_name or 'Generated control area',
-                'id': control_village_id or '',
+                'name': control_village_name or control_village_feature.get('village_na').getInfo(),
+                'id': control_village_id or control_village_feature.get('pc11_tv_id', '').getInfo(),
                 'circles_area_ha': circles.geometry().area().getInfo() / 10000,  # Convert to hectares
                 'radius_meters': result['radius'],
                 'num_circles': num_points,
-                'crop_stats': circles_stats,
-                'circles': circles.getInfo()  # Include the circles GeoJSON
+                'crop_stats': circles_stats
             },
             'year': year
         }
@@ -844,18 +791,4 @@ def custom_polygon_comparison(request: HttpRequest) -> JsonResponse:
         import traceback
         print(f"Error in custom_polygon_comparison: {str(e)}")
         print(traceback.format_exc())
-        return JsonResponse({
-            'error': str(e),
-            'status': 'error but processing attempted',
-            'intervention': {
-                'name': village_name,
-                'custom_polygon_area_ha': 0
-            },
-            'control': {
-                'name': 'Error occurred',
-                'circles_area_ha': 0,
-                'radius_meters': 0,
-                'num_circles': 0,
-                'circles': {"type": "FeatureCollection", "features": []}
-            }
-        }, status=200)  # Return 200 with error information instead of 500
+        return JsonResponse({'error': str(e)}, status=500)
