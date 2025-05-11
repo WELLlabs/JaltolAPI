@@ -154,16 +154,17 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS settings - more explicit configuration
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True  # Try with this set to True temporarily for testing
 CORS_ALLOW_CREDENTIALS = True
+
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-Requested-With']
 
 CORS_ALLOWED_ORIGINS = [
     "https://jaltol.app",
     "https://www.jaltol.app",
-    "http://localhost:3000",  # For local development
-    "http://127.0.0.1:3000",
     "https://app.jaltol.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 # Allow all headers and methods
@@ -177,7 +178,6 @@ CORS_ALLOW_HEADERS = [
     'user-agent',
     'x-csrftoken',
     'x-requested-with',
-    'access-control-allow-origin',
 ]
 
 CORS_ALLOW_METHODS = [
