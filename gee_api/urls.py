@@ -2,7 +2,8 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
     get_boundary_data, get_lulc_raster, get_area_change,
-    get_control_village, get_rainfall_data, health_check
+    get_control_village, get_rainfall_data, health_check,
+    custom_polygon_comparison
 )
 
 from django.urls import path
@@ -42,6 +43,10 @@ urlpatterns = [
         'health/',
         health_check,
         name='health_check'),
+     path(
+        'custom_polygon_comparison/',
+        custom_polygon_comparison,
+        name='custom_polygon_comparison'),
     
     path('districts/<int:state_id>/', views.district_list, name='district_list'),
     path('subdistricts/<int:district_id>/', views.subdistrict_list, name='subdistrict_list'),

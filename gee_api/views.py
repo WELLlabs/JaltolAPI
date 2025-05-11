@@ -7,6 +7,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .constants import ee_assets, shrug_dataset, shrug_fields
 from datetime import datetime
+import json
+from django.views.decorators.csrf import csrf_exempt
 
 
 from .utils import initialize_earth_engine
@@ -20,6 +22,14 @@ from .ee_processing import (
     subdistrict_boundary,
     Bhuvan_lulc
 )
+import ee
+
+from .polygon_processing import (
+    get_lulc_for_region,
+    lulc_area_stats
+)
+
+from .custom_polygon import process_custom_polygon
 import ee
 
 from gee_api.models import State, District, SubDistrict, Village
@@ -345,7 +355,7 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
             # Shrub/Scrub: 10 -> 12
             # Remap Bhuvan classes to match our visualization classes
             valuesToKeep = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-            targetValues = [0, 8, 10, 10, 10, 8, 6, 6, 6, 12, 0, 12, 8, 0, 0, 0, 0, 0, 0]
+            targetValues = [0, 8, 8, 8, 10, 0, 6, 6, 6, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             remappedImage = image.select('b1').remap(valuesToKeep, targetValues, 0)
             
             # Create mask to only show the classes we want (6, 8, 10, 12)
@@ -649,4 +659,195 @@ def get_control_village(request: HttpRequest) -> JsonResponse:
 
         return JsonResponse(geo_json)
     except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+    
+
+@csrf_exempt
+def custom_polygon_comparison(request: HttpRequest) -> JsonResponse:
+    """
+    Process custom polygons uploaded as GeoJSON and compare with generated circles in control village.
+    """
+    ee.Initialize(credentials)
+    
+    # Extract parameters from request
+    state_name = request.POST.get('state_name', '').lower()
+    district_name = request.POST.get('district_name', '').lower()
+    subdistrict_name = request.POST.get('subdistrict_name', '').lower()
+    village_name = request.POST.get('village_name', '').lower()
+    village_id = request.POST.get('village_id', '')
+    control_village_name = request.POST.get('control_village_name', '')
+    control_village_id = request.POST.get('control_village_id', '')
+    year = request.POST.get('year')
+    
+    # Clean up input parameters
+    state_name = state_name.strip().lower()
+    
+    # Clean district name - remove state abbreviation if present
+    if ',' in district_name:
+        district_name = district_name.split(',')[0].strip().lower()
+    else:
+        district_name = district_name.strip().lower()
+    
+    subdistrict_name = subdistrict_name.strip().lower()
+    control_village_name = control_village_name.strip()
+    village_name = village_name.strip()
+    
+    print(f"Using parameters: State={state_name}, District={district_name}, Subdistrict={subdistrict_name}, ControlVillage={control_village_name}")
+    
+    
+    if not all([state_name, district_name, subdistrict_name, village_name, control_village_name, year]):
+        return JsonResponse(
+            {'error': 'Required parameters missing (state, district, subdistrict, village, control_village, year)'}, 
+            status=400
+        )
+    
+    try:
+        # Parse JSON data from request
+        geojson_data = json.loads(request.POST.get('geojson', '{}'))
+        if not geojson_data or 'features' not in geojson_data:
+            return JsonResponse({'error': 'Invalid GeoJSON data'}, status=400)
+        
+        # Clean village name and ID if in combined format
+        if ' - ' in village_name and not village_id:
+            parts = village_name.split(' - ')
+            village_name = parts[0].strip()
+            if len(parts) > 1:
+                village_id = parts[1].strip()
+        
+        # Clean control village name if in format "name - id"
+        if ' - ' in control_village_name and not control_village_id:
+            parts = control_village_name.split(' - ')
+            control_village_name = parts[0].strip()
+            if len(parts) > 1:
+                control_village_id = parts[1].strip()
+        
+        # Get the intervention village boundary
+        intervention_village = village_boundary(
+            state_name, district_name, subdistrict_name, village_name, village_id
+        )
+        
+        try:
+            # Use the imported process_custom_polygon function with proper input validation
+            result = process_custom_polygon(
+                geojson_data,
+                state_name, 
+                district_name,
+                subdistrict_name,
+                control_village_name
+            )
+            
+            # Get LULC image for both the intervention and control areas
+            intervention_geometry = intervention_village.geometry()
+            control_geometry = result['circles'].geometry()
+            
+            # Get LULC image for a region that includes both areas
+            combined_geometry = intervention_geometry.union(control_geometry)
+            
+            # Determine which years to calculate based on the state
+            if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+                # For Bhuvan LULC states, use 2005-2024 excluding 2019
+                year_range = [y for y in range(2005, 2024) if y != 2019]
+            elif district_name.lower() in ['vadodara']:
+                # For Farmboundary districts
+                year_range = range(2017, 2024)
+            else:
+                # For IndiaSAT states
+                year_range = range(2017, 2023)
+            
+            # Define LULC class mappings based on the data source
+            if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+                # Bhuvan LULC classes
+                class_mapping = {
+                    'single_crop': [2, 3, 4],  # Single cropping classes
+                    'double_crop': [5],        # Double cropping classes
+                    'tree_cover': [7, 8, 9]    # Tree cover classes
+                }
+            else:
+                # IndiaSAT/FarmBoundary classes
+                class_mapping = {
+                    'single_crop': [8],        # Single cropping class
+                    'double_crop': [10],       # Double cropping class 
+                    'tree_cover': [6]          # Tree cover class
+                }
+            
+            # Calculate area statistics for multiple years
+            intervention_stats_by_year = {}
+            control_stats_by_year = {}
+            
+            for yr in year_range:
+                try:
+                    # Get LULC image for this year
+                    lulc_image = get_lulc_for_region(
+                        yr, state_name, district_name, combined_geometry
+                    )
+                    
+                    # Calculate area statistics for intervention (input polygon)
+                    intervention_stats = lulc_area_stats(
+                        lulc_image, 
+                        ee.FeatureCollection(geojson_data).geometry(), 
+                        class_mapping
+                    )
+                    
+                    # Calculate area statistics for control (circles)
+                    control_stats = lulc_area_stats(
+                        lulc_image, 
+                        result['circles'].geometry(), 
+                        class_mapping
+                    )
+                    
+                    intervention_stats_by_year[str(yr)] = intervention_stats
+                    control_stats_by_year[str(yr)] = control_stats
+                    
+                except Exception as e:
+                    print(f"Error processing year {yr}: {str(e)}")
+                    # Continue with other years if one fails
+            
+            # Prepare simplified circles data (just summary instead of full geometry)
+            simplified_circles = {
+                "count": result['circles'].size().getInfo(),
+                "radius_meters": result['radius'],
+                "total_area_ha": result['control_area'] / 10000,
+                "center_points": [
+                    {
+                        "id": feature['properties']['circle_id'],
+                        "center_x": feature['properties']['center_x'],
+                        "center_y": feature['properties']['center_y']
+                    } for feature in result['circles'].limit(3).getInfo()['features']  # Just show first 3 as example
+                ]
+            }
+            
+            # Prepare response with comparison results
+            response_data = {
+                'intervention': {
+                    'name': village_name,
+                    'id': village_id,
+                    'custom_polygon_area_ha': result['polygon_area'] / 10000,  # Convert to hectares
+                    'crop_stats': intervention_stats_by_year,
+                },
+                'control': {
+                    'name': control_village_name,
+                    'id': control_village_id,
+                    'circles_area_ha': result['control_area'] / 10000,  # Convert to hectares
+                    'radius_meters': result['radius'],
+                    'num_circles': 10,  # Hardcoded to match script
+                    'crop_stats': control_stats_by_year,
+                },
+                'selected_year': year,
+                'polygon': geojson_data,
+                'circles_summary': simplified_circles,
+                # Remove full circles GeoJSON to reduce response size
+            }
+            
+            return JsonResponse(response_data)
+            
+        except Exception as e:
+            import traceback
+            print(f"Error in polygon processing: {str(e)}")
+            print(traceback.format_exc())
+            return JsonResponse({'error': f"Error processing polygon: {str(e)}"}, status=500)
+    
+    except Exception as e:
+        import traceback
+        print(f"Error in custom_polygon_comparison: {str(e)}")
+        print(traceback.format_exc())
         return JsonResponse({'error': str(e)}, status=500)
