@@ -44,6 +44,21 @@ credentials = ee.ServiceAccountCredentials(email=email, key_file=key_file)
 ee.Initialize(credentials)
 
 
+def api_root(request):
+    """
+    Root endpoint for the API that returns available endpoints.
+    """
+    return JsonResponse({
+        'message': 'API is running',
+        'endpoints': {
+            'auth': '/api/auth/',
+            'health': '/api/health/',
+            'boundary_data': '/api/get_boundary_data/',
+            'lulc_raster': '/api/get_lulc_raster/',
+            # Add other endpoints here
+        }
+    })
+
 def district_list(request, state_id: int) -> JsonResponse:
     """
     Fetches a list of districts for a given state.
