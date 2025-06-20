@@ -1,7 +1,7 @@
 from typing import Dict, Any
 from venv import logger
 from django.http import HttpResponse, JsonResponse, HttpRequest
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 import ee
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -9,7 +9,9 @@ from .constants import ee_assets, shrug_dataset, shrug_fields
 from datetime import datetime
 import json
 from django.views.decorators.csrf import csrf_exempt
-
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
 
 from .utils import initialize_earth_engine
 from .ee_processing import (
@@ -32,8 +34,8 @@ from .polygon_processing import (
 from .custom_polygon import process_custom_polygon
 import ee
 
-from gee_api.models import State, District, SubDistrict, Village
-from gee_api.serializers import StateSerializer, DistrictSerializer, SubDistrictSerializer, VillageSerializer
+from gee_api.models import State, District, SubDistrict, Village, Project
+from gee_api.serializers import StateSerializer, DistrictSerializer, SubDistrictSerializer, VillageSerializer, ProjectSerializer, ProjectCreateSerializer
 from gee_api.models import District, SubDistrict, Village
 from typing import List, Dict
 
@@ -866,3 +868,155 @@ def custom_polygon_comparison(request: HttpRequest) -> JsonResponse:
         print(f"Error in custom_polygon_comparison: {str(e)}")
         print(traceback.format_exc())
         return JsonResponse({'error': str(e)}, status=500)
+
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def projects_view(request):
+    """
+    Handle project listing and creation
+    """
+    if request.method == 'GET':
+        # Get user's projects
+        projects = Project.objects.filter(owner=request.user)
+        serializer = ProjectSerializer(projects, many=True)
+        return Response({
+            'success': True,
+            'data': serializer.data
+        })
+    
+    elif request.method == 'POST':
+        # Create new project
+        serializer = ProjectCreateSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            project = serializer.save()
+            response_serializer = ProjectSerializer(project)
+            return Response({
+                'success': True,
+                'message': 'Project created successfully',
+                'data': response_serializer.data
+            }, status=status.HTTP_201_CREATED)
+        return Response({
+            'success': False,
+            'message': 'Invalid project data',
+            'errors': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def project_detail_view(request, project_id):
+    """
+    Handle individual project operations
+    """
+    try:
+        project = Project.objects.get(project_id=project_id, owner=request.user)
+    except Project.DoesNotExist:
+        return Response({
+            'success': False,
+            'message': 'Project not found or you do not have permission to access it'
+        }, status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = ProjectSerializer(project)
+        return Response({
+            'success': True,
+            'data': serializer.data
+        })
+    
+    elif request.method == 'PUT':
+        serializer = ProjectCreateSerializer(project, data=request.data, context={'request': request})
+        if serializer.is_valid():
+            updated_project = serializer.save()
+            response_serializer = ProjectSerializer(updated_project)
+            return Response({
+                'success': True,
+                'message': 'Project updated successfully',
+                'data': response_serializer.data
+            })
+        return Response({
+            'success': False,
+            'message': 'Invalid project data',
+            'errors': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        project.delete()
+        return Response({
+            'success': True,
+            'message': 'Project deleted successfully'
+        }, status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def save_project_from_assessment(request):
+    """
+    Save a project from the impact assessment page
+    """
+    try:
+        # Extract data from request
+        data = request.data.copy()
+        
+        # Debug: Print received data
+        print(f"Received project data: {data}")
+        
+        # Ensure the project is owned by the current user
+        data['owner'] = request.user.id
+        
+        # Validate required fields
+        if not data.get('name'):
+            return Response({
+                'success': False,
+                'message': 'Project name is required',
+                'errors': {'name': ['This field is required.']}
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Check if project name already exists for this user
+        existing_project = Project.objects.filter(
+            owner=request.user,
+            name=data.get('name', '')
+        ).first()
+        
+        if existing_project:
+            # Update existing project
+            serializer = ProjectCreateSerializer(
+                existing_project, 
+                data=data, 
+                context={'request': request}
+            )
+        else:
+            # Create new project
+            serializer = ProjectCreateSerializer(
+                data=data, 
+                context={'request': request}
+            )
+        
+        if serializer.is_valid():
+            project = serializer.save()
+            response_serializer = ProjectSerializer(project)
+            return Response({
+                'success': True,
+                'message': 'Project saved successfully',
+                'data': response_serializer.data,
+                'is_update': existing_project is not None
+            }, status=status.HTTP_201_CREATED if not existing_project else status.HTTP_200_OK)
+        
+        # Debug: Print validation errors
+        print(f"Serializer validation errors: {serializer.errors}")
+        
+        return Response({
+            'success': False,
+            'message': 'Invalid project data',
+            'errors': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
+        
+    except Exception as e:
+        # Debug: Print exception details
+        import traceback
+        print(f"Exception in save_project_from_assessment: {str(e)}")
+        print(traceback.format_exc())
+        
+        return Response({
+            'success': False,
+            'message': f'Error saving project: {str(e)}'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

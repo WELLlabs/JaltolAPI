@@ -92,3 +92,75 @@ class Village(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+
+class Project(models.Model):
+    """
+    Model for user-specific projects representing intervention areas.
+    """
+    PROJECT_TYPE_CHOICES = [
+        ('village', 'Village-based'),
+        ('geojson', 'GeoJSON Upload'),
+        ('drawn', 'Drawn Polygons'),
+    ]
+    
+    project_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    project_type = models.CharField(max_length=20, choices=PROJECT_TYPE_CHOICES, default='village')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects')
+    
+    # Project image - base64 encoded image data
+    project_image = models.TextField(blank=True, null=True, help_text="Base64 encoded satellite image")
+    
+    # Intervention details
+    state = models.CharField(max_length=100, blank=True, null=True)
+    district = models.CharField(max_length=100, blank=True, null=True)
+    subdistrict = models.CharField(max_length=100, blank=True, null=True)
+    village = models.CharField(max_length=100, blank=True, null=True)
+    village_id = models.IntegerField(blank=True, null=True)  # pc11_tv_id
+    
+    # Control village details
+    control_state = models.CharField(max_length=100, blank=True, null=True)
+    control_district = models.CharField(max_length=100, blank=True, null=True)
+    control_subdistrict = models.CharField(max_length=100, blank=True, null=True)
+    control_village = models.CharField(max_length=100, blank=True, null=True)
+    control_village_id = models.IntegerField(blank=True, null=True)
+    
+    # Intervention period
+    intervention_start_year = models.IntegerField(blank=True, null=True)
+    intervention_end_year = models.IntegerField(blank=True, null=True)
+    
+    # For GeoJSON projects
+    geojson_data = models.JSONField(blank=True, null=True)
+    
+    # Metadata
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"{self.name} - {self.owner.username}"
+
+    @property
+    def intervention_villages(self):
+        """Return formatted intervention village details"""
+        if self.project_type == 'village':
+            return f"{self.village}, {self.subdistrict}"
+        return "Custom Polygons"
+    
+    @property
+    def control_villages(self):
+        """Return formatted control village details"""
+        if self.control_village:
+            return f"{self.control_village}, {self.control_subdistrict}"
+        return "Auto-selected"
+    
+    @property
+    def intervention_period_display(self):
+        """Return formatted intervention period"""
+        if self.intervention_start_year and self.intervention_end_year:
+            return f"{self.intervention_start_year} - {self.intervention_end_year}"
+        return "Not specified"

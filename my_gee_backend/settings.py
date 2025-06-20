@@ -25,8 +25,8 @@ load_dotenv()
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './creds/credentials'
 
 GOOGLE_EARTH_ENGINE_API_KEY = os.getenv('GOOGLE_EARTH_ENGINE_API_KEY')
-GOOGLE_OAUTH2_CLIENT_ID = os.environ.get('GOOGLE_OAUTH2_CLIENT_ID', '')
-GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET', '')
+GOOGLE_OAUTH2_CLIENT_ID = os.getenv('GOOGLE_OAUTH2_CLIENT_ID')
+GOOGLE_OAUTH2_CLIENT_SECRET = os.getenv('GOOGLE_OAUTH2_CLIENT_SECRET')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
