@@ -1,13 +1,31 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from . import views
 from .views import (
     get_boundary_data, get_lulc_raster, get_area_change,
     get_control_village, get_rainfall_data, health_check,
-    custom_polygon_comparison
+    custom_polygon_comparison, api_root, district_list,
+    subdistrict_list, village_list, projects_view, 
+    project_detail_view, save_project_from_assessment
 )
 
-from django.urls import path
-from gee_api import views
+from rest_framework_simplejwt.views import (
+    TokenRefreshView,
+    TokenVerifyView,
+)
+
+from .authentication_views import (
+    register_user,
+    login_user,
+    logout_user,
+    user_profile,
+    update_profile,
+    change_password,
+    CustomTokenObtainPairView,
+)
+
+from .google_auth import google_login, google_auth_config
+
 
 
 # # Initialize the default router and register the viewsets
@@ -19,6 +37,33 @@ from gee_api import views
 
 # Define the urlpatterns with included router and custom views
 urlpatterns = [
+    
+     path('', api_root, name='api_root'),
+    # Authentication endpoints
+    path('auth/register/', register_user, name='register'),
+    path('auth/login/', login_user, name='login'),
+    path('auth/logout/', logout_user, name='logout'),
+    path('auth/profile/', user_profile, name='user_profile'),
+    path('auth/profile/update/', update_profile, name='update_profile'),
+    path('auth/change-password/', change_password, name='change_password'),
+    
+    # Google authentication
+    path('auth/google/', google_login, name='google_login'),
+        path('auth/google/config/', google_auth_config, name='google_auth_config'),
+    
+    # JWT token endpoints
+    path('auth/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('auth/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    
+    # Project management endpoints
+    path('projects/', projects_view, name='projects'),
+    path('projects/<uuid:project_id>/', project_detail_view, name='project_detail'),
+    path('projects/save-from-assessment/', save_project_from_assessment, name='save_project_from_assessment'),
+    
+    # Alternative class-based authentication endpoints (optional)
+    # path('auth/register-class/', RegisterView.as_view(), name='register_class'),
+    # path('auth/profile-class/', UserProfileView.as_view(), name='profile_class'),
     path(
         'get_boundary_data/',
         get_boundary_data,
@@ -51,4 +96,5 @@ urlpatterns = [
     path('districts/<int:state_id>/', views.district_list, name='district_list'),
     path('subdistricts/<int:district_id>/', views.subdistrict_list, name='subdistrict_list'),
     path('villages/<int:subdistrict_id>/', views.village_list, name='village_list'),
+
 ]
