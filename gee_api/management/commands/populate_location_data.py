@@ -495,6 +495,56 @@ class Command(BaseCommand):
     'kachanpalle', 'gangaram', 'asnad', 'kommera', 'sundersala', 'narasakkapet', 'pokkur', 'chakepalle', 'ponnaram',
     'somanpalle', 'nagapur', 'beervelli', 'chennur'
 ] 
+            },
+            'Medak' :{
+                'Tupran': [
+                    ('vattur', 573582), ('jhandapalle', 573583), ('nagulapalle', 573584), ('islampur', 573585), 
+                    ('datarpalle', 573586), ('gundareddipalle', 573587), ('malkapur', 573588), ('konaipalle pattibegampet', 573589), 
+                    ('venktaipalle', 573590), ('kistapur', 573591), ('yavapur', 573592), ('tupran', 573594), 
+                    ('padalpalle', 573595), ('brahmanapalle', 573596), ('venkatapur pattitupran', 573597), ('ravelli', 573598), 
+                    ('ghanpur', 573599), ('immapur', 573600), ('allapur', 573601), ('lingareddipet', 573602), 
+                    ('palat', 573603), ('ramaipalle', 573604), ('venkatapur agraharam', 573605), ('dharmarajpalle', 573606), 
+                    ('chatla gouraram', 573607), ('konaipalle patti tupran', 573608), ('manoharabad', 573609), ('jeedipalle', 573610), 
+                    ('kucharam', 573611), ('kallakal', 573612), ('muppireddipalle', 573613), ('rangaipalle', 573615), 
+                    ('kondapur', 573616)
+                ], 
+                'Wargal' : [
+                    ('narsampalle', 573671), ('nacharam', 573672), ('majidpalle', 573673), ('mentur', 573674), 
+                    ('jabbapur', 573675), ('mylaram', 573676), ('govindapur', 573678), ('girmapur', 573679), 
+                    ('madharam', 573680), ('chandapur', 573681), ('veluru', 573682), ('ananthagiripalle', 573683), 
+                    ('meenjipeta', 573685), ('tunki makta', 573686), ('tunkikhalasa', 573687), ('amberpet', 573688), 
+                    ('sitarampalle', 573689), ('shakaram', 573690), ('wargal', 573691), ('gouraram', 573692), 
+                    ('singaipalle', 573693), ('pamulaparthi', 573694)
+                ],
+                'Doultabad' : [
+                    ('doultabad', 573098), ('lingarajpalle', 573099), ('dommat', 573100), ('surampalle', 573101), 
+                    ('mantoor', 573102), ('anajpur', 573103), ('rayapole', 573104), ('mubarakpur', 573105), 
+                    ('seripalle bandaram', 573106), ('konapur', 573107), ('deepayampalle', 573108), ('godugupalle', 573109), 
+                    ('mohamadshapur', 573110), ('narasampalle patti dommat', 573111), ('indupiriyal', 573112), ('machanpalle', 573114), 
+                    ('yelkal', 573116), ('begumpet', 573117), ('appaipalle', 573118), ('waddepalle', 573119), 
+                    ('ankireddipalli', 573120), ('ramasagar', 573121), ('ramaram', 573122), ('tirmalapur', 573123), 
+                    ('kothapalle', 573125), ('chinna masanpalle', 573126), ('arepalle sivar bejgaon', 573127), ('lingareddipalle', 573128), 
+                    ('arepalle sivar jaligaon', 573129)
+                ],
+                'Kulcharam' :[
+                    ('paithara', 573179), ('konapur', 573180), ('etigadda mohmdapur', 573181), ('yenigandla', 573182), 
+                    ('rangampet', 573183), ('thukkapur', 573184), ('sangaipet', 573185), ('variguntham', 573186), 
+                    ('serivariguntham', 573187), ('kulcharam', 573188), ('chinnaghanpur', 573189), ('appajipalle', 573190), 
+                    ('venkatapur', 573191), ('pothamsettipalle', 573192), ('kistapur', 573193), ('rampur', 573194), 
+                    ('amsanpalle', 573195), ('nainjalalpur', 573196), ('kongode', 573197), ('pothireddipalle', 573198), 
+                    ('tummalapalle', 573199)
+                ],
+                'Medak': [
+                    ('sardhana', 572889), ('rajpet', 572891), ('burugupalle', 572892), ('nagapur', 572893), 
+                    ('thimmaipalle', 572894), ('ananthasagar', 572895), ('gangapur', 572896), ('shamnapur', 572897), 
+                    ('byathole', 572898), ('lingasanpalle', 572899), ('havelighanpur', 572900), ('suklapet', 572901), 
+                    ('thogita', 572902), ('shalipet', 572903), ('bogada bhoopathipur', 572904), ('fareedpur', 572905), 
+                    ('muthaipalle', 572906), ('kuchanpalle', 572907), ('serikuchanpalle', 572908), ('mudulwai', 572909), 
+                    ('aurangabad', 572910), ('pathur', 572911), ('rayanpalle', 572912), ('magta bhoopathipur', 572913), 
+                    ('venkatapur', 572914), ('maqdumpur', 572916), ('perur', 572917), ('rayalamadugu', 572918), 
+                    ('chityal', 572919), ('balanagar', 572920), ('rajpalle', 572921), ('komtoor', 572922), 
+                    ('pashapur', 572923), ('khazipalle', 572924), ('medak', 802913)
+                ],
             }
         }
 
@@ -608,7 +658,112 @@ class Command(BaseCommand):
                          'madaha', 'goiya khurd', 'bargadh', 'usari mafi', 'chharehra', 'chhataini mafi', 'manka chhataini', 'chachokhar', 
                          'jamira', 'koniya', 'semara', 'kol majara', 'kaniyadh', 'dondiya mafi', 'kotwa mafi', 'gahur', 'kataiya dandi',
                          'raipura', 'dubi', 'lapaon', 'rajapur']
-            }
+            }, 
+            'Bara Banki' : {
+                'fatehpur' : [
+                     ('bhadras', 163814), ('khujjhi', 163815), ('dharauli', 163816), ('raigawan', 163817), 
+                     ('bajgahami', 163818), ('roshanabad', 163819), ('dinpanah', 163820), ('bhadesia', 163821), 
+                     ('udapur', 163822), ('sainder', 163823), ('khinjhna', 163824), ('sangtara', 163825), 
+                     ('dingri', 163826), ('bijauli', 163827), ('bodhni', 163828), ('shahpurbaskholia', 163829), 
+                     ('khatauli', 163830), ('mallawa', 163831), ('salhepur', 163832), ('bacharauli', 163833), 
+                     ('haswapara', 163834), ('alampur', 163835), ('jianpur', 163836), ('dafarpur', 163837), 
+                     ('tifra', 163838), ('chandauli', 163839), ('kondri gopalpur', 163840), ('biddipurkhurd', 163841), 
+                     ('baddupur', 163842), ('goraicha', 163843), ('badagaon', 163844), ('hidayatpursipah', 163845), 
+                     ('piparsand', 163846), ('bandginagar', 163847), ('wojhiapur', 163848), ('dhadhara', 163849), 
+                     ('prempur', 163850), ('jharsawa', 163851), ('kajibehata', 163852), ('tikra', 163853), 
+                     ('sarwan', 163854), ('palia', 163855), ('nandpur', 163856), ('chhilgawa', 163857), 
+                     ('kamipur', 163858), ('khan mohmmadpur', 163859), ('barkheria', 163860), ('athara', 163861), 
+                     ('avawa', 163862), ('khandsara', 163863), ('jaziamau', 163864), ('paigamberpur', 163865), 
+                     ('sirsaipur', 163866), ('paharapur', 163867), ('deora', 163868), ('makhdoompur', 163869), 
+                     ('bhandar', 163870), ('jamuwan', 163871), ('garia', 163872), ('ahamad nagar', 163873), 
+                     ('hajipur', 163874), ('dhaurahra', 163875), ('kasgaon', 163876), ('behta', 163877), 
+                     ('zindpur', 163878), ('mohalia', 163879), ('karuwa', 163880), ('mohanpur', 163881), 
+                     ('birampur', 163882), ('akhaipur', 163883), ('salemabad', 163884), ('nagra', 163885), 
+                     ('ghughter', 163886), ('narainpur', 163887), ('saray shahbad', 163888), ('dadera', 163889), 
+                     ('tahirpur', 163890), ('chakia', 163891), ('pindsawa', 163892), ('akbarpur', 163893), 
+                     ('odaria', 163894), ('jamolia', 163895), ('nahnipur', 163896), ('odarpur', 163897), 
+                     ('nindoora', 163898), ('semri', 163899), ('khirhani', 163900), ('pokharni', 163901), 
+                     ('darawan', 163902), ('ibrahimpur', 163903), ('korhwa', 163904), ('pilehati haidrabad', 163905), 
+                     ('alinagar karaund', 163906), ('kursi', 163907), ('basara', 163908), ('mohsand', 163909), 
+                     ('bisain', 163910), ('madinpur', 163911), ('munimpur baitra', 163912), ('bahrauli', 163913), 
+                     ('baina tikaihar', 163914), ('agasand', 163915), ('pandari', 163916), ('mirnagar', 163917), 
+                     ('mahmood nagar banauga', 163918), ('niamatpur', 163919), ('gangauli', 163920), ('likhana', 163921), 
+                     ('thakuramau', 163922), ('anwari', 163923), ('jugaur', 163924), ('amarsanda', 163925), 
+                     ('umra', 163926), ('qatramau', 163927), ('saidapur', 163928), ('burhna', 163929), 
+                     ('katurikala', 163930), ('katurikhurd', 163931), ('piprauli', 163932), ('itaunja', 163933), 
+                     ('parkiar bhari', 163934), ('tarawa', 163935), ('daryapur', 163936), ('maulabad', 163937), 
+                     ('sanwarnde', 163938), ('kaparapur', 163939), ('devgawn', 163940), ('moazzampur', 163941), 
+                     ('lilauli', 163942), ('chakmirpur', 163943), ('sarsawa', 163944), ('deokaliya baksi', 163945), 
+                     ('allahapur bharali', 163946), ('kodri sant saran das', 163947), ('mohbbatpur', 163948), ('salempur', 163949), 
+                     ('gangchauli', 163950), ('bhawanipur', 163951), ('deoria', 163952), ('tandwa nankari', 163953), 
+                     ('nijampur', 163954), ('shaili kiratpur', 163955), ('saraiya daljit', 163956), ('saraiya modmitnagar', 163957), 
+                     ('pahla saraiya', 163958), ('saraiya futi', 163959), ('deokaliya', 163960), ('shawaitpur', 163961), 
+                     ('behta khemkaran', 163962), ('biddipur kala', 163963), ('maghgawan', 163964), ('basantpur', 163965), 
+                     ('manikpur', 163966), ('shahpur', 163967), ('raipur', 163968), ('sewarewa', 163969), 
+                     ('sultanpur', 163970), ('bhagauli', 163971), ('neri', 163972), ('sadrapur', 163973), 
+                     ('kunwa danda', 163974), ('rangpurwa', 163975), ('rahilamau', 163976), ('jagaipur', 163977), 
+                     ('baisara', 163978), ('sirauli', 163979), ('baniyani', 163980), ('dhakauli', 163981), 
+                     ('mahuwadada', 163982), ('talgaow', 163983), ('karsabhari', 163984), ('achaicha', 163985), 
+                     ('bhundwa', 163986), ('bhundia', 163987), ('ralbhari', 163988), ('kaitha', 163989), 
+                     ('ghaghsi', 163990), ('chatwara', 163991), ('sauranga', 163992), ('gaura sallak', 163993), 
+                     ('chraiya', 163994), ('belhara', 163995), ('sigha', 163996), ('bhatwamau', 163997), 
+                     ('udapur', 163998), ('bibipur', 163999), ('kodari', 164000), ('paharapur', 164001), 
+                     ('barnapur', 164002), ('sarwa', 164003), ('mithwara', 164004), ('lahsi', 164005), 
+                     ('khairatpur', 164006), ('behura', 164007), ('hidayatpur', 164008), ('khaporwa khanpur', 164009), 
+                     ('kheria', 164010), ('chakkajipur', 164011), ('deokheria', 164012), ('bamnitola', 164013), 
+                     ('jarkha', 164014), ('mirjapur', 164015), ('bihuri', 164016), ('aurangabad', 164017), 
+                     ('madanpur', 164018), ('chakkodar', 164019), ('sheoli', 164020), ('kandraula', 164021), 
+                     ('mohmmadipur', 164022), ('dhausar', 164023), ('gursel', 164024), ('dhadhara', 164025), 
+                     ('dhadhauri', 164026), ('masudpur', 164027), ('chandwal', 164028), ('sarhemau', 164029), 
+                     ('budhiyapur', 164030), ('lalapur', 164031), ('dhaurali', 164032), ('sarayan khasi', 164033), 
+                     ('isepur', 164034), ('papehara', 164035), ('ibrahimpur', 164036), ('raichandmau', 164037), 
+                     ('ujarwara', 164038), ('gangmau', 164039), ('shamshipur', 164040), ('bhagauli', 164041), 
+                     ('ahmadpur', 164042), ('palpatan', 164043), ('fatehpurdehat', 164044), ('rasulpur', 164045), 
+                     ('shekhpur makhdoom', 164046), ('samnadih', 164047), ('kiratpur', 164048), ('salempur', 164049), 
+                     ('dashrathpur', 164050), ('dandiyamau', 164051), ('chakshariphpur', 164052), ('sandupur', 164053), 
+                     ('israli', 164054), ('damaura', 164055), ('pakariyapur', 164056), ('firojpur', 164057), 
+                     ('rasulpanah', 164058), ('puregulam mohmmad', 164059), ('chakmajhar', 164060), ('bannisalemabad', 164061), 
+                     ('bunny roshanpur', 164062), ('jukhakhaur', 164063), ('sarai bheekh', 164064), ('naimabad', 164065), 
+                     ('banar', 164066), ('lalpur', 164067), ('gauragajni', 164068), ('gaddipur', 164069), 
+                     ('badela', 164070), ('jhansa', 164071), ('madarpur', 164072), ('madanpur', 164073), 
+                     ('khaira', 164074), ('behti', 164075), ('nandkuin', 164076), ('mirnagar', 164077), 
+                     ('shekhanpur', 164078), ('katghara', 164079), ('chakalwaria', 164080), ('miyapur', 164082), 
+                     ('naktauli', 164083), ('barawa', 164084), ('tandwa', 164085), ('pandri', 164086), 
+                     ('jagsenda', 164087), ('agauli', 164088), ('bhatpurwa', 164089), ('mundera', 164090), 
+                     ('munderi', 164091), ('karaundi', 164092), ('jafarpur', 164093), ('nandrasi', 164094), 
+                     ('bilauli', 164095), ('vatia', 164096), ('masoodpur', 164097), ('nandanakhurd', 164098), 
+                     ('sainbasi', 164099), ('nandanakala', 164100), ('riwan', 164101), ('haiderganj', 164102), 
+                     ('tanda nijamali', 164103), ('basara', 164104), ('bachrajmau', 164105), ('mawaya', 164106), 
+                     ('safipur', 164107), ('kodnwa', 164108), ('gheri', 164109), ('mohmmadpur', 164110), 
+                     ('bishunpur', 164111), ('rajauli', 164112), ('rasulpur hetam', 164113), ('qutlupur', 164114), 
+                     ('saraiya maqbool nagar', 164115), ('tikapur', 164116), ('bilauli', 164117), ('khalilnagar', 164118), 
+                     ('dhamsar', 164119), ('sarayan', 164120), ('majhgawan sharif', 164121), ('rariya', 164122), 
+                     ('hazratpur', 164123), ('terwa', 164124), ('paigwa', 164125), ('mohanpur', 164126), 
+                     ('randwara', 164127), ('patna', 164128), ('bajidpur', 164129), ('asohna', 164130), 
+                     ('gangauli', 164131), ('gurauli', 164132), ('hasanpur tanda', 164133), ('daulatpur', 164134), 
+                     ('tilran', 164135), ('rauza', 164136), ('fatehpur', 164137), ('qutbapur', 164138), 
+                     ('sabitapur', 164139), ('sihali', 164140), ('bhaisuriya mujahidpur', 164141), ('loharpur', 164142), 
+                     ('bheria', 164143), ('bisunpur', 164144), ('kesrai', 164145), ('ghabara', 164146), 
+                     ('para', 164147), ('pataunja', 164148), ('jather kishnipur', 164149), ('bhikhampur', 164150), 
+                     ('bindoura dharthariya', 164151), ('ranjitpur', 164152), ('cheda', 164153), ('dhanwalia', 164154), 
+                     ('basari', 164155), ('jagatpur', 164156), ('lakaunda', 164157), ('palhari', 164158), 
+                     ('palhra', 164159), ('maghgawan', 164160), ('mokalpur', 164161), ('shivrajpur', 164162), 
+                     ('tenwa', 164163), ('turkauli', 164164), ('sailak jalalpur', 164165), ('deogawan', 164166), 
+                     ('tanwa', 164167), ('matehna', 164168), ('basantpur', 164169), ('pipari', 164170), 
+                     ('daulatpur', 164171), ('manjhari', 164172), ('durgapur naubasta', 164173), ('dhakwa', 164174), 
+                     ('chagepur', 164175), ('kyontali', 164176), ('balloopur', 164177), ('mundabhari', 164178), 
+                     ('surjanpur', 164179), ('bhurkunda', 164180), ('umri', 164181), ('barethi', 164182), 
+                     ('inamipur', 164183), ('amra', 164184), ('tanda', 164185), ('banjaria', 164186), 
+                     ('shekhupur', 164187), ('jeoli', 164188), ('mohammadpur', 164189), ('garchappa', 164190), 
+                     ('dohari', 164191), ('jaisnghpur', 164192), ('khadehara', 164193), ('utrawan', 164194), 
+                     ('jigni', 164195), ('ghangri', 164196), ('firojpur', 164197), ('jhanjhara', 164198), 
+                     ('aalemau', 164199), ('rammadai', 164200), ('imlipur', 164201), ('raipur', 164202), 
+                     ('chandoora', 164203), ('sohai', 164204), ('kasaunja', 164205), ('puranpur', 164206), 
+                     ('bhagnapur', 164207), ('basauli', 164208), ('parbatpur', 164209), ('banmau', 164210), 
+                     ('satmohni', 164211), ('sikohana', 164212), ('budhanpur', 164213), ('karanpur', 164214), 
+                     ('fatehpur', 801093)
+                 ]
+             }
         }
         
         maharashtra_data = {
@@ -765,6 +920,73 @@ class Command(BaseCommand):
             }
         }
 
+        # New data for Tamil Nadu
+        tamil_nadu_data = {
+            'Theni': {
+                'periyakulam': [
+                    ('vadagarai', 641084), ('keelavadagarai', 641085), ('e pudukottai', 641086), ('genguvarpatty', 641087), 
+                    ('d vadipatty', 641088), ('silvarpatty', 641089), ('kamatchipuram', 641090), ('endapuli', 641091), 
+                    ('thamarai kulam', 641092), ('melmangalam', 641093), ('jeyamangalam', 641094), ('gullapuram', 641095), 
+                    ('vadaveeranaickenpatty', 641096), ('ganguvarpatti', 803763), ('devadanapatti', 803764), ('vadugapatti', 803765), 
+                    ('thamaraikulam', 803766), ('periyakulam', 803767), ('thenkarai', 803768)
+                ],
+                'andipatti': [
+                    ('pulimancombai', 641146), ('timmarasanayakkanur', 641147), ('kovilpatti', 641148), ('shanmugasundarapuram', 641149), 
+                    ('kunnur', 641150), ('marikkundu', 641151), ('tekkampatti', 641152), ('g usilampatti', 641153), 
+                    ('mottanuthu', 641154), ('kottapatti', 641155), ('kodaluthu', 641156), ('andipatti', 641157), 
+                    ('palayakottai', 641158), ('rajadhani', 641159), ('chittarpatti', 641160), ('theppanpatti', 641161), 
+                    ('ramakrishnapuram', 641162), ('palakombai', 641163), ('vallalnathi', 641164), ('kadamalaikundu', 641165), 
+                    ('myaladumparai', 641166), ('megamalai', 641167), ('andipatti jakkampatti', 803786)
+                ],
+                'theni': [
+                    ('unjampatty', 641100), ('koduvilarpatty', 641101), ('govindanagaram', 641102), ('thadicheri', 641103), 
+                    ('thappukundu', 641104), ('upparpatty', 641105), ('kottur', 641106), ('seelayampatty', 641107), 
+                    ('poomalaikundu', 641108), ('jangalpatty', 641109), ('theni allinagaram', 803769), ('palani chettipatti', 803770), 
+                    ('veerapandi', 803771)
+                ]
+            }
+        }
+
+        # New data for Gujarat
+        gujarat_data = {
+            'Valsad': {
+                'kaprada': [
+                    ('babarkhadak', 523508), ('vadkhambha', 523509), ('kharedi', 523510), ('moti vahiyal', 523511), 
+                    ('nali madhani', 523512), ('arnai', 523513), ('amdha', 523514), ('panas', 523515), 
+                    ('dhodhad kuva', 523516), ('sukhala', 523517), ('ambheti', 523518), ('kakadkopar', 523519), 
+                    ('vajvad', 523520), ('balchondhi', 523521), ('nana pondha', 523522), ('jogvel', 523523), 
+                    ('khuntli', 523524), ('ozarda', 523525), ('kunda', 523526), ('veri bhavada', 523527), 
+                    ('mendha', 523528), ('mani', 523529), ('borpada', 523530), ('tokarpada', 523531), 
+                    ('panchvera', 523532), ('keldha', 523533), ('piproti', 523534), ('bhavada jagiri forest', 523535), 
+                    ('chichpada', 523536), ('nandgam', 523537), ('matuniya', 523538), ('chandvegan', 523539), 
+                    ('varoli talat', 523540), ('kajli', 523541), ('kothar', 523542), ('mota pondha', 523543), 
+                    ('ozar', 523544), ('bhandar kutch', 523545), ('mandva', 523546), ('kaprada', 523547), 
+                    ('dabkhal', 523548), ('dabhadi', 523549), ('chavshala', 523550), ('rahor', 523551), 
+                    ('kasatveri', 523552), ('vavar', 523553), ('barpuda', 523554), ('huda', 523555), 
+                    ('ghotan', 523556), ('amba jungle', 523557), ('divsi', 523558), ('bilaniya', 523559), 
+                    ('khadakval', 523560), ('rohiyal talat', 523561), ('manala', 523562), ('vaddha', 523563), 
+                    ('jam gabhan', 523564), ('jirval', 523565), ('varna', 523566), ('andharpada', 523567), 
+                    ('hedalbari', 523568), ('burla', 523569), ('varvath', 523570), ('lavkar', 523571), 
+                    ('dixal', 523572), ('fali', 523573), ('sutharpada', 523574), ('kotalgam', 523575), 
+                    ('girnara', 523576), ('narvad', 523577), ('dhaman vegan', 523578), ('karjun', 523579), 
+                    ('niloshi', 523580), ('sildha', 523581), ('astol', 523582), ('khatuniya', 523583), 
+                    ('sukalbari', 523584), ('dahikhed', 523585), ('burvad', 523586), ('kastoniya', 523587), 
+                    ('ketki', 523588), ('pendhardevi', 523589), ('eklera', 523590), ('singartati', 523591), 
+                    ('sarvartati', 523592), ('kolvera', 523593), ('vadset', 523594), ('valveri', 523595), 
+                    ('pipalset', 523596), ('viraxet', 523597), ('vadoli', 523598), ('aslona', 523599), 
+                    ('shahuda', 523600), ('chepa', 523601), ('bamanvel', 523602), ('umli', 523603), 
+                    ('karchond', 523604), ('fatepur', 523605), ('piproni', 523606), ('meghval', 523607), 
+                    ('madhuban', 523608), ('raymal', 523609), ('nagar', 523610), ('varoli jungle', 523611), 
+                    ('tiskari jungle', 523612), ('vadi', 523613), ('teri chikhli', 523614), ('moti palsan', 523615), 
+                    ('rohiyal jungle', 523616), ('nani palsan', 523617), ('likhavad', 523618), ('biliya', 523619), 
+                    ('malghar', 523620), ('ghotval', 523621), ('asalkanti', 523622), ('ghanveri', 523623), 
+                    ('bhurval', 523624), ('umarpada', 523625), ('ghadvi', 523626), ('dharanmal', 523627), 
+                    ('tukvada', 523628), ('bhatheri', 523629), ('kumbhset', 523630), ('malungi', 523631), 
+                    ('titumal', 523632), ('nirval', 523633), ('dighi', 523634), ('suliya', 523635)
+                ]
+            }
+        }
+
         # Populate Rajasthan data
         rajasthan, created = State.objects.get_or_create(name='Rajasthan')
         self.add_districts(rajasthan, rajasthan_data)
@@ -786,5 +1008,10 @@ class Command(BaseCommand):
         jharkhand, created = State.objects.get_or_create(name='Jharkhand')
         self.add_districts(jharkhand, jharkhand_data)
         
+        tamil_nadu, created = State.objects.get_or_create(name='Tamil Nadu')
+        self.add_districts(tamil_nadu, tamil_nadu_data)
+        
+        gujarat, created = State.objects.get_or_create(name='Gujarat')
+        self.add_districts(gujarat, gujarat_data)
 
         self.stdout.write(self.style.SUCCESS('Successfully populated the RDS instance with location data.'))
