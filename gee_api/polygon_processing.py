@@ -21,7 +21,7 @@ def get_lulc_for_region(
     end_date = f'{int(year) + 1}-06-30'
     
     # Select appropriate LULC collection based on state/district
-    if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+    if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
         ic = ee.ImageCollection(ee_assets['bhuvan_lulc'])
         # For Bhuvan LULC, adjust dates to match its period
         start_date = f'{year}-06-01'

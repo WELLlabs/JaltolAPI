@@ -479,7 +479,7 @@ def IMD_precipitation(
     """
     try:
         # For Maharashtra, UP, and Jharkhand, use fixed year range and skip 2019
-        if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+        if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
             # Override the input years with fixed range 2005-2024
             start_year = 2005
             end_year = 2024
