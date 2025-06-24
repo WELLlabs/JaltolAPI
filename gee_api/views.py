@@ -242,7 +242,7 @@ def get_rainfall_data(request: HttpRequest) -> JsonResponse:
         village_geometry = village_fc.geometry()
         
         # Set year range based on state
-        if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+        if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
             # For Bhuvan LULC states, use 2005-2024 excluding 2019
             start_year = 2005
             end_year = 2024
@@ -355,7 +355,7 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
                 'parameters (state_name, district_name) are required.')
 
         # Choose the correct image based on state and district
-        if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+        if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
             print(f"Using Bhuvan LULC for state: {state_name}")
             image = Bhuvan_lulc(
                 year,
@@ -577,7 +577,7 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
 
         # Choose the correct image collection based on state and district
         is_bhuvan = False
-        if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+        if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
             print(f"Using Bhuvan LULC for state: {state_name}")
             image_collection = ee.ImageCollection(ee_assets['bhuvan_lulc']).filterBounds(village_geometry)
             year_range = range(2005, 2024)  # Bhuvan data range
@@ -761,7 +761,7 @@ def custom_polygon_comparison(request: HttpRequest) -> JsonResponse:
             combined_geometry = intervention_geometry.union(control_geometry)
             
             # Determine which years to calculate based on the state
-            if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+            if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
                 # For Bhuvan LULC states, use 2005-2024 excluding 2019
                 year_range = [y for y in range(2005, 2024) if y != 2019]
             elif district_name.lower() in ['vadodara']:
@@ -772,7 +772,7 @@ def custom_polygon_comparison(request: HttpRequest) -> JsonResponse:
                 year_range = range(2017, 2023)
             
             # Define LULC class mappings based on the data source
-            if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand']:
+            if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
                 # Bhuvan LULC classes
                 class_mapping = {
                     'single_crop': [2, 3, 4],  # Single cropping classes
