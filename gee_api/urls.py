@@ -4,7 +4,7 @@ from . import views
 from .views import (
     get_boundary_data, get_lulc_raster, get_area_change,
     get_control_village, get_rainfall_data, health_check,
-    custom_polygon_comparison, api_root, district_list,
+    custom_polygon_comparison, api_root, state_list, district_list,
     subdistrict_list, village_list, projects_view, 
     project_detail_view, save_project_from_assessment
 )
@@ -93,6 +93,7 @@ urlpatterns = [
         custom_polygon_comparison,
         name='custom_polygon_comparison'),
     
+    path('states/', views.state_list, name='state_list'),
     path('districts/<int:state_id>/', views.district_list, name='district_list'),
     path('subdistricts/<int:district_id>/', views.subdistrict_list, name='subdistrict_list'),
     path('villages/<int:subdistrict_id>/', views.village_list, name='village_list'),
