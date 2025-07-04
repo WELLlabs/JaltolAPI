@@ -1,6 +1,6 @@
 import ee
 from typing import Dict, List
-from gee_api.constants import ee_assets
+from gee_api.constants import ee_assets, BHUVAN_LULC_STATES
     
 def get_lulc_for_region(
     year: int,
@@ -21,14 +21,15 @@ def get_lulc_for_region(
     end_date = f'{int(year) + 1}-06-30'
     
     # Select appropriate LULC collection based on state/district
-    if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
+    if state_name.lower() in BHUVAN_LULC_STATES:
         ic = ee.ImageCollection(ee_assets['bhuvan_lulc'])
         # For Bhuvan LULC, adjust dates to match its period
         start_date = f'{year}-06-01'
         end_date = f'{int(year) + 1}-05-31'
-    elif district_name.lower() in ['vadodara']:
+    elif district_name.lower() in ['delhi']:
         ic = ee.ImageCollection(ee_assets['farmboundary'])
     else:
+        # Fallback to IndiaSAT for states not in the Bhuvan list
         ic = ee.ImageCollection(ee_assets['indiasat'])
     
     # Filter and process image

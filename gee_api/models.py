@@ -55,6 +55,7 @@ class State(models.Model):
     Model representing a State.
     """
     name: str = models.CharField(max_length=100)
+    state_id: int = models.IntegerField(null=True, blank=True, unique=True)  # pc11_s_id from CSV
 
     def __str__(self) -> str:
         return self.name
@@ -66,6 +67,7 @@ class District(models.Model):
     """
     name: str = models.CharField(max_length=100)
     state: State = models.ForeignKey(State, related_name='districts', on_delete=models.CASCADE)
+    district_id: int = models.IntegerField(null=True, blank=True)  # pc11_d_id from CSV
 
     def __str__(self) -> str:
         return self.name
@@ -77,6 +79,7 @@ class SubDistrict(models.Model):
     """
     name: str = models.CharField(max_length=100)
     district: District = models.ForeignKey(District, related_name='subdistricts', on_delete=models.CASCADE)
+    subdistrict_id: str = models.CharField(max_length=20, null=True, blank=True)  # pc11_sd_id from CSV
 
     def __str__(self) -> str:
         return self.name
@@ -88,7 +91,11 @@ class Village(models.Model):
     """
     name: str = models.CharField(max_length=100)
     subdistrict: SubDistrict = models.ForeignKey(SubDistrict, related_name='villages', on_delete=models.CASCADE)
-    village_id: int = models.IntegerField(null=True, blank=True)  # New field to store pc11_tv_id
+    village_id: int = models.IntegerField(null=True, blank=True)  # pc11_tv_id from CSV
+    # Additional fields from CSV
+    total_population: int = models.IntegerField(null=True, blank=True)  # tot_p
+    sc_population: int = models.IntegerField(null=True, blank=True)  # p_sc
+    st_population: int = models.IntegerField(null=True, blank=True)  # p_st
 
     def __str__(self) -> str:
         return self.name

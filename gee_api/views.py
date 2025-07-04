@@ -61,6 +61,20 @@ def api_root(request):
         }
     })
 
+def state_list(request) -> JsonResponse:
+    """
+    Fetches a list of all available states.
+
+    Args:
+        request: The HTTP request object.
+
+    Returns:
+        JsonResponse: A JSON response containing a list of states.
+    """
+    states = State.objects.all().order_by('name')
+    data: List[Dict[str, str]] = [{"id": state.id, "name": state.name} for state in states]
+    return JsonResponse(data, safe=False)
+
 def district_list(request, state_id: int) -> JsonResponse:
     """
     Fetches a list of districts for a given state.

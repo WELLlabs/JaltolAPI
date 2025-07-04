@@ -18,6 +18,13 @@ ee_assets = {
     "bhuvan_lulc": 'users/jaltolwelllabs/LULC/Bhuvan_LULC',
 }
 
+# States that use Bhuvan LULC data
+BHUVAN_LULC_STATES = [
+    'andhra pradesh', 'chhattisgarh', 'gujarat',
+    'jharkhand', 'karnataka', 'maharashtra', 
+    'punjab', 'rajasthan', 'tamil nadu', 'uttar pradesh'
+]
+
 compare_village_buffer: int = 5000
 
 shrug_fields = {

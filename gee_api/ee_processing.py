@@ -7,6 +7,7 @@ from django.shortcuts import render
 from pathlib import Path
 from django.views.decorators.http import require_http_methods
 from typing import Optional, Dict, Any
+from .constants import credentials, ee_assets, shrug_fields, BHUVAN_LULC_STATES
 
 # Constants Import
 from .constants import ee_assets, shrug_dataset, shrug_fields, compare_village_buffer
@@ -90,7 +91,9 @@ def village_boundary(
         # If village_id is provided, first try to find the village by ID
         if village_id:
             try:
-                # Create a filter using the village ID
+            
+                
+                # Try as string first
                 id_filter = ee.Filter.And(
                     ee.Filter.eq(shrug_fields['state_field'], state_name),
                     ee.Filter.eq(shrug_fields['district_field'], district_name),
@@ -98,13 +101,32 @@ def village_boundary(
                     ee.Filter.eq('pc11_tv_id', village_id)
                 )
                 
-                # Apply the filter
                 village_by_id = shrug.filter(id_filter)
-                
-                # Check if we found a village with this ID
                 count = village_by_id.size().getInfo()
+                print(f"Village ID '{village_id}' search (string): found {count} results")
+                
                 if count > 0:
                     return village_by_id
+                
+                # Try as integer if string failed
+                try:
+                    id_as_int = int(village_id)
+                    id_filter_int = ee.Filter.And(
+                        ee.Filter.eq(shrug_fields['state_field'], state_name),
+                        ee.Filter.eq(shrug_fields['district_field'], district_name),
+                        ee.Filter.eq(shrug_fields['subdistrict_field'], subdistrict_name),
+                        ee.Filter.eq('pc11_tv_id', id_as_int)
+                    )
+                    
+                    village_by_id_int = shrug.filter(id_filter_int)
+                    count_int = village_by_id_int.size().getInfo()
+                    print(f"Village ID '{village_id}' search (integer): found {count_int} results")
+                    
+                    if count_int > 0:
+                        return village_by_id_int
+                        
+                except ValueError:
+                    print(f"Village ID '{village_id}' is not a valid integer")
                 
                 # If not found by ID, we'll fall back to using the name
                 print(f"Village ID {village_id} not found, falling back to name")
@@ -120,7 +142,11 @@ def village_boundary(
             ee.Filter.eq(shrug_fields['village_field'], village_name)
         )
         
-        return shrug.filter(name_filter)
+        village_by_name = shrug.filter(name_filter)
+        name_count = village_by_name.size().getInfo()
+        print(f"Village name '{village_name}' search: found {name_count} results")
+        
+        return village_by_name
         
     except Exception as e:
         raise ValueError(f"Error in fetching village boundary: {e}")
@@ -353,6 +379,8 @@ def Bhuvan_lulc(
         # Convert year to int if it's a string
         year = int(year)
         
+    
+        
         # Get the Bhuvan LULC collection
         bhuvan_lulc = ee.ImageCollection(ee_assets['bhuvan_lulc'])
 
@@ -478,49 +506,32 @@ def IMD_precipitation(
     :return: JsonResponse containing the precipitation data or an error message
     """
     try:
-        # For Maharashtra, UP, and Jharkhand, use fixed year range and skip 2019
-        if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
+    
+        
+        # For states in the Bhuvan LULC list, use fixed year range and skip 2019
+        if state_name.lower() in BHUVAN_LULC_STATES:
             # Override the input years with fixed range 2005-2024
             start_year = 2005
             end_year = 2024
             # Create year list excluding 2019
             year_list = [year for year in range(start_year, end_year + 1) if year != 2019]
-            print(f"Using custom year range 2005-2024 (excluding 2019) for {state_name}")
+    
         else:
             # For other states, use the requested year range
             year_list = list(range(start_year, end_year + 1))
             
-        # Get the village boundary - prioritize searching by ID if available
-        if village_id:
-            # Directly query for the village using the ID
-            shrug = shrug_dataset()
-            village_fc = shrug.filter(
-                ee.Filter.And(
-                    ee.Filter.eq(shrug_fields['state_field'], state_name),
-                    ee.Filter.eq(shrug_fields['district_field'], district_name),
-                    ee.Filter.eq(shrug_fields['subdistrict_field'], subdistrict_name),
-                    ee.Filter.eq('pc11_tv_id', village_id)
-                )
-            )
-            
-            # Verify we found exactly one village
-            count = village_fc.size().getInfo()
-            if count == 0:
-                return JsonResponse({'error': f"No village found with ID {village_id}"}, status=404)
-            
-        else:
-            # Search by name if no ID
-            village_fc = village_boundary(state_name, district_name, subdistrict_name, village_name)
-            
-            # Check if we have any results
-            count = village_fc.size().getInfo()
-            if count == 0:
-                return JsonResponse({'error': f"No village found with name {village_name}"}, status=404)
-            elif count > 1:
-                # If multiple villages found, get just the first one
-                first_feature = ee.Feature(village_fc.first())
-                village_fc = ee.FeatureCollection([first_feature])
-                print(f"Warning: Found {count} villages named '{village_name}', using the first one")
+        # Get the village boundary using the improved village_boundary function
+        village_fc = village_boundary(state_name, district_name, subdistrict_name, village_name, village_id)
+        
+        # Check if we have any results
+        count = village_fc.size().getInfo()
+        if count == 0:
+            return JsonResponse({'error': f"No village found with name {village_name}" + (f" and ID {village_id}" if village_id else "")}, status=404)
+        elif count > 1:
+            # If multiple villages found, get just the first one
+            first_feature = ee.Feature(village_fc.first())
+            village_fc = ee.FeatureCollection([first_feature])
+            print(f"Warning: Found {count} villages, using the first one")
 
         village_geometry = village_fc.geometry()
         
