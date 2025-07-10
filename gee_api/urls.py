@@ -6,7 +6,7 @@ from .views import (
     get_control_village, get_rainfall_data, health_check,
     custom_polygon_comparison, api_root, state_list, district_list,
     subdistrict_list, village_list, projects_view, 
-    project_detail_view, save_project_from_assessment
+    project_detail_view, save_project_from_assessment, get_village_details
 )
 
 from rest_framework_simplejwt.views import (
@@ -80,6 +80,10 @@ urlpatterns = [
         'get_control_village/',
         get_control_village,
         name='get_control_village'),
+    path(
+        'get_village_details/',
+        get_village_details,
+        name='get_village_details'),
     path(
         'get_rainfall_data/',
         get_rainfall_data,

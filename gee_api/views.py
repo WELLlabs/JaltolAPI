@@ -5,7 +5,7 @@ from rest_framework import viewsets, status
 import ee
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .constants import ee_assets, shrug_dataset, shrug_fields
+from .constants import ee_assets, shrug_dataset, shrug_fields, BHUVAN_LULC_STATES
 from datetime import datetime
 import json
 from django.views.decorators.csrf import csrf_exempt
@@ -256,7 +256,7 @@ def get_rainfall_data(request: HttpRequest) -> JsonResponse:
         village_geometry = village_fc.geometry()
         
         # Set year range based on state
-        if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
+        if state_name in BHUVAN_LULC_STATES:
             # For Bhuvan LULC states, use 2005-2024 excluding 2019
             start_year = 2005
             end_year = 2024
@@ -369,7 +369,7 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
                 'parameters (state_name, district_name) are required.')
 
         # Choose the correct image based on state and district
-        if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
+        if state_name in BHUVAN_LULC_STATES:
             print(f"Using Bhuvan LULC for state: {state_name}")
             image = Bhuvan_lulc(
                 year,
@@ -591,7 +591,7 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
 
         # Choose the correct image collection based on state and district
         is_bhuvan = False
-        if state_name in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
+        if state_name in BHUVAN_LULC_STATES:
             print(f"Using Bhuvan LULC for state: {state_name}")
             image_collection = ee.ImageCollection(ee_assets['bhuvan_lulc']).filterBounds(village_geometry)
             year_range = range(2005, 2024)  # Bhuvan data range
@@ -674,24 +674,72 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
 
 
 def get_control_village(request: HttpRequest) -> JsonResponse:
-    state_name = request.GET.get('state_name', '').lower()
-    district_name = request.GET.get('district_name', '').lower()
-    subdistrict_name = request.GET.get('subdistrict_name', '').lower()
-    village_name = request.GET.get('village_name', '').lower()
-    
-    # Extract just the village name if it's in the format "name - id"
-    if ' - ' in village_name:
-        village_name = village_name.split(' - ')[0]
-
+    """
+    Get control village for a given intervention village.
+    """
     try:
-        control_village = compare_village(
-            state_name, district_name, subdistrict_name, village_name)
-        geo_json = control_village.getInfo()
+        ee.Initialize(credentials)
+        state_name = request.GET.get('state_name', '').lower()
+        district_name = request.GET.get('district_name', '').lower()
+        subdistrict_name = request.GET.get('subdistrict_name', '').lower()
+        village_name = request.GET.get('village_name', '').lower()
+        village_id = request.GET.get('village_id', '')
 
-        return JsonResponse(geo_json)
+        if not (state_name and district_name and subdistrict_name and village_name):
+            return JsonResponse(
+                {'error': 'All parameters (state_name, district_name, subdistrict_name, village_name) are required.'}, 
+                status=400)
+
+        # Get control village using the compare_village function
+        control_village = compare_village(state_name, district_name, subdistrict_name, village_name)
+        
+        # Convert to GeoJSON
+        geojson = control_village.getInfo()
+        
+        return JsonResponse(geojson)
+        
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+
+def get_village_details(request: HttpRequest) -> JsonResponse:
+    """
+    Get village details including population from the database.
     
+    :param request: HttpRequest object with village_id parameter
+    :return: JsonResponse containing village details or an error message
+    """
+    village_id = request.GET.get('village_id', '')
+    
+    if not village_id:
+        return JsonResponse(
+            {'error': 'village_id parameter is required.'}, status=400)
+    
+    try:
+        # Find the village in the database
+        village = Village.objects.get(village_id=village_id)
+        
+        # Prepare response data
+        village_data = {
+            'id': village.id,
+            'name': village.name,
+            'village_id': village.village_id,
+            'total_population': village.total_population,
+            'sc_population': village.sc_population,
+            'st_population': village.st_population,
+            'subdistrict': village.subdistrict.name,
+            'district': village.subdistrict.district.name,
+            'state': village.subdistrict.district.state.name,
+        }
+        
+        return JsonResponse(village_data)
+        
+    except Village.DoesNotExist:
+        return JsonResponse(
+            {'error': f'Village with ID {village_id} not found.'}, status=404)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
 
 @csrf_exempt
 def custom_polygon_comparison(request: HttpRequest) -> JsonResponse:
@@ -775,7 +823,7 @@ def custom_polygon_comparison(request: HttpRequest) -> JsonResponse:
             combined_geometry = intervention_geometry.union(control_geometry)
             
             # Determine which years to calculate based on the state
-            if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
+            if state_name.lower() in BHUVAN_LULC_STATES:
                 # For Bhuvan LULC states, use 2005-2024 excluding 2019
                 year_range = [y for y in range(2005, 2024) if y != 2019]
             elif district_name.lower() in ['vadodara']:
@@ -786,7 +834,7 @@ def custom_polygon_comparison(request: HttpRequest) -> JsonResponse:
                 year_range = range(2017, 2023)
             
             # Define LULC class mappings based on the data source
-            if state_name.lower() in ['maharashtra', 'uttar pradesh', 'jharkhand', 'tamil nadu', 'gujarat', 'andhra pradesh']:
+            if state_name.lower() in BHUVAN_LULC_STATES:
                 # Bhuvan LULC classes
                 class_mapping = {
                     'single_crop': [2, 3, 4],  # Single cropping classes
