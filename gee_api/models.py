@@ -91,7 +91,7 @@ class Village(models.Model):
     """
     name: str = models.CharField(max_length=100)
     subdistrict: SubDistrict = models.ForeignKey(SubDistrict, related_name='villages', on_delete=models.CASCADE)
-    village_id: int = models.IntegerField(null=True, blank=True)  # pc11_tv_id from CSV
+    village_id: str = models.CharField(max_length=20, null=True, blank=True)  # pc11_tv_id from CSV - changed to CharField to preserve leading zeros
     # Additional fields from CSV
     total_population: int = models.IntegerField(null=True, blank=True)  # tot_p
     sc_population: int = models.IntegerField(null=True, blank=True)  # p_sc
@@ -125,14 +125,14 @@ class Project(models.Model):
     district = models.CharField(max_length=100, blank=True, null=True)
     subdistrict = models.CharField(max_length=100, blank=True, null=True)
     village = models.CharField(max_length=100, blank=True, null=True)
-    village_id = models.IntegerField(blank=True, null=True)  # pc11_tv_id
+    village_id = models.CharField(max_length=20, blank=True, null=True)  # pc11_tv_id - changed to CharField
     
     # Control village details
     control_state = models.CharField(max_length=100, blank=True, null=True)
     control_district = models.CharField(max_length=100, blank=True, null=True)
     control_subdistrict = models.CharField(max_length=100, blank=True, null=True)
     control_village = models.CharField(max_length=100, blank=True, null=True)
-    control_village_id = models.IntegerField(blank=True, null=True)
+    control_village_id = models.CharField(max_length=20, blank=True, null=True)  # Changed to CharField to match village_id
     
     # Intervention period
     intervention_start_year = models.IntegerField(blank=True, null=True)

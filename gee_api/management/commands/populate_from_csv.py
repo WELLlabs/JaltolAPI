@@ -65,6 +65,15 @@ class Command(BaseCommand):
             )
             return
 
+        # Filter CSV files based on dropped states if specified
+        if drop_states:
+            csv_files = self.filter_csv_files_by_states(csv_files, drop_states)
+            if not csv_files:
+                self.stdout.write(
+                    self.style.ERROR(f'No CSV files found containing data for states: {", ".join(drop_states)}')
+                )
+                return
+
         self.stdout.write(
             self.style.SUCCESS(f'Found {len(csv_files)} CSV files for processing')
         )
@@ -153,6 +162,63 @@ class Command(BaseCommand):
         self.stdout.write(
             self.style.SUCCESS(f'Data for states: {", ".join(states)} dropped successfully')
         )
+
+    def filter_csv_files_by_states(self, csv_files: List[str], target_states: List[str]) -> List[str]:
+        """Filter CSV files to only include those containing data for the specified states"""
+        filtered_files = []
+        target_states_lower = [state.lower() for state in target_states]
+        
+        self.stdout.write(f'    🔍 Filtering CSV files for states: {", ".join(target_states)}')
+        
+        for csv_file in csv_files:
+            try:
+                # Check if this CSV file contains any of the target states
+                contains_target_state = False
+                
+                # Define the correct field names based on the CSV structure
+                correct_fieldnames = [
+                    'pc11_s_id', 'pc11_d_id', 'pc11_sd_id', 'pc11_tv_id',
+                    'state_name', 'district_n', 'subdistric', 'village_na',
+                    'place_name', 'tot_p', 'p_sc', 'p_st'
+                ]
+                
+                with open(csv_file, 'r', encoding='utf-8') as file:
+                    # Skip the first line if it contains field definitions
+                    first_line = file.readline().strip()
+                    
+                    if first_line.startswith('"pc11_s_id,C,'):
+                        # This is a field definition line, skip it
+                        reader = csv.DictReader(file, fieldnames=correct_fieldnames)
+                    else:
+                        # This is actual data, reset file pointer
+                        file.seek(0)
+                        reader = csv.DictReader(file, fieldnames=correct_fieldnames)
+                    
+                    # Check first few rows to see if this file contains target states
+                    rows_checked = 0
+                    for row in reader:
+                        rows_checked += 1
+                        if rows_checked > 10:  # Only check first 10 rows for efficiency
+                            break
+                            
+                        state_name = row.get('state_name', '').strip().lower()
+                        if state_name in target_states_lower:
+                            contains_target_state = True
+                            break
+                
+                if contains_target_state:
+                    filtered_files.append(csv_file)
+                    self.stdout.write(f'    ✅ Including: {os.path.basename(csv_file)}')
+                else:
+                    self.stdout.write(f'    ❌ Skipping: {os.path.basename(csv_file)}')
+                    
+            except Exception as e:
+                self.stdout.write(
+                    self.style.ERROR(f'    ⚠️  Error checking {csv_file}: {str(e)}')
+                )
+                continue
+        
+        return filtered_files
 
     def process_csv_file(self, csv_file: str, specific_state: Optional[str], dry_run: bool) -> Dict:
         """Process a single CSV file and return statistics"""
