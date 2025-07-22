@@ -22,6 +22,11 @@ from .authentication_views import (
     update_profile,
     change_password,
     CustomTokenObtainPairView,
+    get_available_plans,
+    get_user_plan,
+    select_plan,
+    change_plan,
+    check_plan_requirements,
 )
 
 from .google_auth import google_login, google_auth_config
@@ -56,6 +61,13 @@ urlpatterns = [
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('auth/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     
+    # Plan management endpoints
+    path('plans/', get_available_plans, name='get_available_plans'),
+    path('plans/user/', get_user_plan, name='get_user_plan'),
+    path('plans/select/', select_plan, name='select_plan'),
+    path('plans/change/', change_plan, name='change_plan'),
+    path('plans/check-requirements/', check_plan_requirements, name='check_plan_requirements'),
+    
     # Project management endpoints
     path('projects/', projects_view, name='projects'),
     path('projects/<uuid:project_id>/', project_detail_view, name='project_detail'),
@@ -81,10 +93,6 @@ urlpatterns = [
         get_control_village,
         name='get_control_village'),
     path(
-        'get_village_details/',
-        get_village_details,
-        name='get_village_details'),
-    path(
         'get_rainfall_data/',
         get_rainfall_data,
         name='get_rainfall_data'),
@@ -92,14 +100,28 @@ urlpatterns = [
         'health/',
         health_check,
         name='health_check'),
-     path(
+    path(
         'custom_polygon_comparison/',
         custom_polygon_comparison,
         name='custom_polygon_comparison'),
-    
-    path('states/', views.state_list, name='state_list'),
-    path('districts/<int:state_id>/', views.district_list, name='district_list'),
-    path('subdistricts/<int:district_id>/', views.subdistrict_list, name='subdistrict_list'),
-    path('villages/<int:subdistrict_id>/', views.village_list, name='village_list'),
-
+    path(
+        'states/',
+        state_list,
+        name='state_list'),
+    path(
+        'districts/<int:state_id>/',
+        district_list,
+        name='district_list'),
+    path(
+        'subdistricts/<int:district_id>/',
+        subdistrict_list,
+        name='subdistrict_list'),
+    path(
+        'villages/<int:subdistrict_id>/',
+        village_list,
+        name='village_list'),
+    path(
+        'get_village_details/',
+        get_village_details,
+        name='get_village_details'),
 ]
