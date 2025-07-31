@@ -237,20 +237,44 @@ class Command(BaseCommand):
             'place_name', 'tot_p', 'p_sc', 'p_st'
         ]
 
-        with open(csv_file, 'r', encoding='utf-8') as file:
+        # Try different encodings to handle problematic files
+        encodings_to_try = ['utf-8', 'latin-1', 'cp1252', 'iso-8859-1']
+        file_obj = None
+        used_encoding = None
+        
+        for encoding in encodings_to_try:
+            try:
+                file_obj = open(csv_file, 'r', encoding=encoding)
+                # Test read the first line to ensure encoding works
+                pos = file_obj.tell()
+                file_obj.readline()
+                file_obj.seek(pos)
+                used_encoding = encoding
+                self.stdout.write(f'    📂 Using encoding: {encoding}')
+                break
+            except UnicodeDecodeError:
+                if file_obj:
+                    file_obj.close()
+                continue
+        
+        if not file_obj:
+            self.stdout.write(f'    ❌ Could not decode file with any encoding')
+            return stats
+            
+        with file_obj:
             # Skip the first line if it contains field definitions
-            first_line = file.readline().strip()
+            first_line = file_obj.readline().strip()
             self.stdout.write(f'    🔍 First line: {first_line[:100]}...')
             
             if first_line.startswith('"pc11_s_id,C,'):
                 # This is a field definition line, skip it
                 self.stdout.write('    ✅ Skipping field definition line')
-                reader = csv.DictReader(file, fieldnames=correct_fieldnames)
+                reader = csv.DictReader(file_obj, fieldnames=correct_fieldnames)
             else:
                 # This is actual data, reset file pointer
-                file.seek(0)
+                file_obj.seek(0)
                 self.stdout.write('    ⚠️  First line appears to be data, resetting file pointer')
-                reader = csv.DictReader(file, fieldnames=correct_fieldnames)
+                reader = csv.DictReader(file_obj, fieldnames=correct_fieldnames)
             
             # Debug fieldnames
             self.stdout.write(f'    📋 Using fieldnames: {reader.fieldnames}')

@@ -20,9 +20,10 @@ ee_assets = {
 
 # States that use Bhuvan LULC data
 BHUVAN_LULC_STATES = [
-    'andhra pradesh', 'chhattisgarh', 'gujarat',
-    'jharkhand', 'karnataka', 'maharashtra', 
-    'punjab', 'rajasthan', 'tamil nadu', 'uttar pradesh'
+    'andhra pradesh', 'bihar', 'chhattisgarh', 'gujarat',
+    'haryana', 'himachal pradesh', 'jharkhand', 'karnataka', 
+    'kerala', 'madhya pradesh', 'maharashtra', 'odisha',
+    'punjab', 'rajasthan', 'tamil nadu', 'uttarakhand', 'uttar pradesh', 'west bengal'
 ]
 
 compare_village_buffer: int = 5000
