@@ -161,3 +161,7 @@ cython_debug/
 
 data/csv/
 gee_api/migrations/
+
+
+# add your venv folder here
+jaltolvenv/

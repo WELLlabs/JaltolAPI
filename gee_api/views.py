@@ -685,6 +685,13 @@ def get_control_village(request: HttpRequest) -> JsonResponse:
         village_name = request.GET.get('village_name', '').lower()
         village_id = request.GET.get('village_id', '')
 
+        # Clean up village name if it contains an ID part (same as other functions)
+        if ' - ' in village_name and not village_id:
+            parts = village_name.split(' - ')
+            village_name = parts[0].strip()
+            if len(parts) > 1:
+                village_id = parts[1].strip()
+
         if not (state_name and district_name and subdistrict_name and village_name):
             return JsonResponse(
                 {'error': 'All parameters (state_name, district_name, subdistrict_name, village_name) are required.'}, 
