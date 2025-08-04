@@ -165,3 +165,4 @@ gee_api/migrations/
 
 # add your venv folder here
 jaltolvenv/
+venv/
