@@ -35,12 +35,12 @@ jobs:
             
             # Use Docker Compose to stop, rebuild, and restart your application
             echo "🐳 Rebuilding and deploying with Docker Compose..."
-            docker-compose down
-            docker-compose build --no-cache
-            docker-compose up -d
+            sudo docker-compose down
+            sudo docker-compose build --no-cache
+            sudo docker-compose up -d
             
             # Clean up old, unused Docker images to save space
             echo "🧹 Cleaning up old images..."
-            docker image prune -af
+            sudo docker image prune -af
 
             echo "✅ Deployment to production complete!"
