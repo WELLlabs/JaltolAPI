@@ -1,0 +1,46 @@
+# .github/workflows/deploy.yml
+name: Deploy to Production EC2
+
+on:
+  # Trigger the workflow on every push to the 'main' branch
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to EC2 instance
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            # Navigate to your project directory on the EC2 instance
+            cd /home/ubuntu/JaltolAPI 
+            
+            # Pull the latest changes from the main branch
+            echo "➡️ Pulling latest code..."
+            git pull origin main
+            
+            # Copy your production environment file to the required .env file
+            echo "➡️ Setting up environment..."
+            cp env.prod .env
+            
+            # Use Docker Compose to stop, rebuild, and restart your application
+            echo "🐳 Rebuilding and deploying with Docker Compose..."
+            docker-compose down
+            docker-compose build --no-cache
+            docker-compose up -d
+            
+            # Clean up old, unused Docker images to save space
+            echo "🧹 Cleaning up old images..."
+            docker image prune -af
+
+            echo "✅ Deployment to production complete!"

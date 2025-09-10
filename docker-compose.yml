@@ -1,0 +1,20 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  app:
+    # Build the image using the Dockerfile in the current directory
+    build: .
+    # Give the container a consistent name to easily manage it
+    container_name: jaltol-api-container
+    # Name the image that will be built
+    image: jaltol-api-image
+    # This tells Docker Compose to load variables from a .env file
+    # for your secrets like database URLs, API keys, etc.
+    env_file:
+      - .env
+    # This maps your EC2 instance's port 80 to the container's port 80
+    ports:
+      - "80:80"
+    # This ensures the container restarts automatically if it crashes
+    restart: always
