@@ -175,7 +175,7 @@ def get_karauli_raster(
             'max': 12,
             'palette': [
                 '#b2df8a', '#6382ff', '#d7191c', '#f5ff8b', '#dcaa68',
-                '#397d49', '#50c361', '#0096FF', '#dac190', '#222f5b',
+                '#397d49', '#50c361', '#8b9dc3', '#dac190', '#222f5b',
                 '#38c5f9', '#946b2d'
             ]
         }
@@ -399,7 +399,7 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
                 'max': 12,
                 'palette': [
                     '#b2df8a', '#6382ff', '#d7191c', '#f5ff8b', '#dcaa68',
-                    '#397d49', '#50c361', '#0096FF', '#dac190', '#222f5b',
+                    '#397d49', '#50c361', '#8b9dc3', '#dac190', '#222f5b',
                     '#38c5f9', '#946b2d'
                 ]
             }
@@ -428,7 +428,7 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
                 'max': 12,
                 'palette': [
                     '#b2df8a', '#6382ff', '#d7191c', '#f5ff8b', '#dcaa68',
-                    '#397d49', '#50c361', '#0096FF', '#dac190', '#222f5b',
+                    '#397d49', '#50c361', '#8b9dc3', '#dac190', '#222f5b',
                     '#38c5f9', '#946b2d'
                 ]
             }
@@ -456,7 +456,7 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
                 'max': 12,
                 'palette': [
                     '#b2df8a', '#6382ff', '#d7191c', '#f5ff8b', '#dcaa68',
-                    '#397d49', '#50c361', '#0096FF', '#dac190', '#222f5b',
+                    '#397d49', '#50c361', '#8b9dc3', '#dac190', '#222f5b',
                     '#38c5f9', '#946b2d'
                 ]
             }
