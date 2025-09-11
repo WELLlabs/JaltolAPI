@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
 from .views import (
-    get_boundary_data, get_lulc_raster, get_area_change,
+    get_boundary_data, get_lulc_raster, get_area_change, get_srtm_raster,
     get_control_village, get_rainfall_data, health_check,
     custom_polygon_comparison, api_root, state_list, district_list,
     subdistrict_list, village_list, projects_view, 
@@ -84,6 +84,10 @@ urlpatterns = [
         'get_lulc_raster/',
         get_lulc_raster,
         name='get_lulc_raster'),
+    path(
+        'get_srtm_raster/',
+        get_srtm_raster,
+        name='get_srtm_raster'),
     path(
         'get_area_change/',
         get_area_change,

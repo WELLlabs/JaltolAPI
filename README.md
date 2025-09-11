@@ -266,6 +266,7 @@ JaltolAPI/
 - `GET /api/get_lulc_raster/` - Get LULC raster tiles
 - `GET /api/get_area_change/` - Get area change analysis
 - `GET /api/get_rainfall_data/` - Get rainfall data
+- `GET /api/get_srtm_raster/` - Get SRTM DEM raster tiles
 - `GET /api/get_control_village/` - Get control village
 - `POST /api/custom_polygon_comparison/` - Compare custom polygons
 

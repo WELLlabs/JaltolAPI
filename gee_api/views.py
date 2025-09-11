@@ -22,7 +22,8 @@ from .ee_processing import (
     village_boundary, 
     FarmBoundary_lulc, 
     subdistrict_boundary,
-    Bhuvan_lulc
+    Bhuvan_lulc,
+    srtm
 )
 import ee
 
@@ -381,12 +382,12 @@ def get_lulc_raster(request: HttpRequest) -> JsonResponse:
             
             # For Bhuvan LULC, we need to remap classes
             # Tree/Forests: 7,8,9 -> 6
-            # Single cropping: 2,3,4 -> 8
-            # Double cropping: 5 -> 10
-            # Shrub/Scrub: 10 -> 12
+            # Single cropping: 2,6,13 -> 8
+            # Double cropping: 3,4,5 -> 10
+            # Shrub/Scrub: 10,12 -> 12
             # Remap Bhuvan classes to match our visualization classes
             valuesToKeep = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-            targetValues = [0, 8, 8, 8, 10, 0, 6, 6, 6, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            targetValues = [0, 8, 10, 10, 10, 8, 6, 6, 6, 12, 0, 12, 8, 0, 0, 0, 0, 0, 0]
             remappedImage = image.select('b1').remap(valuesToKeep, targetValues, 0)
             
             # Create mask to only show the classes we want (6, 8, 10, 12)
@@ -629,8 +630,12 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
                 # Apply appropriate remapping based on the data source
                 if is_bhuvan:
                     # For Bhuvan LULC, apply remapping specific to Bhuvan classes
-                    valuesToKeep = [2, 3, 4, 5, 7, 8, 9, 10, 12]
-                    targetValues = [8, 8, 8, 10, 6, 6, 6, 12, 12]
+                    # Tree/Forests: 7,8,9 -> 6
+                    # Single cropping: 2,6,13 -> 8
+                    # Double cropping: 3,4,5 -> 10
+                    # Shrub/Scrub: 10,12 -> 12
+                    valuesToKeep = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13]
+                    targetValues = [8, 10, 10, 10, 8, 6, 6, 6, 12, 12, 8]
                     remapped_image = year_image.select('b1').remap(valuesToKeep, targetValues, 0)
                 else:
                     # For IndiaSAT and FarmBoundary, use original remapping approach
@@ -671,6 +676,55 @@ def get_area_change(request: HttpRequest) -> JsonResponse:
         print(f"Error in get_area_change: {e}")
         return JsonResponse({'error': str(e)}, status=500)
 
+def get_srtm_raster(request: HttpRequest) -> JsonResponse:
+    ee.Initialize(credentials)
+
+    state_name = request.GET.get('state_name', '').lower()
+    district_name = request.GET.get('district_name', '').lower()
+    subdistrict_name = request.GET.get('subdistrict_name', '').lower()
+    village_name = request.GET.get('village_name', '').lower()
+    village_id = request.GET.get('village_id', '')
+    
+    # Extract village ID if it's in the format "name - id" and no specific village_id is provided
+    if ' - ' in village_name and not village_id:
+        parts = village_name.split(' - ')
+        village_name_only = parts[0]
+        if len(parts) > 1:
+            village_id = parts[1]
+    else:
+        village_name_only = village_name
+    
+    print(f"Processing LULC for: {village_name_only}, ID: {village_id}")
+
+    try:
+        shrug = shrug_dataset()
+        if not all((state_name, district_name)):
+            raise ValueError(
+                'parameters (state_name, district_name) are required.')
+        elif village_id:
+            fc = shrug.filter(
+                ee.Filter.And(
+                        ee.Filter.eq(shrug_fields['state_field'], state_name),
+                        ee.Filter.eq(shrug_fields['district_field'], district_name),
+                        ee.Filter.eq(shrug_fields['subdistrict_field'], subdistrict_name),
+                        ee.Filter.eq('pc11_tv_id', village_id)
+                    )
+            )
+        elif village_name_only:
+            fc = village_boundary(state_name, district_name, subdistrict_name, village_name)
+        else:
+            fc = district_boundary(state_name, district_name)
+        image = srtm().clipToCollection(fc)
+        
+        map_id_dict = image.getMapId()
+        # Construct the tiles URL template
+        tiles_url = map_id_dict['tile_fetcher'].url_format
+        
+        print(f"LULC tiles URL: {tiles_url}")
+        return JsonResponse({'tiles_url': tiles_url})
+    except Exception as e:
+        logger.error('Failed to get LULC raster', exc_info=True)
+        return JsonResponse({'error': str(e)}, status=500)
 
 
 def get_control_village(request: HttpRequest) -> JsonResponse:

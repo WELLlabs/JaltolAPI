@@ -151,6 +151,17 @@ def village_boundary(
     except Exception as e:
         raise ValueError(f"Error in fetching village boundary: {e}")
 
+def srtm() -> ee.Image:
+    """
+    Retrieve the SRTM elevation data.
+
+    :return: Earth Engine Image representing the SRTM elevation
+    :raises: ValueError if there is an error fetching the SRTM data
+    """
+    try:
+        return ee.Image(ee_assets['srtm']).select('elevation')
+    except Exception as e:
+        raise ValueError(f"Error in fetching SRTM data: {e}")
 
 def srtm_slope() -> ee.Image:
     """
