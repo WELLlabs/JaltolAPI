@@ -15,15 +15,16 @@ from django.shortcuts import get_object_or_404
 
 from .utils import initialize_earth_engine
 from .ee_processing import (
-    compare_village, 
-    district_boundary, 
-    IndiaSAT_lulc, 
-    IMD_precipitation, 
-    village_boundary, 
-    FarmBoundary_lulc, 
+    compare_village,
+    district_boundary,
+    IndiaSAT_lulc,
+    IMD_precipitation,
+    village_boundary,
+    FarmBoundary_lulc,
     subdistrict_boundary,
     Bhuvan_lulc,
-    srtm
+    srtm,
+    srtm_slope
 )
 import ee
 
@@ -714,16 +715,53 @@ def get_srtm_raster(request: HttpRequest) -> JsonResponse:
             fc = village_boundary(state_name, district_name, subdistrict_name, village_name)
         else:
             fc = district_boundary(state_name, district_name)
-        image = srtm().clipToCollection(fc)
-        
-        map_id_dict = image.getMapId()
+        image = srtm_slope().clipToCollection(fc)
+
+        # Calculate min and max slope values for the clipped area
+        slope_stats = image.reduceRegion(
+            reducer=ee.Reducer.minMax(),
+            geometry=fc.geometry(),
+            scale=30,
+            maxPixels=1e9
+        )
+
+        min_slope = slope_stats.get('slope_min').getInfo()
+        max_slope = slope_stats.get('slope_max').getInfo()
+
+        # Use the calculated values if available, otherwise use defaults
+        vis_min = min_slope if min_slope is not None else 0
+        vis_max = max_slope if max_slope is not None else 45
+
+        # Define visualization parameters for slope map
+        vis_params = {
+            'min': vis_min,
+            'max': vis_max,
+            'palette': [
+                '#00FF00',  # Green (flat areas)
+                '#7FFF00',  # Light green
+                '#FFFF00',  # Yellow (gentle slopes)
+                '#FFBF00',  # Light orange
+                '#FF8000',  # Orange (moderate slopes)
+                '#FF4000',  # Red-orange
+                '#FF0000',  # Red (steep slopes)
+                '#800000',  # Dark red (very steep)
+            ]
+        }
+
+        map_id_dict = image.getMapId(vis_params)
         # Construct the tiles URL template
         tiles_url = map_id_dict['tile_fetcher'].url_format
-        
-        print(f"LULC tiles URL: {tiles_url}")
-        return JsonResponse({'tiles_url': tiles_url})
+
+        print(f"SRTM Slope tiles URL: {tiles_url} (vis_min: {vis_min}°, vis_max: {vis_max}°, actual_min: {min_slope}°, actual_max: {max_slope}°)")
+        return JsonResponse({
+            'tiles_url': tiles_url,
+            'min_slope': vis_min,
+            'max_slope': vis_max,
+            'actual_min_slope': min_slope,
+            'actual_max_slope': max_slope
+        })
     except Exception as e:
-        logger.error('Failed to get LULC raster', exc_info=True)
+        print(f'Failed to get SRTM raster: {str(e)}')
         return JsonResponse({'error': str(e)}, status=500)
 
 
