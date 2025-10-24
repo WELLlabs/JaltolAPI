@@ -6,8 +6,8 @@ A Django REST API backend for the Jaltol platform, providing geospatial analysis
 
 ### Prerequisites
 
-- **Python** (v3.8 or higher)
-- **pip** (Python package manager)
+- **Python** (v3.9 recommended for best compatibility)
+- **Conda** (recommended) or **pip** (Python package manager)
 - **Git**
 - **PostgreSQL** (optional, SQLite included for development)
 - **Google Earth Engine** account and service credentials
@@ -20,9 +20,18 @@ A Django REST API backend for the Jaltol platform, providing geospatial analysis
    cd WELLLABS_GITHUB/JaltolAPI
    ```
 
-2. **Create and activate virtual environment**
+2. **Create and activate conda environment**
    
-   **Windows (PowerShell):**
+   **Using Conda (Recommended):**
+   ```bash
+   # Create conda environment with Python 3.9
+   conda create -n jaltolapi python=3.9
+   
+   # Activate the environment
+   conda activate jaltolapi
+   ```
+   
+   **Alternative: Using venv (Windows PowerShell):**
    ```powershell
    # Create virtual environment
    python -m venv jaltolvenv
@@ -34,7 +43,7 @@ A Django REST API backend for the Jaltol platform, providing geospatial analysis
    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
    ```
    
-   **macOS/Linux:**
+   **Alternative: Using venv (macOS/Linux):**
    ```bash
    # Create virtual environment
    python3 -m venv jaltolvenv
@@ -45,14 +54,17 @@ A Django REST API backend for the Jaltol platform, providing geospatial analysis
 
 3. **Install dependencies**
    ```bash
-   # Install core packages
+   # Navigate to JaltolAPI directory
+   cd JaltolAPI
+   
+   # Install core packages (cleaned requirements for Python 3.9)
    pip install -r requirements.txt
    ```
 
    **If you encounter installation errors, install packages individually:**
    ```bash
-   # Core Django
-   pip install Django==5.0.1
+   # Core Django (Python 3.9 compatible)
+   pip install Django==4.2.16
    pip install djangorestframework==3.15.2
    pip install django-cors-headers==4.3.1
    
@@ -75,7 +87,6 @@ A Django REST API backend for the Jaltol platform, providing geospatial analysis
    
    # Database (PostgreSQL - optional)
    pip install psycopg2==2.9.9
-   pip install psycopg2-binary==2.9.9
    
    # Production Server
    pip install gunicorn==21.2.0
@@ -444,7 +455,7 @@ chmod +x start.sh
 
 ## 🛠️ Tech Stack
 
-- **Django 5.0.1** - Web framework
+- **Django 4.2.16** - Web framework (Python 3.9 compatible)
 - **Django REST Framework 3.15.2** - API development
 - **Google Earth Engine** - Geospatial analysis
 - **PostgreSQL/SQLite** - Database
@@ -455,15 +466,16 @@ chmod +x start.sh
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Activate virtual environment (`source jaltolvenv/bin/activate`)
-4. Install dependencies (`pip install -r requirements.txt`)
-5. Set up environment variables (`.env` file)
-6. Run migrations (`python manage.py migrate`)
-7. Make your changes
-8. Test thoroughly (`python manage.py test`)
-9. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-10. Push to the branch (`git push origin feature/AmazingFeature`)
-11. Open a Pull Request
+3. Create conda environment (`conda create -n jaltolapi python=3.9`)
+4. Activate environment (`conda activate jaltolapi`)
+5. Install dependencies (`pip install -r requirements.txt`)
+6. Set up environment variables (`.env` file)
+7. Run migrations (`python manage.py migrate`)
+8. Make your changes
+9. Test thoroughly (`python manage.py test`)
+10. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+11. Push to the branch (`git push origin feature/AmazingFeature`)
+12. Open a Pull Request
 
 ## 📄 License
 
