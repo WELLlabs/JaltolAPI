@@ -98,7 +98,9 @@ A Django REST API backend for the Jaltol platform, providing geospatial analysis
 
 6. **Run database migrations**
    ```bash
-   python manage.py migrate
+   python manage.py showmigrations gee_api # to see migration status
+   python manage.py migrate OR
+   python manage.py migrate gee_api 000X --fake # to mark as done
    ```
 
 7. **Create superuser (optional)**
