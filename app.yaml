@@ -10,18 +10,25 @@ automatic_scaling:
 
 entrypoint: gunicorn -b :$PORT my_gee_backend.wsgi:application
 
-env_variables:
-  DJANGO_SECRET_KEY: "django-insecure-sv^=0*(95v=&7gbq#5%e!&ynw)w5c@la($mam+5)&1*a!+m8!1"
-  DJANGO_DEBUG: "False"
-  DJANGO_ALLOWED_HOSTS: "yourdomain.com, www.yourdomain.com"  # Fill in with your actual domain
-  DATABASE_NAME: "my_django_db"
-  DATABASE_USER: "django_user"
-  DATABASE_PASSWORD: "lemontin1"
-  DATABASE_HOST: "localhost"  # For Cloud SQL, this will be different
-  DATABASE_PORT: "5432"
-  GOOGLE_EARTH_ENGINE_API_KEY: "AIzaSyDjQgvzJyty9FQi5T6X9wLhAVA7lCXFR9Y"
-  GOOGLE_APPLICATION_CREDENTIALS: "C://Users/papne/.config/earthengine/credentials"  # This path won't be valid in App Engine
-  CORS_ORIGIN_WHITELIST: "http://localhost:5173"
+# NOTE: This file is for Google App Engine deployment
+# Current deployment uses AWS EC2 + Docker with env.prod file
+# Environment variables are managed through Docker Compose and .env files
+
+# Uncomment and configure these if you plan to use Google App Engine:
+# env_variables:
+#   SECRET_KEY: "your-secure-django-secret-key"
+#   DEBUG: "False"
+#   ALLOWED_HOSTS: "yourdomain.com,www.yourdomain.com"
+#   DATABASE_NAME: "your-database-name"
+#   DATABASE_USER: "your-database-user"
+#   DATABASE_PASSWORD: "your-secure-database-password"
+#   DATABASE_HOST: "your-database-host.amazonaws.com"
+#   DATABASE_PORT: "5432"
+#   GOOGLE_EARTH_ENGINE_API_KEY: "your-gee-api-key"
+#   GOOGLE_APPLICATION_CREDENTIALS: "path-to-your-service-account.json"
+#   GOOGLE_OAUTH2_CLIENT_ID: "your-google-oauth-client-id"
+#   GOOGLE_OAUTH2_CLIENT_SECRET: "your-google-oauth-client-secret"
+#   CORS_ALLOWED_ORIGINS: "https://yourdomain.com,https://www.yourdomain.com"
   
 
 handlers:
