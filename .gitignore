@@ -174,3 +174,6 @@ data/csv/
 # add your venv folder here
 jaltolvenv/
 venv/
+
+gee_api/migrations/
+creds/gcp-welllabs-6e4173f30e21.json

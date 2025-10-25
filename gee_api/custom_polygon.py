@@ -167,9 +167,12 @@ def process_custom_polygon(
 # Keep the original script functionality
 if __name__ == "__main__":
     # Initialize Earth Engine credentials
-    email = "admin-133@ee-papnejaanmol.iam.gserviceaccount.com"
-    key_file = "./ee-papnejaanmol-23b4363dc984.json"
-    credentials = ee.ServiceAccountCredentials(email=email, key_file=key_file)
+    import os
+    credentials_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+    if not credentials_path:
+        raise ValueError("GOOGLE_APPLICATION_CREDENTIALS environment variable not set")
+    
+    credentials = ee.ServiceAccountCredentials(None, credentials_path)
     ee.Initialize(credentials)
     
     # Test with the sample data

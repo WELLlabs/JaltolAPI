@@ -3,10 +3,22 @@ import json
 import ee
 
 # Initialize Earth Engine credentials
-email = "admin-133@ee-papnejaanmol.iam.gserviceaccount.com"
-key_file = "./creds/ee-papnejaanmol-23b4363dc984.json"
-credentials = ee.ServiceAccountCredentials(email=email, key_file=key_file)
-ee.Initialize(credentials)
+import os
+
+def initialize_earth_engine():
+    try:
+        credentials_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+        if not credentials_path:
+            raise ValueError("GOOGLE_APPLICATION_CREDENTIALS environment variable not set")
+        
+        credentials = ee.ServiceAccountCredentials(None, credentials_path)
+        ee.Initialize(credentials)
+        return credentials
+    except Exception as e:
+        raise ValueError(f"Failed to initialize Earth Engine: {e}")
+
+# Initialize on module load
+credentials = initialize_earth_engine()
 
 # Earth Engine assets and configuration
 ee_assets = {
