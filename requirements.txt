@@ -31,3 +31,6 @@ PyJWT==2.10.1
 
 # ASGI (for async support)
 asgiref==3.9.1
+
+# Cloud Storage (for static files on GCS)
+django-storages[google]==1.14.2

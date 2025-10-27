@@ -17,12 +17,12 @@ Django settings for my_gee_backend project with Authentication.
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from storages.backends.gcloud import GoogleCloudStorage
 from datetime import timedelta
 
 load_dotenv()
 
 # Set the path to the credentials file
-# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './creds/credentials'
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
 GOOGLE_EARTH_ENGINE_API_KEY = os.getenv('GOOGLE_EARTH_ENGINE_API_KEY')
@@ -37,7 +37,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'True') == 'True'  # False in production
 
 ALLOWED_HOSTS = ['*']
 
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',  # For GCS static files support
     'my_gee_backend',
     'gee_api',
 ]
@@ -88,16 +89,31 @@ TEMPLATES = [
 WSGI_APPLICATION = 'my_gee_backend.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DATABASE_NAME'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': os.getenv('DATABASE_HOST'),
-        'PORT': os.getenv('DATABASE_PORT'),
+# Detect if running on Cloud Run (via environment variable)
+if os.getenv('GAE_ENV') or os.getenv('RUN_ENV') == 'cloudrun':
+    # Cloud SQL connection (Cloud Run uses Unix socket)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DATABASE_NAME'),
+            'USER': os.getenv('DATABASE_USER'),
+            'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+            'HOST': f'/cloudsql/{os.getenv("CLOUD_SQL_CONNECTION_NAME")}',  # Unix socket
+            'PORT': '',
+        }
     }
-}
+else:
+    # Local development (using standard connection)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DATABASE_NAME'),
+            'USER': os.getenv('DATABASE_USER'),
+            'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+            'HOST': os.getenv('DATABASE_HOST'),
+            'PORT': os.getenv('DATABASE_PORT'),
+        }
+    }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -122,8 +138,17 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
-
+# Static files storage (GCS for Cloud Run, local for dev)
+if os.getenv('GAE_ENV') or os.getenv('RUN_ENV') == 'cloudrun':
+    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    GS_BUCKET_NAME = os.getenv('GS_BUCKET_NAME')
+    GS_DEFAULT_ACL = 'publicRead'
+    STATIC_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
+else:
+    STATIC_URL = 'static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
