@@ -1,6 +1,74 @@
+# Cloud Build configuration for Jaltol API
+# This file defines the CI/CD pipeline that runs on every GitHub push
+
+substitutions:
+  # These variables can be overridden at build time
+  _SERVICE_NAME: jaltol-api
+  _REGION: asia-south1
+  _ARTIFACT_REGISTRY: asia-south1-docker.pkg.dev
+
 options:
   logging: CLOUD_LOGGING_ONLY
+  machineType: E2_HIGHCPU_8  # Faster builds (optional, defaults to n1-standard-1)
+  
+timeout: 600s
+
 steps:
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['app', 'deploy']
-timeout: '1600s'
+  # Step 1: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api:${COMMIT_SHA}'
+      - '-t'
+      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api:latest'
+      - '.'
+    timeout: 360s
+
+  # Step 2: Push the image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api:${COMMIT_SHA}'
+    timeout: 120s
+
+  # Step 3: Deploy to Cloud Run with full configuration
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - '${_SERVICE_NAME}'
+      - '--image'
+      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api:${COMMIT_SHA}'
+      - '--region'
+      - '${_REGION}'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--add-cloudsql-instances'
+      - '${PROJECT_ID}:${_REGION}:jaltol-postgres'
+      - '--set-env-vars'
+      - 'DEBUG=False,RUN_ENV=cloudrun,DATABASE_NAME=jaltol_db,DATABASE_USER=admindatabase,CLOUD_SQL_CONNECTION_NAME=${PROJECT_ID}:${_REGION}:jaltol-postgres,GOOGLE_APPLICATION_CREDENTIALS=/app/creds/gcp-welllabs-6e4173f30e21.json,GS_BUCKET_NAME=jaltol-static-files,GOOGLE_OAUTH2_CLIENT_ID=362723538438-qo60hgo8n83h9hi13s0pkbvfnt7kv74j.apps.googleusercontent.com'
+      - '--set-secrets'
+      - 'DATABASE_PASSWORD=database-password:3,GOOGLE_OAUTH2_CLIENT_SECRET=google-oauth-secret:1,DJANGO_SECRET_KEY=django-secret-key:1'
+      - '--memory'
+      - '512Mi'
+      - '--cpu'
+      - '1'
+      - '--timeout'
+      - '300'
+      - '--concurrency'
+      - '80'
+      - '--max-instances'
+      - '20'
+      - '--min-instances'
+      - '0'
+      - '--service-account'
+      - 'jaltol-api-sa@${PROJECT_ID}.iam.gserviceaccount.com'
+    timeout: 120s
+
+# Tag images for easier tracking
+images:
+  - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api:${COMMIT_SHA}'
+  - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api:latest'

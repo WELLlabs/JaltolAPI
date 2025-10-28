@@ -1,0 +1,90 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: jaltol-api
+  annotations:
+    # Cloud SQL connection
+    run.googleapis.com/cloudsql-instances: gcp-welllabs:asia-south1:jaltol-postgres
+    # Allow unauthenticated invocations (for public API)
+    run.googleapis.com/ingress: all
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "50"
+    spec:
+      containerConcurrency: 80
+      timeoutSeconds: 300
+      serviceAccountName: jaltol-api-sa@gcp-welllabs.iam.gserviceaccount.com
+      containers:
+      - image: asia-south1-docker.pkg.dev/gcp-welllabs/jaltol-api/jaltol-api:latest
+        ports:
+        - name: http1
+          containerPort: 8080
+        env:
+        # Django Settings
+        - name: DEBUG
+          value: "False"
+        - name: RUN_ENV
+          value: "cloudrun"
+        
+        # Database Configuration
+        - name: DATABASE_NAME
+          value: "jaltol_db"
+        - name: DATABASE_USER
+          value: "admindatabase"
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: database-password
+              key: password
+        - name: CLOUD_SQL_CONNECTION_NAME
+          value: "gcp-welllabs:asia-south1:jaltol-postgres"
+        
+        # Google Earth Engine
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: "/app/creds/gcp-welllabs-6e4173f30e21.json"
+        - name: GOOGLE_EARTH_ENGINE_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: gee-api-key
+              key: key
+        
+        # Google OAuth
+        - name: GOOGLE_OAUTH2_CLIENT_ID
+          value: "362723538438-qo60hgo8n83h9hi13s0pkbvfnt7kv74j.apps.googleusercontent.com"
+        - name: GOOGLE_OAUTH2_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: google-oauth-secret
+              key: secret
+        
+        # GCS Static Files
+        - name: GS_BUCKET_NAME
+          value: "jaltol-static-files"
+        
+        # Django Secret Key
+        - name: DJANGO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: django-secret-key
+              key: key
+        
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+        startupProbe:
+          httpGet:
+            path: /api/health/
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 3
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /api/health/
+          initialDelaySeconds: 10
+          timeoutSeconds: 1
+          periodSeconds: 10
