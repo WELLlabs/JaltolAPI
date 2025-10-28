@@ -21,7 +21,7 @@ requests==2.31.0
 python-dotenv==1.0.1
 
 # Database (PostgreSQL - optional)
-psycopg2==2.9.9
+psycopg2-binary==2.9.9
 
 # Production Server
 gunicorn==21.2.0
