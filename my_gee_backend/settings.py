@@ -22,8 +22,10 @@ from datetime import timedelta
 
 load_dotenv()
 
-# Set the path to the credentials file
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+# Set the path to the credentials file (only if it's set)
+google_creds = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+if google_creds:
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = google_creds
 
 # GOOGLE_EARTH_ENGINE_API_KEY = os.getenv('GOOGLE_EARTH_ENGINE_API_KEY')
 GOOGLE_OAUTH2_CLIENT_ID = os.getenv('GOOGLE_OAUTH2_CLIENT_ID')
