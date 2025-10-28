@@ -19,9 +19,9 @@ steps:
     args:
       - 'build'
       - '-t'
-      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api:${COMMIT_SHA}'
+      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api/jaltol-api:${COMMIT_SHA}'
       - '-t'
-      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api:latest'
+      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api/jaltol-api:latest'
       - '.'
     timeout: 360s
 
@@ -30,7 +30,7 @@ steps:
     args:
       - 'push'
       - '--all-tags'
-      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api'
+      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api/jaltol-api'
     timeout: 120s
 
   # Step 3: Deploy to Cloud Run with full configuration
@@ -41,7 +41,7 @@ steps:
       - 'deploy'
       - '${_SERVICE_NAME}'
       - '--image'
-      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api:${COMMIT_SHA}'
+      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api/jaltol-api:${COMMIT_SHA}'
       - '--region'
       - '${_REGION}'
       - '--platform'
