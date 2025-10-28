@@ -355,3 +355,28 @@ def check_plan_requirements(request):
         'has_active_plan': has_active_plan,
         'is_first_login': needs_plan_selection and not member.has_selected_plan
     }, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def skip_profile_setup(request):
+    """
+    Allow user to skip profile setup
+    """
+    user = request.user
+    
+    try:
+        member = user.member_profile
+        member.profile_skipped = True
+        member.save()
+        
+        return Response({
+            'success': True,
+            'message': 'Profile setup skipped. You can complete it later from your dashboard.'
+        }, status=status.HTTP_200_OK)
+        
+    except Exception as e:
+        return Response({
+            'success': False,
+            'message': 'Failed to skip profile setup'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -25,7 +25,7 @@ load_dotenv()
 # Set the path to the credentials file
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
-GOOGLE_EARTH_ENGINE_API_KEY = os.getenv('GOOGLE_EARTH_ENGINE_API_KEY')
+# GOOGLE_EARTH_ENGINE_API_KEY = os.getenv('GOOGLE_EARTH_ENGINE_API_KEY')
 GOOGLE_OAUTH2_CLIENT_ID = os.getenv('GOOGLE_OAUTH2_CLIENT_ID')
 GOOGLE_OAUTH2_CLIENT_SECRET = os.getenv('GOOGLE_OAUTH2_CLIENT_SECRET')
 
@@ -92,6 +92,18 @@ WSGI_APPLICATION = 'my_gee_backend.wsgi.application'
 # Detect if running on Cloud Run (via environment variable)
 if os.getenv('GAE_ENV') or os.getenv('RUN_ENV') == 'cloudrun':
     # Cloud SQL connection (Cloud Run uses Unix socket)
+    import logging
+    logger = logging.getLogger(__name__)
+    
+    logger.info("="*50)
+    logger.info("CLOUD RUN DATABASE CONFIG")
+    logger.info(f"DATABASE_NAME: {os.getenv('DATABASE_NAME')}")
+    logger.info(f"DATABASE_USER: {os.getenv('DATABASE_USER')}")
+    logger.info(f"CLOUD_SQL_CONNECTION_NAME: {os.getenv('CLOUD_SQL_CONNECTION_NAME')}")
+    logger.info(f"DATABASE_PASSWORD is set: {bool(os.getenv('DATABASE_PASSWORD'))}")
+    logger.info(f"HOST: /cloudsql/{os.getenv('CLOUD_SQL_CONNECTION_NAME')}")
+    logger.info("="*50)
+    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',

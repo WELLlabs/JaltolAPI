@@ -171,6 +171,7 @@ class Member(models.Model):
     # Role and plan information
     role = models.CharField(max_length=20, choices=USER_ROLES, default='user')
     has_selected_plan = models.BooleanField(default=False)  # Track if user has made initial plan selection
+    profile_skipped = models.BooleanField(default=False)  # Track if user skipped profile setup
     
     # Additional profile fields
     phone = models.CharField(max_length=20, blank=True, null=True)

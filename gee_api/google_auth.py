@@ -137,8 +137,12 @@ def google_login(request):
         # Serialize user data
         user_serializer = EnhancedUserSerializer(user)
         
-        # Check if this is a new user (no organization set)
-        is_new_user = not user.member_profile.organization if hasattr(user, 'member_profile') else True
+        # Check if this is a new user (needs profile setup)
+        if hasattr(user, 'member_profile'):
+            # User is new if they haven't completed profile setup and haven't skipped it
+            is_new_user = not (user.member_profile.organization or user.member_profile.bio or user.member_profile.phone) and not user.member_profile.profile_skipped
+        else:
+            is_new_user = True
         
         return Response({
             'message': 'Google login successful',

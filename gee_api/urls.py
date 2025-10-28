@@ -27,6 +27,7 @@ from .authentication_views import (
     select_plan,
     change_plan,
     check_plan_requirements,
+    skip_profile_setup,
 )
 
 from .google_auth import google_login, google_auth_config
@@ -50,6 +51,7 @@ urlpatterns = [
     path('auth/logout/', logout_user, name='logout'),
     path('auth/profile/', user_profile, name='user_profile'),
     path('auth/profile/update/', update_profile, name='update_profile'),
+    path('auth/profile/skip/', skip_profile_setup, name='skip_profile_setup'),
     path('auth/change-password/', change_password, name='change_password'),
     
     # Google authentication
