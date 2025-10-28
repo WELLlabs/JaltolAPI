@@ -69,7 +69,8 @@ steps:
       - 'jaltol-api-sa@${PROJECT_ID}.iam.gserviceaccount.com'
     timeout: 120s
 
-# Tag images for easier tracking
+# Optional: Images metadata for tracking (already built and pushed in steps above)
+# If you get errors about missing images, you can safely remove this block
 images:
-  - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api:${COMMIT_SHA}'
-  - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api:latest'
+  - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api/jaltol-api:${COMMIT_SHA}'
+  - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/jaltol-api/jaltol-api:latest'
