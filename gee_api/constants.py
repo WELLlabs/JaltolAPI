@@ -4,18 +4,27 @@ import ee
 
 # Initialize Earth Engine credentials
 import os
+import google.auth
+
+# def initialize_earth_engine():
+#     try:
+#         credentials_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+#         if not credentials_path:
+#             raise ValueError("GOOGLE_APPLICATION_CREDENTIALS environment variable not set")
+        
+#         credentials = ee.ServiceAccountCredentials(None, credentials_path)
+#         ee.Initialize(credentials)
+#         return credentials
+#     except Exception as e:
+#         raise ValueError(f"Failed to initialize Earth Engine: {e}")
 
 def initialize_earth_engine():
-    try:
-        credentials_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
-        if not credentials_path:
-            raise ValueError("GOOGLE_APPLICATION_CREDENTIALS environment variable not set")
-        
-        credentials = ee.ServiceAccountCredentials(None, credentials_path)
-        ee.Initialize(credentials)
-        return credentials
-    except Exception as e:
-        raise ValueError(f"Failed to initialize Earth Engine: {e}")
+    creds, _ = google.auth.default(scopes=[
+        'https://www.googleapis.com/auth/earthengine',
+        'https://www.googleapis.com/auth/cloud-platform',
+    ])
+    ee.Initialize(credentials=creds, project=os.getenv('EE_PROJECT', 'gcp-welllabs'))
+    return creds
 
 # Initialize on module load
 credentials = initialize_earth_engine()
