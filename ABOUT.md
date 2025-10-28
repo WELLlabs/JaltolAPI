@@ -197,3 +197,6 @@ JaltolAPI is essentially a **geospatial data processing engine** that:
 **In one sentence:** It's a smart backend that takes geographic requests, processes them using satellite data, and returns meaningful insights about land and water resources in India.
 
 The environment variables are crucial because they allow the same codebase to work in different environments (your local computer vs. the production server) with different settings for security, database connections, and external service access.
+
+
+
