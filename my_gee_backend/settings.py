@@ -41,7 +41,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'  # False in production
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['jaltol-api-362723538438.asia-south1.run.app']
 
 # Application definition
 INSTALLED_APPS = [
@@ -209,7 +209,8 @@ SIMPLE_JWT = {
 }
 
 # CORS settings
-CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_ALL_ORIGINS = False  # Disallow all origins by default
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-Requested-With']
@@ -220,8 +221,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://app.jaltol.app",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "http://localhost:5173",  # ADD THIS for Vite dev server
-    "http://127.0.0.1:5173",  # ADD THIS for Vite dev server
+    "http://localhost:5173",  # Vite dev server
+    "http://127.0.0.1:5173",  # Vite dev server
 ]
 
 # Allow all headers and methods
