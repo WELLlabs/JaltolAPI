@@ -50,7 +50,7 @@ steps:
       - '--add-cloudsql-instances'
       - '${PROJECT_ID}:${_REGION}:jaltol-postgres'
       - '--set-env-vars'
-      - 'DEBUG=False,RUN_ENV=cloudrun,DATABASE_NAME=jaltol_db,DATABASE_USER=admindatabase,CLOUD_SQL_CONNECTION_NAME=${PROJECT_ID}:${_REGION}:jaltol-postgres,GS_BUCKET_NAME=jaltol-static-files,GOOGLE_OAUTH2_CLIENT_ID=362723538438-qo60hgo8n83h9hi13s0pkbvfnt7kv74j.apps.googleusercontent.com'
+      - 'DEBUG=False,RUN_ENV=cloudrun,DATABASE_NAME=jaltol_db,DATABASE_USER=admindatabase,CLOUD_SQL_CONNECTION_NAME=${PROJECT_ID}:${_REGION}:jaltol-postgres,GS_BUCKET_NAME=jaltol-static-files,GOOGLE_OAUTH2_CLIENT_ID=362723538438-qo60hgo8n83h9hi13s0pkbvfnt7kv74j.apps.googleusercontent.com,EE_PROJECT=${PROJECT_ID}'
       - '--set-secrets'
       - 'DATABASE_PASSWORD=database-password:3,GOOGLE_OAUTH2_CLIENT_SECRET=google-oauth-secret:1,DJANGO_SECRET_KEY=django-secret-key:1'
       - '--memory'

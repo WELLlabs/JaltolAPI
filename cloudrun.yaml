@@ -43,13 +43,8 @@ spec:
           value: "gcp-welllabs:asia-south1:jaltol-postgres"
         
         # Google Earth Engine
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: "/app/creds/gcp-welllabs-6e4173f30e21.json"
-        - name: GOOGLE_EARTH_ENGINE_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: gee-api-key
-              key: key
+        - name: EE_PROJECT
+          value: "gcp-welllabs"
         
         # Google OAuth
         - name: GOOGLE_OAUTH2_CLIENT_ID
