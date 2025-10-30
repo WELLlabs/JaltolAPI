@@ -225,6 +225,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",  # Vite dev server
 ]
 
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://[a-z0-9-]+\.vercel\.app$",
+]
+
 # Allow all headers and methods
 CORS_ALLOW_HEADERS = [
     'accept',
