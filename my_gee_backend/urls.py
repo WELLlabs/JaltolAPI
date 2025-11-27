@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # Including the URLs from gee_api app
     path('api/', include('gee_api.urls')),
+    path('api/cm/', include('continuous_monitoring.urls')),
 ]

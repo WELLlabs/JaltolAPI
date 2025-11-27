@@ -72,9 +72,9 @@ See docs/GCP_CONFIG_CHOICE.md for reason for choosing Cloud Run instead of GCP C
   gcloud sql import sql jaltol-postgres gs://jaltol-api-data-migration-bucket/jaltol_backup.sql --database=jaltol_db --user=admindatabase
   ```
 - Verify data integrity with sample queries
-- Optional (didn't do this): Connect from local machine using Cloud SQL Proxy to test connectivity
+- Needed for local dev: Connect from local machine using Cloud SQL Proxy to test connectivity
    - Windows: Download from https://cloud.google.com/sql/docs/mysql/sql-proxy
-   - Start a local proxy on 5432 - `cloud-sql-proxy.exe gcp-welllabs:asia-south1:jaltol-postgres`
+   - Start a local proxy on 5432 - `cloud-sql-proxy.exe --port 5433 gcp-welllabs:asia-south1:jaltol-postgres`
    - in pgAdmin connect with Host:127.0.0.1 or localhost, database, username and password
 
 ## Phase 3: Application Configuration
