@@ -61,37 +61,6 @@ A Django REST API backend for the Jaltol platform, providing geospatial analysis
    pip install -r requirements.txt
    ```
 
-   **If you encounter installation errors, install packages individually:**
-   ```bash
-   # Core Django (Python 3.9 compatible)
-   pip install Django==4.2.16
-   pip install djangorestframework==3.15.2
-   pip install django-cors-headers==4.3.1
-   
-   # Authentication & JWT
-   pip install djangorestframework-simplejwt==5.3.0
-   
-   # Google Authentication & OAuth  
-   pip install google-auth==2.27.0
-   pip install google-auth-oauthlib==1.1.0
-   pip install google-auth-httplib2==0.2.0
-   
-   # Google Earth Engine
-   pip install earthengine-api==0.1.386
-   
-   # Environment & Configuration
-   pip install python-dotenv==1.0.1
-   
-   # HTTP Requests
-   pip install requests==2.31.0
-   
-   # Database (PostgreSQL - optional)
-   pip install psycopg2==2.9.9
-   
-   # Production Server
-   pip install gunicorn==21.2.0
-   ```
-
 4. **Set up environment variables** (see [Environment Configuration](#environment-configuration))
 
 5. **Set up Google Earth Engine credentials** (see [GEE Setup](#google-earth-engine-setup))
@@ -112,6 +81,11 @@ A Django REST API backend for the Jaltol platform, providing geospatial analysis
    ```bash
    python manage.py runserver
    ```
+This gets you started with local development.
+If you want to connect to the CloudSQL instance instead, download Cloud SQL proxy save in JaltolAPI and then run the following, before `python manage.py runserver`
+
+`cloud-sql-proxy.exe --port 5432 gcp-welllabs:asia-south1:jaltol-postgres`
+
 
 9. **Open in browser**
    - API Root: `http://127.0.0.1:8000/api/`

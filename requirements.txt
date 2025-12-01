@@ -34,3 +34,7 @@ asgiref==3.9.1
 
 # Cloud Storage (for static files on GCS)
 django-storages[google]==1.14.2
+
+# AI & Data Processing
+google-cloud-aiplatform==1.38.1
+pandas==2.1.4

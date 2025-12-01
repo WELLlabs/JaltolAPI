@@ -41,17 +41,35 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'  # False in production
 
-ALLOWED_HOSTS = ['jaltol-api-362723538438.asia-south1.run.app']
+ALLOWED_HOSTS = ['jaltol-api-362723538438.asia-south1.run.app', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    
+    # Third-party apps
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
-    'django.contrib.admin',
-    'django.contrib.auth',
+    'storages',
+    
+    # Local apps
+    'gee_api',
+    'continuous_monitoring',
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -146,9 +164,12 @@ if os.getenv('GAE_ENV') or os.getenv('RUN_ENV') == 'cloudrun':
     GS_BUCKET_NAME = os.getenv('GS_BUCKET_NAME')
     GS_DEFAULT_ACL = 'publicRead'
     STATIC_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
+    MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
 else:
     STATIC_URL = 'static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

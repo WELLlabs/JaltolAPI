@@ -60,13 +60,13 @@ class MetricCatalog(models.Model):
     def __str__(self):
         return self.name
 
-class UnifiedWell(models.Model):
+class UnifiedObject(models.Model):
     """
-    A standardized Well entity.
+    A standardized Object entity (well, site, location, etc.).
     Core fields are strictly typed. All other site-specific fields go into 'extra_data'.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    project = models.ForeignKey(CMProject, on_delete=models.CASCADE, related_name='wells')
+    project = models.ForeignKey(CMProject, on_delete=models.CASCADE, related_name='unified_objects')
     
     # Core Fields (Normalized)
     external_id = models.CharField(max_length=100, help_text="ID from the source file")
@@ -92,7 +92,7 @@ class UnifiedTimeSeries(models.Model):
     """
     id = models.BigAutoField(primary_key=True)
     project = models.ForeignKey(CMProject, on_delete=models.CASCADE, related_name='time_series')
-    well = models.ForeignKey(UnifiedWell, on_delete=models.CASCADE, related_name='readings')
+    object = models.ForeignKey(UnifiedObject, on_delete=models.CASCADE, related_name='readings')
     
     # Core Fields
     timestamp = models.DateTimeField()
@@ -107,6 +107,6 @@ class UnifiedTimeSeries(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields=['project', 'well', 'timestamp']),
+            models.Index(fields=['project', 'object', 'timestamp']),
             models.Index(fields=['project', 'metric', 'timestamp']),
         ]
