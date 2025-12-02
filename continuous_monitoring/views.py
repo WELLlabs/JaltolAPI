@@ -1,4 +1,5 @@
 import logging
+from django.http import HttpResponse
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -82,6 +83,31 @@ class RawDatasetViewSet(viewsets.ModelViewSet):
             return Response(column_summary, status=status.HTTP_200_OK)
         except Exception as e:
             logger.exception("Failed to analyze dataset %s", dataset.id)
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    @action(detail=True, methods=['get'])
+    def download(self, request, pk=None):
+        """
+        Download the CSV file for a dataset.
+        Returns the file content as a downloadable response.
+        """
+        try:
+            dataset = self.get_object()
+        except Exception as e:
+            logger.exception("Failed to get dataset %s", pk)
+            return Response({"error": f"Dataset not found: {str(e)}"}, status=status.HTTP_404_NOT_FOUND)
+        
+        try:
+            # Read the file content
+            with dataset.file.open('rb') as f:
+                file_content = f.read()
+            
+            # Create HTTP response with file content
+            response = HttpResponse(file_content, content_type='text/csv')
+            response['Content-Disposition'] = f'attachment; filename="{dataset.original_filename}"'
+            return response
+        except Exception as e:
+            logger.exception("Failed to download dataset %s", dataset.id)
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     @action(detail=True, methods=['post'])
