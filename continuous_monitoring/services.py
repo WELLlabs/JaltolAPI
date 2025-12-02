@@ -17,7 +17,9 @@ class DatasetIntrospectionService:
 
     def analyze_dataset(self, dataset: RawDataset) -> dict:
         try:
-            df = pd.read_csv(dataset.file.path, nrows=self.preview_rows)
+            # Use file.open() for GCS compatibility (works for both local and GCS)
+            with dataset.file.open('rb') as f:
+                df = pd.read_csv(f, nrows=self.preview_rows)
             original_columns = list(df.columns)
             normalized_columns = self._normalize_columns(original_columns)
 
@@ -76,7 +78,9 @@ class ETLService:
         """
         try:
             mapping = dataset.column_mapping
-            df = pd.read_csv(dataset.file.path)
+            # Use file.open() for GCS compatibility (works for both local and GCS)
+            with dataset.file.open('rb') as f:
+                df = pd.read_csv(f)
             
             # Helper to get value or None
             def get_val(row, col_name):
